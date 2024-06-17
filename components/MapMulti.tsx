@@ -21,20 +21,20 @@ interface MapProps {
 }
 
 const defaults = {
-    zoom: 12,
+    zoom: 13,
     polylineColor: "#F7775E"
 }
 
-const getBoundsWithPadding = (pois: { posix: LatLngExpression }[], padding: number): LatLngBounds => {
-    const bounds = new LatLngBounds(pois.map(poi => poi.posix as LatLngTuple));
-    bounds.pad(padding); // Add padding to bounds
-    return bounds;
-}
+// const getBoundsWithPadding = (pois: { posix: LatLngExpression }[], padding: number): LatLngBounds => {
+//     const bounds = new LatLngBounds(pois.map(poi => poi.posix as LatLngTuple));
+//     bounds.pad(padding); // Add padding to bounds
+//     return bounds;
+// }
 
 const MapMulti = ({ pois = [], zoom = defaults.zoom, polylineColor = defaults.polylineColor }: MapProps) => {
     const markerRefs = useRef<LeafletMarker[]>([]);
 
-    const bounds = pois.length > 0 ? getBoundsWithPadding(pois, 0.5) : undefined;
+    // const bounds = pois.length > 0 ? getBoundsWithPadding(pois, 0.5) : undefined;
 
     useEffect(() => {
         // Open the popup of the first marker when component mounts
@@ -45,8 +45,8 @@ const MapMulti = ({ pois = [], zoom = defaults.zoom, polylineColor = defaults.po
 
     return (
         <MapContainer
-            bounds={bounds}
-            // center={pois.length > 0 ? pois[0].posix : [0, 0]}
+            // bounds={bounds}
+            center={pois.length > 0 ? pois[0].posix : [0, 0]}
             zoom={zoom}
             scrollWheelZoom={false}
             attributionControl={false}

@@ -12,10 +12,11 @@ const Navbar = () => {
                 <div className="flex justify-between items-center h-16">
                     <div className="flex">
                         <div className="flex justify-center items-center">
-                            <a href="/" className="text-xl font-bold text-gray-800">GLOBE QUEST</a>
+                            <a href="/home" className="text-xl font-bold text-gray-800">GLOBE QUEST</a>
                         </div>
                         <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                             <a href="/home" className="text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                            <a href="/home" className="text-gray-500 px-3 py-2 rounded-md text-sm font-medium">Countries</a>
                             <a href="/city" className="text-gray-500 px-3 py-2 rounded-md text-sm font-medium">Cities</a>
                             <a href="#" className="text-gray-500 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
                         </div>
@@ -41,6 +42,7 @@ const Navbar = () => {
                 <div className="sm:hidden">
                     <div className="px-8 pt-2 pb-3 space-y-1">
                         <a href="/home" className="text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                        <a href="/home" className="text-gray-500 block px-3 py-2 rounded-md text-base font-medium">Countries</a>
                         <a href="/city" className="text-gray-500 block px-3 py-2 rounded-md text-base font-medium">Cities</a>
                         <a href="#" className="text-gray-500 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
                     </div>

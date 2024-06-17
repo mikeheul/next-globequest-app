@@ -1,5 +1,5 @@
 import { db } from '@/lib/db'
-import { LandmarkIcon } from 'lucide-react'
+import { LandmarkIcon, MinusIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -20,7 +20,7 @@ const CityPage = async ({ params }: { params: { cityId: string }}) => {
     })
 
     return (
-        <div className='p-10'>
+        <div className='px-8 md:px-16 xl:px-40 py-16'>
             { city && (
                 <>
                     <h1 className='text-4xl uppercase font-semibold text-[#F7775E]'>{ city.name }</h1>
@@ -51,11 +51,12 @@ const CityPage = async ({ params }: { params: { cityId: string }}) => {
                 { city && city.pois.length > 0 ? (
                     city.pois.map((poi: any) => (
                         <Link key={poi.id} href={`/poi/${poi.id}`}>
-                        <div className='rounded-md group cursor-pointer relative flex flex-col border justify-center items-center h-[200px] w-full'>
+                        <div className='rounded-md group cursor-pointer relative flex flex-col justify-center items-center h-[200px] w-full'>
                             {/* image */}
                             <Image layout='fill' objectFit='cover' objectPosition='bottom' className='rounded-md' src={poi.imageUrl} alt='image' />
                             <div className='rounded-md hidden absolute group-hover:flex flex-col justify-center items-center text-center left-0 top-0 w-full h-full bg-[#61BEC4]/70 text-white p-10'>
                                 <p className='text-xl mb-2'>{ poi.category.name }</p>
+                                <MinusIcon className='my-2' width={20} />
                                 <p className='uppercase font-bold'>{ poi.name }</p>
                             </div>
                         </div>

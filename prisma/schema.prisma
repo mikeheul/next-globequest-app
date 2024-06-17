@@ -51,6 +51,7 @@ model Poi {
     address String
     opening_hours Json
     website String
+    imageUrl String?
 
     categoryId String @db.ObjectId
     category Category @relation(fields: [categoryId], references: [id])

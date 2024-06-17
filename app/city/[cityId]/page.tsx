@@ -1,5 +1,6 @@
 import { db } from '@/lib/db'
 import { LandmarkIcon } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
@@ -10,7 +11,11 @@ const CityPage = async ({ params }: { params: { cityId: string }}) => {
             id: params.cityId,
         },
         include: {
-            pois: true
+            pois: {
+                include: {
+                    category: true
+                }
+            }
         }
     })
 
@@ -40,6 +45,27 @@ const CityPage = async ({ params }: { params: { cityId: string }}) => {
                     <div className='italic text-slate-500'>No POIs available</div>
                 )}
             </div>
+
+            <h2 className='text-md font-semibold uppercase my-10'>Most Popular Places</h2>
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+                { city && city.pois.length > 0 ? (
+                    city.pois.map((poi: any) => (
+                        <Link key={poi.id} href={`/poi/${poi.id}`}>
+                        <div className='rounded-md group cursor-pointer relative flex flex-col border justify-center items-center h-[200px] w-full'>
+                            {/* image */}
+                            <Image layout='fill' objectFit='cover' objectPosition='bottom' className='rounded-md' src={poi.imageUrl} alt='image' />
+                            <div className='rounded-md hidden absolute group-hover:flex flex-col justify-center items-center text-center left-0 top-0 w-full h-full bg-[#61BEC4]/70 text-white p-10'>
+                                <p className='text-xl'>{ poi.category.name }</p>
+                                <p className='uppercase'>{ poi.name }</p>
+                            </div>
+                        </div>
+                        </Link>
+                    ))
+                ) : (
+                    <div className='italic text-slate-500'>No POIs available</div>
+                )}
+            </div>
+            
         </div>
     )
 }

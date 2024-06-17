@@ -1,0 +1,84 @@
+datasource db {
+    provider = "mongodb"
+    url      = env("DATABASE_URL")
+    relationMode = "prisma"
+}
+
+generator client {
+    provider = "prisma-client-js"
+    previewFeatures = ["fullTextSearch", "fullTextIndex"]
+}
+
+model Country {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+    name String
+
+    cities City[]
+}
+
+model City {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+    name String
+
+    countryId String @db.ObjectId
+    country Country @relation(fields: [countryId], references: [id])
+
+    pois Poi[]
+
+    @@index([countryId])
+}
+
+model Tag {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+    name String
+
+    tags TagPoi[]
+}
+
+model Category {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+    name String
+
+    pois Poi[]
+}
+
+model Poi {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+    name String
+    description String
+    latitude Float
+    longitude Float
+    address String
+    opening_hours Json
+    website String
+
+    categoryId String @db.ObjectId
+    category Category @relation(fields: [categoryId], references: [id])
+
+    cityId String @db.ObjectId
+    city City @relation(fields: [cityId], references: [id])
+
+    tags TagPoi[]
+
+    createdAt DateTime @default(now())
+
+    @@index([categoryId])
+    @@index([cityId])
+}
+
+model TagPoi {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+
+    poiId String @db.ObjectId
+    poi Poi @relation(fields: [poiId], references: [id])
+
+    tagId String @db.ObjectId
+    tag Tag @relation(fields: [tagId], references: [id])
+
+    @@index([poiId])
+    @@index([tagId])
+    @@unique([poiId, tagId])
+}
+
+// npx prisma generate
+// npx prisma db push

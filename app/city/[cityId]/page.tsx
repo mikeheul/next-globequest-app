@@ -63,7 +63,7 @@ const CityPage = async ({ params }: { params: { cityId: string }}) => {
                 { city && city.pois.length > 0 ? (
                     city.pois.map((poi: any) => (
                         <Link key={poi.id} href={`/poi/${poi.id}`}>
-                            <div className='rounded-md group cursor-pointer relative flex flex-col justify-center items-center h-[200px] w-full'>
+                            <div className='rounded-md group cursor-pointer relative flex flex-col justify-center items-center h-[250px] w-full'>
                                 {/* Image for the POI */}
                                 <Image 
                                     layout='fill' 

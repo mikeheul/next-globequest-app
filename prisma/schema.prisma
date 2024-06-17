@@ -62,6 +62,8 @@ model Poi {
     tags TagPoi[]
     reviews Review[]
 
+    itineraryPois ItineraryPois[]
+
     createdAt DateTime @default(now())
 
     @@index([categoryId])
@@ -95,6 +97,34 @@ model Review {
     createdAt DateTime @default(now())
 
     @@index([poiId])
+}
+
+model Itinerary {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+
+    name String
+    description String
+    userId String
+
+    itineraryPois ItineraryPois[]
+
+    createdAt DateTime @default(now())
+}
+
+model ItineraryPois {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+
+    poiId String @db.ObjectId
+    poi Poi @relation(fields: [poiId], references: [id])
+
+    itineraryId String @db.ObjectId
+    itinerary Itinerary @relation(fields: [itineraryId], references: [id])
+
+    visitOrder Int
+
+    @@index([poiId])
+    @@index([itineraryId])
+    @@unique([poiId, itineraryId])
 }
 
 // npx prisma generate

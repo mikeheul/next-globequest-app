@@ -13,7 +13,7 @@ const Navbar = () => {
     // Define an array of link objects to manage navigation links
     const links = [
         { href: '/home', label: 'Home' },
-        { href: '/countries', label: 'Countries' },
+        { href: '/country', label: 'Countries' },
         { href: '/city', label: 'Cities' },
     ];
 

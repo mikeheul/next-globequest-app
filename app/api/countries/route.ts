@@ -5,12 +5,12 @@ export async function GET(
     req: Request
 ) {
     try {
-
-        const cities = await db.city.findMany({});
-        return NextResponse.json(cities);
+        
+        const countries = await db.country.findMany({});
+        return NextResponse.json(countries);
 
     } catch (error) {
-        console.log("[CITIES]", error);
+        console.log("[COUNTRIES]", error);
         return new NextResponse("Internal Error", { status: 500 })
     }
 }

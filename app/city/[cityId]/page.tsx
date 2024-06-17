@@ -33,7 +33,7 @@ const CityPage = async ({ params }: { params: { cityId: string }}) => {
                 { city && city.pois.length > 0 ? (
                     city.pois.map((poi: any) => (
                         <div key={poi.id} className='flex gap-2'>
-                            <LandmarkIcon className='text-[#F7775E]' /> <Link href='/home'>{poi.name}</Link>
+                            <LandmarkIcon className='text-[#F7775E]' /> <Link href={`/poi/${poi.id}`}>{poi.name}</Link>
                         </div>
                     ))
                 ) : (

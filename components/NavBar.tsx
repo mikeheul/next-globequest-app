@@ -1,10 +1,17 @@
 "use client";
 
 import { MenuIcon, XIcon } from 'lucide-react';
+import Link from 'next/link';
 import React from 'react';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = React.useState(false);
+
+    const links = [
+        { href: '/home', label: 'Home' },
+        { href: '/countries', label: 'Countries' },
+        { href: '/city', label: 'Cities' },
+    ];
 
     return (
         <nav className="bg-white shadow-lg fixed w-full z-[1000]">
@@ -15,10 +22,11 @@ const Navbar = () => {
                             <a href="/home" className="text-xl font-bold text-gray-800">GLOBE QUEST</a>
                         </div>
                         <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                            <a href="/home" className="text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                            <a href="/home" className="text-gray-500 px-3 py-2 rounded-md text-sm font-medium">Countries</a>
-                            <a href="/city" className="text-gray-500 px-3 py-2 rounded-md text-sm font-medium">Cities</a>
-                            <a href="#" className="text-gray-500 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                        {links.map((link) => (
+                        <Link key={link.href} href={link.href} className='text-gray-500 px-3 py-2 rounded-md text-sm font-medium'>
+                            {link.label}
+                        </Link>
+                        ))}
                         </div>
                     </div>
                     <div className="-mr-2 flex items-center sm:hidden">
@@ -41,10 +49,11 @@ const Navbar = () => {
             {isOpen && (
                 <div className="sm:hidden">
                     <div className="px-8 pt-2 pb-3 space-y-1">
-                        <a href="/home" className="text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Home</a>
-                        <a href="/home" className="text-gray-500 block px-3 py-2 rounded-md text-base font-medium">Countries</a>
-                        <a href="/city" className="text-gray-500 block px-3 py-2 rounded-md text-base font-medium">Cities</a>
-                        <a href="#" className="text-gray-500 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+                    {links.map((link) => (
+                        <Link key={link.href} href={link.href} className='text-gray-500 block px-3 py-2 rounded-md text-base font-medium'>
+                            {link.label}
+                        </Link>
+                    ))}
                     </div>
                 </div>
             )}

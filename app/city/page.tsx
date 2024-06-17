@@ -2,6 +2,7 @@
 
 // Import necessary libraries and components
 import { City } from '@prisma/client';
+import { LoaderCircleIcon } from 'lucide-react';
 import Link from 'next/link'; // Import the Link component from Next.js for client-side navigation
 import React, { useEffect, useState } from 'react'; // Import React and useState, useEffect hooks
 
@@ -34,7 +35,7 @@ const CitiesPage = () => {
     return (
         // Container div with padding
         <div className='p-10'>
-            {loading && <p>Loading...</p>} {/* Display loading state */}
+            {loading && <LoaderCircleIcon className='animate-spin' />} {/* Display loading state */}
             {error && <p>Error: {error}</p>} {/* Display error state */}
             {/* Check if cities are fetched and map over the cities array to display each city */}
             {cities && cities.map((city) => (

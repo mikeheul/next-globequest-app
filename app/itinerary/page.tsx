@@ -26,12 +26,10 @@ const ItineraryPage = async () => {
         poiName: itineraryPoi.poi.name,
         address: itineraryPoi.poi.address
     })) || [];
-
-    console.log(pois)
                 
     return (
-        <div>
-            <h1>{ itinerary?.name }</h1>
+        <div className='p-10'>
+            <h1 className='text-3xl font-medium mb-10'>{ itinerary?.name }</h1>
             <div className='w-full h-[400px]'>
                 <MapMulti pois={pois} />
             </div>

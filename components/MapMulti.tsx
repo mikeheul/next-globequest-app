@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from "react-leaflet";
-import { LatLngExpression, Marker as LeafletMarker } from 'leaflet';
+import { LatLngBounds, LatLngExpression, LatLngTuple, Marker as LeafletMarker } from 'leaflet';
 import { MarkerMuster } from "react-leaflet-muster";
 import { divIcon } from 'leaflet';
 
@@ -21,12 +21,20 @@ interface MapProps {
 }
 
 const defaults = {
-    zoom: 11,
+    zoom: 12,
     polylineColor: "#F7775E"
+}
+
+const getBoundsWithPadding = (pois: { posix: LatLngExpression }[], padding: number): LatLngBounds => {
+    const bounds = new LatLngBounds(pois.map(poi => poi.posix as LatLngTuple));
+    bounds.pad(padding); // Add padding to bounds
+    return bounds;
 }
 
 const MapMulti = ({ pois = [], zoom = defaults.zoom, polylineColor = defaults.polylineColor }: MapProps) => {
     const markerRefs = useRef<LeafletMarker[]>([]);
+
+    const bounds = pois.length > 0 ? getBoundsWithPadding(pois, 0.5) : undefined;
 
     useEffect(() => {
         // Open the popup of the first marker when component mounts
@@ -37,7 +45,8 @@ const MapMulti = ({ pois = [], zoom = defaults.zoom, polylineColor = defaults.po
 
     return (
         <MapContainer
-            center={pois.length > 0 ? pois[0].posix : [0, 0]}
+            bounds={bounds}
+            // center={pois.length > 0 ? pois[0].posix : [0, 0]}
             zoom={zoom}
             scrollWheelZoom={false}
             attributionControl={false}
@@ -54,12 +63,13 @@ const MapMulti = ({ pois = [], zoom = defaults.zoom, polylineColor = defaults.po
                         key={index}
                         position={poi.posix}
                         draggable={false}
-                        // icon={divIcon({
-                        //     iconSize: [30, 30],
-                        //     iconAnchor: [15, 30], // Adjust according to your icon
-                        //     popupAnchor: [0, -30], // Adjust according to your icon
-                        //     html: "🌟",
-                        // })}
+                        icon={divIcon({
+                            iconSize: [30, 30],
+                            iconAnchor: [15, 30], // Adjust according to your icon
+                            popupAnchor: [0, -30], // Adjust according to your icon
+                            html: `<div class='flex h-full justify-center items-center '>${index+1}</div>`,
+                            className: 'rounded-full bg-[#F7775E] text-white'
+                        })}
                         ref={(marker) => {
                             if (marker) markerRefs.current[index] = marker;
                         }}
@@ -81,7 +91,6 @@ const MapMulti = ({ pois = [], zoom = defaults.zoom, polylineColor = defaults.po
                     opacity={1}
                 />
             )}
-
         </MapContainer>
     )
 }

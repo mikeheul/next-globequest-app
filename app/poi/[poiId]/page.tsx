@@ -1,24 +1,26 @@
+// Import necessary components and libraries
 import OpeningHours from '@/components/OpeningHours';
 import WebsiteLink from '@/components/WebsiteLink';
-import { db } from '@/lib/db'
+import { db } from '@/lib/db';
 import { Clock10Icon } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import React, { useMemo } from 'react'
+import React, { useMemo } from 'react';
 
 const PoiPage = async ({ params }: { params: { poiId: string }}) => {
+
+    // Dynamically import the Map component with a loading fallback
     const Map = useMemo(() => dynamic(
         () => import('../../../components/Map'),
         {
             loading: () => <p>A map is loading</p>,
             ssr: false
         }
-    ), [])
+    ), []);
 
+    // Fetch the Point of Interest (POI) data from the database
     const poi = await db.poi.findUnique({
         where: {
-            // id: '666f6f6c866be74a3648c516'
-            // id: '666ef46d6264123e0f9e7163'
             id: params.poiId
         },
         include: {
@@ -34,6 +36,7 @@ const PoiPage = async ({ params }: { params: { poiId: string }}) => {
 
     return (
         <>
+            {/* Images section */}
             <div className='grid grid-cols-1 md:grid-cols-3 h-[200px] md:h-[300px]'>
                 <div className='relative md:aspect-w-1 md:aspect-h-1'>
                     <Image 
@@ -61,39 +64,54 @@ const PoiPage = async ({ params }: { params: { poiId: string }}) => {
                     />
                 </div>
             </div>
+
+            {/* POI details section */}
             <div className='px-8 md:px-16 xl:px-40 py-16'>
                 { poi && (
                     <>
                         <div className='flex flex-col md:flex-row gap-10'>
-                            {/* POI infos */}
+                            {/* POI information */}
                             <div className='w-full md:w-[50%]'>
-                                <h1 className='uppercase text-3xl sm:text-4xl font-medium'><span className='text-[#F7775E] font-extrabold'>{ poi.city.name } | </span> { poi.name }</h1>
+                                <h1 className='uppercase text-3xl sm:text-4xl font-medium'>
+                                    <span className='text-[#F7775E] font-extrabold'>{ poi.city.name } | </span> 
+                                    { poi.name }
+                                </h1>
                                 <h2 className='text-2xl'>{ poi.category.name }</h2>
                                 <p className='text-slate-500 text-sm mb-3'>{ poi.address }</p>
                                 <p className='font-light'>{ poi.description }</p>
-                                {/* Website */}
+                                
+                                {/* Website link */}
                                 <WebsiteLink poi={poi} />
+                                
                                 {/* Tags */}
                                 <div className='flex flex-col sm:flex-row flex-wrap gap-2 my-8'>
                                     {poi.tags.map((tag: any) => (
-                                        <span className='inline-block text-xs uppercase text-white border bg-[#61BEC4] rounded-sm px-3 py-1' key={tag.id}>{tag.tag.name}</span>
-                                        ))}
+                                        <span 
+                                            className='inline-block text-xs uppercase text-white border bg-[#61BEC4] rounded-sm px-3 py-1' 
+                                            key={tag.id}>
+                                            {tag.tag.name}
+                                        </span>
+                                    ))}
                                 </div>
                             </div>
-                            {/* Map */}
+                            
+                            {/* Map section */}
                             <div className='relative w-full h-[400px] md:w-[50%] md:h-auto'>
                                 <Map posix={[poi.latitude, poi.longitude]} poiName={poi.name} address={poi.address} />
                                 <div className="z-[900] absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-white via-white/70 to-transparent pointer-events-none"></div>
                             </div>
                         </div>
-                        {/* Opening Hours */}
-                        <h2 className='flex gap-2 text-md font-semibold uppercase my-3'><Clock10Icon /> Opening hours</h2>
+
+                        {/* Opening hours */}
+                        <h2 className='flex gap-2 text-md font-semibold uppercase my-3'>
+                            <Clock10Icon /> Opening hours
+                        </h2>
                         <OpeningHours opening_hours={poi.opening_hours} />
                     </>
                 )}
             </div>
         </>
-    )
+    );
 }
 
-export default PoiPage
+export default PoiPage;

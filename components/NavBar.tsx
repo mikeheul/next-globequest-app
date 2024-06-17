@@ -40,8 +40,8 @@ const Navbar = () => {
             {isOpen && (
                 <div className="sm:hidden">
                     <div className="px-8 pt-2 pb-3 space-y-1">
-                        <a href="#" className="text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Home</a>
-                        <a href="#" className="text-gray-500 block px-3 py-2 rounded-md text-base font-medium">About</a>
+                        <a href="/home" className="text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                        <a href="/city" className="text-gray-500 block px-3 py-2 rounded-md text-base font-medium">Cities</a>
                         <a href="#" className="text-gray-500 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
                     </div>
                 </div>

@@ -75,7 +75,6 @@
     }
   }
 
-  .leaflet-tile-pane {
-    /* -webkit-filter: grayscale(100%); */
-    /* filter: grayscale(100%); */
+  .leaflet-popup-content p {
+    margin: 0 !important;
   }

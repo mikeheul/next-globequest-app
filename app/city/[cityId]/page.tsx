@@ -23,7 +23,7 @@ const CityPage = async ({ params }: { params: { cityId: string }}) => {
         <div className='px-8 md:px-16 xl:px-40 py-16'>
             { city && (
                 <>
-                    <h1 className='text-4xl uppercase font-semibold text-[#F7775E]'>{ city.name }</h1>
+                    <h1 className='text-4xl uppercase font-bold text-[#F7775E]'>{ city.name }</h1>
                     <h2 className='text-md font-semibold uppercase'>What can I expect from { city.name } ?</h2>
                     <p className='my-9'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius eveniet ipsum a totam hic fuga, reprehenderit quas deserunt? Ipsa omnis velit deserunt voluptas voluptatibus sunt! Fugiat laborum voluptatibus accusamus voluptas!
                     Fugit vitae dolorem et ut est praesentium officiis cupiditate ad facere error eius non odit amet molestiae, dolore aliquam blanditiis unde voluptate accusantium suscipit molestias. Quos provident atque laborum culpa.

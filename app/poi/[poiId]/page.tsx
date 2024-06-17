@@ -66,7 +66,7 @@ const PoiPage = async ({ params }: { params: { poiId: string }}) => {
                         <div className='flex flex-col md:flex-row gap-10'>
                             {/* POI infos */}
                             <div className='w-full md:w-[50%]'>
-                                <h1 className='uppercase text-3xl sm:text-4xl font-semibold'><span className='text-[#F7775E]'>{ poi.city.name }</span> { poi.name }</h1>
+                                <h1 className='uppercase text-3xl sm:text-4xl font-medium'><span className='text-[#F7775E] font-extrabold'>{ poi.city.name } | </span> { poi.name }</h1>
                                 <h2 className='text-2xl'>{ poi.category.name }</h2>
                                 <p className='text-slate-500 text-sm mb-3'>{ poi.address }</p>
                                 <p className='font-light'>{ poi.description }</p>
@@ -81,7 +81,7 @@ const PoiPage = async ({ params }: { params: { poiId: string }}) => {
                             </div>
                             {/* Map */}
                             <div className='relative w-full h-[400px] md:w-[50%] md:h-auto'>
-                                <Map posix={[poi.latitude, poi.longitude]} poiName={poi.name} />
+                                <Map posix={[poi.latitude, poi.longitude]} poiName={poi.name} address={poi.address} />
                                 <div className="z-[900] absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-white via-white/70 to-transparent pointer-events-none"></div>
                             </div>
                         </div>

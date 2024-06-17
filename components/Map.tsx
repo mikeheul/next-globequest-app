@@ -1,7 +1,8 @@
 "use client"
 
+import { useEffect, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { LatLngExpression, LatLngTuple } from 'leaflet';
+import { LatLngExpression, LatLngTuple, Marker as LeafletMarker } from 'leaflet';
 import { MarkerMuster } from "react-leaflet-muster";
 import { divIcon } from 'leaflet';
 
@@ -12,6 +13,7 @@ import "leaflet-defaulticon-compatibility";
 interface MapProps {
     posix: LatLngExpression | LatLngTuple,
     poiName: String,
+    address?: String,
     zoom?: number,
 }
 
@@ -20,7 +22,15 @@ const defaults = {
 }
 
 const Map = (Map: MapProps) => {
-    const { zoom = defaults.zoom, posix, poiName } = Map
+    const { zoom = defaults.zoom, posix, poiName, address } = Map
+
+    const markerRef = useRef<LeafletMarker>(null);
+
+    useEffect(() => {
+        if (markerRef.current) {
+            markerRef.current.openPopup();
+        }
+    }, []);
 
     return (
         <MapContainer
@@ -56,8 +66,12 @@ const Map = (Map: MapProps) => {
                         className: "text-4xl",
                         html: "🌟",
                     })}
+                    ref={markerRef}
                 >
-                    <Popup>{ poiName }</Popup>
+                    <Popup>
+                        <p className='text-lg mb-0 important font-bold'>{ poiName }</p>
+                        <p>{ address }</p>
+                    </Popup>
                 </Marker>
             </MarkerMuster>
 

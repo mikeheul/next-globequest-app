@@ -5,8 +5,12 @@ export async function GET(
     req: Request
 ) {
     try {
-        
-        const countries = await db.country.findMany({});
+
+        const countries = await db.country.findMany({
+            orderBy: {
+                name: 'asc'
+            },
+        });
         return NextResponse.json(countries);
 
     } catch (error) {

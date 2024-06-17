@@ -6,7 +6,11 @@ export async function GET(
 ) {
     try {
 
-        const cities = await db.city.findMany({});
+        const cities = await db.city.findMany({
+            orderBy: {
+                name: 'asc'
+            },
+        });
         return NextResponse.json(cities);
 
     } catch (error) {

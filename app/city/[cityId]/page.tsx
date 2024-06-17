@@ -58,7 +58,7 @@ const CityPage = async ({ params }: { params: { cityId: string }}) => {
 
             {/* Section for the most popular places */}
             <h2 className='text-md font-semibold uppercase my-10'>Most Popular Places</h2>
-            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
                 {/* Check if city has POIs and map over them to display each POI with an image */}
                 { city && city.pois.length > 0 ? (
                     city.pois.map((poi: any) => (

@@ -55,8 +55,8 @@ const CityPage = async ({ params }: { params: { cityId: string }}) => {
                             {/* image */}
                             <Image layout='fill' objectFit='cover' objectPosition='bottom' className='rounded-md' src={poi.imageUrl} alt='image' />
                             <div className='rounded-md hidden absolute group-hover:flex flex-col justify-center items-center text-center left-0 top-0 w-full h-full bg-[#61BEC4]/70 text-white p-10'>
-                                <p className='text-xl'>{ poi.category.name }</p>
-                                <p className='uppercase'>{ poi.name }</p>
+                                <p className='text-xl mb-2'>{ poi.category.name }</p>
+                                <p className='uppercase font-bold'>{ poi.name }</p>
                             </div>
                         </div>
                         </Link>

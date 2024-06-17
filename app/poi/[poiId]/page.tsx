@@ -82,7 +82,7 @@ const PoiPage = async ({ params }: { params: { poiId: string }}) => {
                             {/* Map */}
                             <div className='relative w-full h-[400px] md:w-[50%] md:h-auto'>
                                 <Map posix={[poi.latitude, poi.longitude]} poiName={poi.name} />
-                                <div className="z-[1000] absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-white via-white/70 to-transparent pointer-events-none"></div>
+                                <div className="z-[900] absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-white via-white/70 to-transparent pointer-events-none"></div>
                             </div>
                         </div>
                         {/* Opening Hours */}

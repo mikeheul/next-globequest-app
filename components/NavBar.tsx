@@ -7,7 +7,7 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = React.useState(false);
 
     return (
-        <nav className="bg-white shadow-lg">
+        <nav className="bg-white shadow-lg fixed w-full z-[1000]">
             <div className="max-w-7xl mx-auto px-10">
                 <div className="flex justify-between items-center h-16">
                     <div className="flex">

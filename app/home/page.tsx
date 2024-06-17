@@ -8,7 +8,9 @@ import React, { useMemo } from 'react'
 
 const HomePage = async () => {
     return (
-        <h1>Home</h1>
+        <div className='h-screen flex flex-col justify-center items-center'>
+            <h1>Home</h1>
+        </div>
     )
 }
 

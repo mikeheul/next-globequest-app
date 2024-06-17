@@ -3,7 +3,7 @@
 // Import necessary components and libraries
 import OpeningHours from '@/components/OpeningHours';
 import WebsiteLink from '@/components/WebsiteLink';
-import { Clock10Icon } from 'lucide-react';
+import { Clock10Icon, MessageSquareMoreIcon } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -120,6 +120,19 @@ const PoiPage = ({ params }: { params: { poiId: string } }) => {
                             <Clock10Icon /> Opening hours
                         </h2>
                         <OpeningHours opening_hours={poi.opening_hours} />
+
+                        <h2 className='flex gap-2 text-md font-semibold uppercase mt-10 mb-5'>
+                            <MessageSquareMoreIcon /> Reviews
+                        </h2>
+                        {poi.reviews && (
+                            <>
+                            {poi.reviews.map((review: any) => (
+                                <div>
+                                { review.comment } { new Date(review.createdAt).toLocaleString('en-US') }
+                                </div>
+                            ))}
+                            </>
+                        )}
                     </div>
                 </>
             )}

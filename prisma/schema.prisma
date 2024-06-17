@@ -60,6 +60,7 @@ model Poi {
     city City @relation(fields: [cityId], references: [id])
 
     tags TagPoi[]
+    reviews Review[]
 
     createdAt DateTime @default(now())
 
@@ -79,6 +80,21 @@ model TagPoi {
     @@index([poiId])
     @@index([tagId])
     @@unique([poiId, tagId])
+}
+
+model Review {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+
+    comment String
+    rating Int
+    userId String
+
+    poiId String @db.ObjectId
+    poi Poi @relation(fields: [poiId], references: [id])
+
+    createdAt DateTime @default(now())
+
+    @@index([poiId])
 }
 
 // npx prisma generate

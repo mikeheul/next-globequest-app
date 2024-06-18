@@ -76,7 +76,7 @@ const CityPage = async ({ params }: { params: { cityId: string }}) => {
                                     alt='image' 
                                 />
                                 {/* Overlay with POI details shown on hover */}
-                                <div className='rounded-md hidden absolute group-hover:flex flex-col justify-center items-center text-center left-0 top-0 w-full h-full bg-[#61BEC4]/70 text-white p-10'>
+                                <div className='rounded-md opacity-0 absolute group-hover:opacity-100 transition-opacity duration-500 ease-in-out flex flex-col justify-center items-center text-center left-0 top-0 w-full h-full bg-[#61BEC4]/70 text-white p-10'>
                                     <p className='text-xl mb-2'>{ poi.category.name }</p>
                                     <MinusIcon className='my-2' width={20} />
                                     <p className='uppercase font-bold'>{ poi.name }</p>

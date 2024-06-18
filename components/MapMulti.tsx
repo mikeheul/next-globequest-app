@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { MapContainer, TileLayer, Marker, Popup, Polyline } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from "react-leaflet";
 import { LatLngBounds, LatLngExpression, LatLngTuple, Marker as LeafletMarker } from 'leaflet';
 import { MarkerMuster } from "react-leaflet-muster";
 import { divIcon } from 'leaflet';
@@ -21,20 +21,29 @@ interface MapProps {
 }
 
 const defaults = {
-    zoom: 13,
+    zoom: 15,
     polylineColor: "#F7775E"
 }
 
-// const getBoundsWithPadding = (pois: { posix: LatLngExpression }[], padding: number): LatLngBounds => {
-//     const bounds = new LatLngBounds(pois.map(poi => poi.posix as LatLngTuple));
-//     bounds.pad(padding); // Add padding to bounds
-//     return bounds;
-// }
+const getBoundsWithPadding = (pois: { posix: LatLngExpression }[], padding: number): LatLngBounds => {
+    const bounds = new LatLngBounds(pois.map(poi => poi.posix as LatLngTuple));
+    bounds.pad(padding); 
+    return bounds;
+}
+
+const FitBounds = ({ pois }: { pois: { posix: LatLngExpression }[] }) => {
+    const map = useMap();
+    useEffect(() => {
+        if (pois.length > 0) {
+            const bounds = getBoundsWithPadding(pois, 0.1); // 10% padding
+            map.fitBounds(bounds);
+        }
+    }, [map, pois]);
+    return null;
+};
 
 const MapMulti = ({ pois = [], zoom = defaults.zoom, polylineColor = defaults.polylineColor }: MapProps) => {
     const markerRefs = useRef<LeafletMarker[]>([]);
-
-    // const bounds = pois.length > 0 ? getBoundsWithPadding(pois, 0.5) : undefined;
 
     useEffect(() => {
         // Open the popup of the first marker when component mounts
@@ -91,6 +100,9 @@ const MapMulti = ({ pois = [], zoom = defaults.zoom, polylineColor = defaults.po
                     opacity={1}
                 />
             )}
+
+            <FitBounds pois={pois} />
+
         </MapContainer>
     )
 }

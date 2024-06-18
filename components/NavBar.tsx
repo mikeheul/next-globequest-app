@@ -20,7 +20,7 @@ const Navbar = () => {
 
     return (
         // Navigation bar container with fixed positioning, background color, and shadow
-        <nav className="bg-white shadow-lg fixed w-full z-[1000]">
+        <nav className="bg-white shadow-lg fixed w-full z-[2000]">
             {/* Container for the navigation content with maximum width and padding */}
             <div className="max-w-7xl mx-auto px-10">
                 {/* Flex container to align and distribute navigation items */}

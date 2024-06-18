@@ -39,6 +39,7 @@ const FitBounds = ({ pois }: { pois: { posix: LatLngExpression }[] }) => {
 const MapMultiWalk = ({ pois = [], zoom = defaults.zoom, routeColor = defaults.routeColor }: MapProps) => {
     const markerRefs = useRef<L.Marker[]>([]);
     const [routeControl, setRouteControl] = useState<L.Routing.Control | null>(null);
+    const routeLayer = useRef<L.LayerGroup<L.Polyline>>();
 
     useEffect(() => {
         if (pois.length > 1) {
@@ -49,12 +50,14 @@ const MapMultiWalk = ({ pois = [], zoom = defaults.zoom, routeColor = defaults.r
                     serviceUrl: 'https://router.project-osrm.org/route/v1',
                     profile: 'foot', // Pedestrian profile
                 }),
+                createMarker: () => null,
                 lineOptions: {
                     styles: [{ color: routeColor, opacity: 0.7, weight: 5 }],
                     extendToWaypoints: true, // Extend the route to the exact waypoints
-                    missingRouteTolerance: 10, // Tolerance in pixels for considering a route segment as missing
+                    missingRouteTolerance: 0, // Tolerance in pixels for considering a route segment as missing
+                    addWaypoints: false,
                 },
-                createMarker: () => null, // Disable default markers
+                // createMarker: () => null, // Disable default markers
                 show: false, // Do not show instructions
             });
             setRouteControl(control);

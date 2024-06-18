@@ -16,6 +16,7 @@ const Navbar = () => {
         { href: '/country', label: 'Countries' },
         { href: '/city', label: 'Cities' },
         { href: '/itinerary', label: 'Itinerary' },
+        { href: '/contact', label: 'Contact' },
     ];
 
     return (

@@ -1,5 +1,5 @@
 import MapMulti from '@/components/MapMulti';
-import MapMultiWalk from '@/components/MapMultiWalk';
+import MapMultiWalk from '@/components/MapRoute';
 import { db } from '@/lib/db'
 import React from 'react'
 

@@ -64,7 +64,7 @@ const MapMultiWalk = ({ pois = [], zoom = defaults.zoom, routeColor = defaults.r
                 },
                 show: true,
                 plan: L.Routing.plan(waypoints, {
-                    createMarker: (waypointIndex: number, waypoint: L.Routing.Waypoint, numberOfWaypoints: number) => {
+                    createMarker: () => {
                         return false; // Returning false to use default markers
                     },
                 }),
@@ -92,7 +92,7 @@ const MapMultiWalk = ({ pois = [], zoom = defaults.zoom, routeColor = defaults.r
 
     return (
         <div className='h-full w-full relative'>
-            <div className='absolute top-5 right-5 z-[1000] rounded-lg p-5'>
+            <div className='absolute top-5 right-5 z-[1000] rounded-lg p-5 bg-white/60'>
                 <select
                     value={profile}
                     onChange={(e) => setProfile(e.target.value)}

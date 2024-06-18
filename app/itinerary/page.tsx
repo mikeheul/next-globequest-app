@@ -9,6 +9,7 @@ const ItinerariesPage = async () => {
         where: {
             id: '66713656fd5c3ba1c85c627a'
             // id: '6670ab28d52b5888eae0d8b6'
+            // id: '6671dc9e13ebbe99c49b006d'
         },
         include: {
             itineraryPois: {

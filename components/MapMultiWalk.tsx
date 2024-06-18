@@ -47,6 +47,7 @@ const MapMultiWalk = ({ pois = [], zoom = defaults.zoom, routeColor = defaults.r
     const [routeControl, setRouteControl] = useState<L.Routing.Control | null>(null);
     const [profile, setProfile] = useState<string>('foot');
     const [totalDistance, setTotalDistance] = useState<number | null>(null);
+    const [totalTime, setTotalTime] = useState<number | null>(null);
 
     useEffect(() => {
         if (pois.length > 1) {
@@ -76,6 +77,7 @@ const MapMultiWalk = ({ pois = [], zoom = defaults.zoom, routeColor = defaults.r
                 const routes = e.routes;
                 const summary = routes[0].summary;
                 setTotalDistance(summary.totalDistance / 1000); // Convert to kilometers
+                setTotalTime(summary.totalTime / 60); // Convert to minutes
             });
             setRouteControl(control);
         } else {
@@ -112,7 +114,12 @@ const MapMultiWalk = ({ pois = [], zoom = defaults.zoom, routeColor = defaults.r
                 </select>
                 {totalDistance !== null && (
                     <div className="mt-2">
-                        Total Distance: {totalDistance.toFixed(2)} km
+                        Total Distance : {totalDistance.toFixed(2)} km
+                    </div>
+                )}
+                {totalTime !== null && (
+                    <div>
+                        Estimated Time : {Math.floor(totalTime / 60)} h {Math.floor(totalTime % 60)}m
                     </div>
                 )}
             </div>

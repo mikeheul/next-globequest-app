@@ -7,8 +7,6 @@ import { MarkerMuster } from "react-leaflet-muster";
 import L from 'leaflet';
 import 'leaflet-routing-machine';
 import "leaflet/dist/leaflet.css";
-import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
-import "leaflet-defaulticon-compatibility";
 
 interface MapProps {
     pois: {
@@ -58,15 +56,18 @@ const MapMultiWalk = ({ pois = [], zoom = defaults.zoom, routeColor = defaults.r
                     serviceUrl: defaults.profiles[profile as keyof typeof defaults.profiles],
                     profile: profile,
                 }),
-                createMarker: () => null,
                 lineOptions: {
                     styles: [{ color: routeColor, opacity: 0.7, weight: 5 }],
-                    extendToWaypoints: true, // Extend the route to the exact waypoints
-                    missingRouteTolerance: 0, // Tolerance in pixels for considering a route segment as missing
+                    extendToWaypoints: true,
+                    missingRouteTolerance: 0,
                     addWaypoints: false,
                 },
-                // createMarker: () => null, // Disable default markers
-                show: false, // Do not show instructions
+                show: true,
+                plan: L.Routing.plan(waypoints, {
+                    createMarker: (waypointIndex: number, waypoint: L.Routing.Waypoint, numberOfWaypoints: number) => {
+                        return false; // Returning false to use default markers
+                    },
+                }),
             }).on('routesfound', function(e) {
                 const routes = e.routes;
                 const summary = routes[0].summary;
@@ -103,12 +104,12 @@ const MapMultiWalk = ({ pois = [], zoom = defaults.zoom, routeColor = defaults.r
                 </select>
                 {totalDistance !== null && (
                     <div className="mt-2">
-                        Total Distance : {totalDistance.toFixed(2)} km
+                        Total Distance: {totalDistance.toFixed(2)} km
                     </div>
                 )}
                 {totalTime !== null && (
                     <div>
-                        Estimated Time : {Math.floor(totalTime / 60)} h {Math.floor(totalTime % 60)} m
+                        Estimated Time: {Math.floor(totalTime / 60)} h {Math.floor(totalTime % 60)} m
                     </div>
                 )}
             </div>
@@ -137,29 +138,29 @@ const MapMultiWalk = ({ pois = [], zoom = defaults.zoom, routeColor = defaults.r
                 )}
 
                 <MarkerMuster>
-                {pois.map((poi, index) => (
-                    <Marker
-                        key={index}
-                        position={poi.posix}
-                        draggable={false}
-                        icon={divIcon({
-                            iconSize: [30, 30],
-                            iconAnchor: [15, 30],
-                            popupAnchor: [0, -30],
-                            html: `<div class='flex h-full justify-center items-center '>${index + 1}</div>`,
-                            className: 'rounded-full bg-[#F7775E] text-white'
-                        })}
-                        ref={(marker) => {
-                            if (marker) markerRefs.current[index] = marker;
-                        }}
-                    >
-                        <Popup>
-                            <p className='text-lg mb-0 important font-bold'>{poi.poiName}</p>
-                            {poi.address && <p>{poi.address}</p>}
-                            {poi.website && <a target='_blank' href={poi.website}>Website</a>}
-                        </Popup>
-                    </Marker>
-                ))}
+                    {pois.map((poi, index) => (
+                        <Marker
+                            key={index}
+                            position={poi.posix}
+                            draggable={false}
+                            icon={divIcon({
+                                iconSize: [30, 30],
+                                iconAnchor: [15, 30],
+                                popupAnchor: [0, -30],
+                                html: `<div class='flex h-full justify-center items-center '>${index + 1}</div>`,
+                                className: 'rounded-full bg-[#F7775E] text-white'
+                            })}
+                            ref={(marker) => {
+                                if (marker) markerRefs.current[index] = marker;
+                            }}
+                        >
+                            <Popup>
+                                <p className='text-lg mb-0 important font-bold'>{poi.poiName}</p>
+                                {poi.address && <p>{poi.address}</p>}
+                                {poi.website && <a target='_blank' href={poi.website}>Website</a>}
+                            </Popup>
+                        </Marker>
+                    ))}
                 </MarkerMuster>
             </MapContainer>
         </div>

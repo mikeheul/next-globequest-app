@@ -40,7 +40,7 @@ const FitBounds = ({ pois }: { pois: { posix: LatLngExpression }[] }) => {
     return null;
 };
 
-const MapMultiWalk = ({ pois = [], zoom = defaults.zoom, routeColor = defaults.routeColor }: MapProps) => {
+const MapRoute = ({ pois = [], zoom = defaults.zoom, routeColor = defaults.routeColor }: MapProps) => {
     const markerRefs = useRef<L.Marker[]>([]);
     const [routeControl, setRouteControl] = useState<L.Routing.Control | null>(null);
     const [profile, setProfile] = useState<string>('foot');
@@ -173,7 +173,7 @@ interface RoutingControlWrapperProps {
     markerRefs: React.MutableRefObject<L.Marker[]>
 }
 
-const RoutingControlWrapper: React.FC<RoutingControlWrapperProps> = ({ routeControl, pois, markerRefs }) => {
+const RoutingControlWrapper: React.FC<RoutingControlWrapperProps> = ({ routeControl }) => {
     const map = useMap();
 
     useEffect(() => {
@@ -183,4 +183,4 @@ const RoutingControlWrapper: React.FC<RoutingControlWrapperProps> = ({ routeCont
     return null;
 };
 
-export default MapMultiWalk;
+export default MapRoute;

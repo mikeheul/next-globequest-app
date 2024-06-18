@@ -1,4 +1,5 @@
 import MapMulti from '@/components/MapMulti';
+import MapMultiWalk from '@/components/MapMultiWalk';
 import { db } from '@/lib/db'
 import React from 'react'
 
@@ -42,7 +43,8 @@ const ItinerariesPage = async () => {
             </div>
 
             <div className='w-full h-screen'>
-                <MapMulti pois={pois} />
+                {/* <MapMulti pois={pois} /> */}
+                <MapMultiWalk pois={pois} />
             </div>
         </>
     )

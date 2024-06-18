@@ -102,11 +102,11 @@ const MapMultiWalk = ({ pois = [], zoom = defaults.zoom, routeColor = defaults.r
 
     return (
         <div className='h-full w-full relative'>
-            <div className='absolute top-5 right-5 z-[1000] p-4 rounded-lg'>
+            <div className='absolute top-5 right-5 z-[1000] rounded-lg p-5'>
                 <select
                     value={profile}
                     onChange={(e) => setProfile(e.target.value)}
-                    className="border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300 p-4"
+                    className="border border-gray-300 rounded-md shadow-sm focus:outline-none p-4"
                 >
                     <option value="foot">Foot</option>
                     <option value="bike">Bike</option>

@@ -15,7 +15,8 @@ interface MapProps {
     pois: {
         posix: LatLngExpression,
         poiName: string,
-        address?: string
+        address?: string,
+        website?: string
     }[],
     zoom?: number,
     polylineColor?: string
@@ -65,9 +66,14 @@ const MapMulti = ({ pois = [], zoom = defaults.zoom, polylineColor = defaults.po
             attributionControl={false} // Disable attribution control
             style={{ height: "100%", width: "100%" }} // Set map container size
         >
-            <TileLayer
+            {/* <TileLayer
                 attribution='&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
                 url="https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png" // Set tile layer URL
+            /> */}
+
+            <TileLayer
+                attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
             />
 
             <MarkerMuster>
@@ -92,6 +98,7 @@ const MapMulti = ({ pois = [], zoom = defaults.zoom, polylineColor = defaults.po
                             <p className='text-lg mb-0 important font-bold'>{poi.poiName}</p>
                             {/* Display POI address if available */}
                             {poi.address && <p>{poi.address}</p>} 
+                            {poi.website && <a target='_blank' href={poi.website}>Website</a>} 
                         </Popup>
                     </Marker>
                 ))}

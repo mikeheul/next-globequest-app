@@ -24,7 +24,8 @@ const ItinerariesPage = async () => {
     const pois = itinerary?.itineraryPois.map((itineraryPoi: any) => ({
         posix: [itineraryPoi.poi.latitude, itineraryPoi.poi.longitude] as [number, number],
         poiName: itineraryPoi.poi.name,
-        address: itineraryPoi.poi.address
+        address: itineraryPoi.poi.address,
+        website: itineraryPoi.poi.website,
     })) || [];
                 
     return (

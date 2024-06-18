@@ -5,7 +5,6 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { LatLngExpression, LatLngTuple, Marker as LeafletMarker } from 'leaflet';
 import { MarkerMuster } from "react-leaflet-muster";
 import { divIcon } from 'leaflet';
-import { LeafyGreenIcon } from 'lucide-react';
 
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";

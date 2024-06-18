@@ -55,12 +55,6 @@ const MapMultiWalk = ({ pois = [], zoom = defaults.zoom, routeColor = defaults.r
             const control = L.Routing.control({
                 waypoints,
                 router: new L.Routing.OSRMv1({
-                    // serviceUrl: 'https://router.project-osrm.org/route/v1/',
-                    // https://routing.openstreetmap.de/routed-car/...
-                    // https://routing.openstreetmap.de/routed-bike/...
-                    // https://routing.openstreetmap.de/routed-foot/...
-                    // serviceUrl: 'https://routing.openstreetmap.de/routed-foot/route/v1/',
-                    // profile: 'foot',
                     serviceUrl: defaults.profiles[profile as keyof typeof defaults.profiles],
                     profile: profile,
                 }),
@@ -86,11 +80,6 @@ const MapMultiWalk = ({ pois = [], zoom = defaults.zoom, routeColor = defaults.r
     }, [pois, profile, routeColor]);
 
     useEffect(() => {
-        // Open the popup of the first marker when component mounts
-        if (markerRefs.current.length > 0) {
-            // markerRefs.current[0]?.openPopup();
-        }
-
         return () => {
             // Cleanup function to remove route control from the map
             if (routeControl) {
@@ -119,7 +108,7 @@ const MapMultiWalk = ({ pois = [], zoom = defaults.zoom, routeColor = defaults.r
                 )}
                 {totalTime !== null && (
                     <div>
-                        Estimated Time : {Math.floor(totalTime / 60)} h {Math.floor(totalTime % 60)}m
+                        Estimated Time : {Math.floor(totalTime / 60)} h {Math.floor(totalTime % 60)} m
                     </div>
                 )}
             </div>

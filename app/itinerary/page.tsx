@@ -7,6 +7,7 @@ const ItinerariesPage = async () => {
     const itinerary = await db.itinerary.findUnique({
         where: {
             id: '66713656fd5c3ba1c85c627a'
+            // id: '6670ab28d52b5888eae0d8b6'
         },
         include: {
             itineraryPois: {

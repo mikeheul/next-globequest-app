@@ -44,7 +44,7 @@ const CityPage = async ({ params }: { params: { cityId: string }}) => {
             <h2 className='text-md font-semibold uppercase'>Things to see and do in { city!.name } ?</h2>
             <div className='my-5'>
                 {/* Check if city has POIs and map over them to display each POI */}
-                <div className='grid grid-cols-3 gap-2'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
                 { city && city.pois.length > 0 ? (
                     city.pois.map((poi: any) => (
                         <div key={poi.id} className='flex gap-2'>

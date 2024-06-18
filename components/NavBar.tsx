@@ -30,7 +30,7 @@ const Navbar = () => {
                     <div className="flex">
                         {/* Brand/logo link */}
                         <div className="flex justify-center items-center">
-                            <a href="/home" className="text-xl font-bold text-gray-800">GLOBE QUEST</a>
+                            <a href="/home" className="text-sm md:text-xl font-bold text-gray-800">GLOBE QUEST</a>
                         </div>
                         {/* Desktop navigation links */}
                         <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
@@ -60,17 +60,17 @@ const Navbar = () => {
             </div>
 
             {/* Mobile navigation menu */}
-            {isOpen && (
-                <div className="sm:hidden">
-                    <div className="px-8 pt-2 pb-3 space-y-1">
-                        {links.map((link) => (
-                            <Link key={link.href} href={link.href} className='text-gray-500 block px-3 py-2 rounded-md text-base font-medium'>
-                                {link.label}
-                            </Link>
-                        ))}
-                    </div>
+            <div
+                className={`sm:hidden overflow-hidden transition-max-height duration-1000 ease-in-out ${isOpen ? 'max-h-screen' : 'max-h-0'}`}
+            >
+                <div className="px-8 pt-2 pb-3 space-y-1">
+                    {links.map((link) => (
+                        <Link key={link.href} href={link.href} className='text-gray-500 block px-3 py-2 rounded-md text-base font-medium'>
+                            {link.label}
+                        </Link>
+                    ))}
                 </div>
-            )}
+            </div>
         </nav>
     );
 };

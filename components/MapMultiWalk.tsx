@@ -46,6 +46,7 @@ const MapMultiWalk = ({ pois = [], zoom = defaults.zoom, routeColor = defaults.r
     const markerRefs = useRef<L.Marker[]>([]);
     const [routeControl, setRouteControl] = useState<L.Routing.Control | null>(null);
     const [profile, setProfile] = useState<string>('foot');
+    const [totalDistance, setTotalDistance] = useState<number | null>(null);
 
     useEffect(() => {
         if (pois.length > 1) {
@@ -71,6 +72,10 @@ const MapMultiWalk = ({ pois = [], zoom = defaults.zoom, routeColor = defaults.r
                 },
                 // createMarker: () => null, // Disable default markers
                 show: false, // Do not show instructions
+            }).on('routesfound', function(e) {
+                const routes = e.routes;
+                const summary = routes[0].summary;
+                setTotalDistance(summary.totalDistance / 1000); // Convert to kilometers
             });
             setRouteControl(control);
         } else {
@@ -105,6 +110,11 @@ const MapMultiWalk = ({ pois = [], zoom = defaults.zoom, routeColor = defaults.r
                     <option value="bike">Bike</option>
                     <option value="car">Car</option>
                 </select>
+                {totalDistance !== null && (
+                    <div className="mt-2">
+                        Total Distance: {totalDistance.toFixed(2)} km
+                    </div>
+                )}
             </div>
             <MapContainer
                 center={pois.length > 0 ? pois[0].posix : [0, 0]}

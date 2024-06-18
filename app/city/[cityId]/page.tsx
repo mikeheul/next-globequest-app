@@ -1,4 +1,5 @@
 // Import necessary libraries and components
+import POICard from '@/components/POICard';
 import { db } from '@/lib/db'; // Import the database connection
 import { LandmarkIcon, MinusIcon } from 'lucide-react'; // Import icons from lucide-react
 import Image from 'next/image'; // Import the Image component from Next.js
@@ -64,25 +65,13 @@ const CityPage = async ({ params }: { params: { cityId: string }}) => {
                 {/* Check if city has POIs and map over them to display each POI with an image */}
                 { city && city.pois.length > 0 ? (
                     city.pois.map((poi: any) => (
-                        <Link key={poi.id} href={`/poi/${poi.id}`}>
-                            <div className='rounded-md group cursor-pointer relative flex flex-col justify-center items-center h-[250px] w-full'>
-                                {/* Image for the POI */}
-                                <Image 
-                                    layout='fill' 
-                                    objectFit='cover' 
-                                    objectPosition='bottom' 
-                                    className='rounded-md' 
-                                    src={poi.imageUrl} 
-                                    alt='image' 
-                                />
-                                {/* Overlay with POI details shown on hover */}
-                                <div className='rounded-md opacity-0 absolute group-hover:opacity-100 transition-opacity duration-500 ease-in-out flex flex-col justify-center items-center text-center left-0 top-0 w-full h-full bg-[#61BEC4]/70 text-white p-10'>
-                                    <p className='text-xl mb-2'>{ poi.category.name }</p>
-                                    <MinusIcon className='my-2' width={20} />
-                                    <p className='uppercase font-bold'>{ poi.name }</p>
-                                </div>
-                            </div>
-                        </Link>
+                        <POICard 
+                            key={poi.id} 
+                            id={poi.id} 
+                            imageUrl={poi.imageUrl} 
+                            category={poi.category} 
+                            name={poi.name} 
+                        />
                     ))
                 ) : (
                     <div className='italic text-slate-500'>No POIs available</div>

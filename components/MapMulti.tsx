@@ -65,6 +65,8 @@ const MapMulti = ({ pois = [], zoom = defaults.zoom, polylineColor = defaults.po
             scrollWheelZoom={true} // Disable scroll wheel zoom
             attributionControl={false} // Disable attribution control
             style={{ height: "100%", width: "100%" }} // Set map container size
+            touchZoom={true} // Allow touch zooming
+            tap={false} // Disable tap interaction
         >
             {/* <TileLayer
                 attribution='&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'

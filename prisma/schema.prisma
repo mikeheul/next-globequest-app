@@ -21,6 +21,8 @@ model City {
     name String
     description String
     pictures Json?
+    latitude Float?
+    longitude Float?
 
     countryId String @db.ObjectId
     country Country @relation(fields: [countryId], references: [id])

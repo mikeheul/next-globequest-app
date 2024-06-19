@@ -1,55 +1,56 @@
-import MapMulti from '@/components/MapMulti';
-import MapRoute from '@/components/MapRoute';
-import { db } from '@/lib/db'
-import React from 'react'
+"use client";
 
-const ItinerariesPage = async () => {
-    
-    const itinerary = await db.itinerary.findUnique({
-        where: {
-            id: '66713656fd5c3ba1c85c627a'
-            // id: '6670ab28d52b5888eae0d8b6'
-            // id: '6671dc9e13ebbe99c49b006d'
-            // id: '6671f6a813ebbe99c49b008f'
-        },
-        include: {
-            itineraryPois: {
-                include: {
-                    poi: true
-                },
-                orderBy: {
-                    visitOrder: 'asc' // Ensure proper ordering by visitOrder
+import { Itinerary } from '@prisma/client';
+// Import necessary libraries and components
+import { LoaderCircleIcon } from 'lucide-react';
+import Link from 'next/link'; // Import the Link component from Next.js for client-side navigation
+import React, { useEffect, useState } from 'react'; // Import React and useState, useEffect hooks
+
+
+// Define the ItinerariesPage component
+const ItinerariesPage = () => {
+    const [itineraries, setItineraries] = useState<Itinerary[]>([]); // State to store the list of itineraries
+    const [loading, setLoading] = useState(true); // State to manage loading state
+    const [error, setError] = useState(null); // State to manage error state
+
+    // Fetch the list of itineraries from the API when the component mounts
+    useEffect(() => {
+        const fetchItineraries = async () => {
+            try {
+                const response = await fetch('/api/itineraries'); // Make a GET request to the API route
+                if (!response.ok) {
+                    throw new Error('Failed to fetch itineraries'); // Handle non-200 responses
                 }
-            },
-        },
-        
-    });
+                const data = await response.json(); // Parse the JSON response
+                setItineraries(data); // Update the Itineraries state
+            } catch (error: any) {
+                setError(error.message); // Update the error state
+            } finally {
+                setLoading(false); // Set loading to false once the fetch is complete
+            }
+        };
+        fetchItineraries();
+    }, []); // Empty dependency array to run the effect only once on mount
 
-    const pois = itinerary?.itineraryPois.map((itineraryPoi: any) => ({
-        posix: [itineraryPoi.poi.latitude, itineraryPoi.poi.longitude] as [number, number],
-        poiName: itineraryPoi.poi.name,
-        address: itineraryPoi.poi.address,
-        website: itineraryPoi.poi.website,
-    })) || [];
-                
+    // Render the component
     return (
-        <>
-            <div className='p-10'>
-                <h1 className='text-3xl font-medium mb-5'>{ itinerary?.name }</h1>
-
-                <div className='flex flex-col gap-2 mb-3'>
-                    {pois.map((poi, index) => (
-                        <p key={index} className='flex items-center gap-4'><span className='flex justify-center items-center p-4 bg-[#F7775E] text-white text-sm h-[10px] w-[10px] rounded-full'>{index+1}</span> {poi.poiName}</p>
-                    ))}
+        // Container div with padding
+        <div className='p-10'>
+            {loading && <LoaderCircleIcon className='animate-spin' />} {/* Display loading state */}
+            {error && <p>Error: {error}</p>} {/* Display error state */}
+            {/* Check if itineraries are fetched and map over the itineraries array to display each itinerary */}
+            {itineraries && itineraries.map((itinerary) => (
+                // Each itinerary is wrapped in a div with a unique key (itinerary id)
+                <div key={itinerary.id}>
+                    {/* Link to the itinerary page using the itinerary id */}
+                    <>
+                        <Link href={`/itinerary/${itinerary.id}`}>{itinerary.name} ({new Date(itinerary.createdAt).toLocaleString('en-US')})</Link>
+                    </>
                 </div>
-            </div>
+            ))}
+        </div>
+    );
+};
 
-            <div className='w-full h-screen'>
-                {/* <MapMulti pois={pois} /> */}
-                <MapRoute pois={pois} />
-            </div>
-        </>
-    )
-}
-
+// Export the ItinerariesPage component as the default export
 export default ItinerariesPage;

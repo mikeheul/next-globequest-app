@@ -98,11 +98,11 @@ const CitiesPage = () => {
                 onPageChange={handlePageClick}
                 containerClassName={'pagination flex justify-center mt-8 space-x-2'}
                 pageClassName={'page-item'}
-                pageLinkClassName={'page-link py-2 px-3 rounded border border-gray-300 hover:bg-gray-200'}
+                pageLinkClassName={'page-link py-2 px-3 rounded-full border border-gray-300 hover:bg-gray-200'}
                 previousClassName={'page-item'}
-                previousLinkClassName={'page-link py-2 px-3 rounded border border-gray-300 hover:bg-gray-200'}
+                previousLinkClassName={'page-link py-2 px-3 rounded'}
                 nextClassName={'page-item'}
-                nextLinkClassName={'page-link py-2 px-3 rounded border border-gray-300 hover:bg-gray-200'}
+                nextLinkClassName={'page-link py-2 px-3 rounded'}
                 activeClassName={'active'}
                 activeLinkClassName={'bg-[#F7775E] text-white'}
             />

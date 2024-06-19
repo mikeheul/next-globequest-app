@@ -58,8 +58,8 @@ const ItinerariesPage = () => {
                             <div>
                                 <p className='text-2xl font-bold'>{itinerary.name}</p>
                                 <p className='text-sm'>User : {itinerary.userId}</p>
-                                <p className='text-sm text-slate-400'>({new Date(itinerary.createdAt).toLocaleString('en-US')})</p>
-                                <div className='inline-flex mt-5 items-center justify-center text-white text-sm right-0 top-0  h-[25px] bg-[#F7775E] rounded-tr-md px-3 group-hover:scale-125 origin-left duration-500'>{itinerary.itineraryPois.length} POIs</div>
+                                <p className='text-sm text-slate-400'>{new Date(itinerary.createdAt).toLocaleString('en-US')}</p>
+                                <div className='inline-flex mt-5 items-center justify-center text-white text-sm right-0 top-0  h-[25px] bg-[#F7775E] rounded-tr-md rounded-bl-md px-3 group-hover:scale-125 origin-left duration-500'>{itinerary.itineraryPois.length} POIs</div>
                             </div>
                             <div className='mt-5 translate-y-[100%] opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition duration-1000 text-[0.8rem] text-slate-500'>
                                 <p className='line-clamp-6'>{itinerary.description}</p>

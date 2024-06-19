@@ -64,18 +64,18 @@ const CitiesPage = () => {
     // Render the component
     return (
         <>
-        {/* <h1 className='text-4xl font-semibold mt-10 ml-10'>Cities</h1> */}
         <MapCities cities={citiesMap} />
         {/* Container div with padding */}
-        <div className='p-10'>
+        <h1 className='text-xl font-semibold text-center mt-10 ml-10'><span className='text-[#F7775E]'>EXPLORE</span> our Cities</h1>
+        <div className='p-8'>
             {loading && <LoaderCircleIcon className='animate-spin' />} {/* Display loading state */}
             {error && <p>Error: {error}</p>} {/* Display error state */}
             {/* Check if cities are fetched and map over the cities array to display each city */}
-            <div className={`grid grid-cols-3 gap-4 px-28 ${fadeIn ? 'fade-in' : ''}`}>
+            <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:px-28 ${fadeIn ? 'fade-in' : ''}`}>
             {currentCities.map((city, index) => (
                         <div 
                             key={city.id} 
-                            className='flex flex-col items-center justify-center h-[200px] rounded-md border border-slate-200 fade-in-card'
+                            className='flex w-full flex-col items-center justify-center h-[200px] rounded-md border border-slate-200 fade-in-card'
                             style={{ animationDelay: `${index * 0.2}s` }}
                         >
                             <h2 className='text-xl font-bold uppercase'>{city.name}</h2>

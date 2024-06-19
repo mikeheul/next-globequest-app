@@ -162,6 +162,8 @@ const MapRoute = ({ pois = [], zoom = defaults.zoom, routeColor = defaults.route
                         </Marker>
                     ))}
                 </MarkerMuster>
+
+                <HideRouteOnZoom routeControl={routeControl} minZoom={10} />
             </MapContainer>
         </div>
     )
@@ -179,6 +181,40 @@ const RoutingControlWrapper: React.FC<RoutingControlWrapperProps> = ({ routeCont
     useEffect(() => {
         routeControl.addTo(map);
     }, [routeControl, map]);
+
+    return null;
+};
+
+interface HideRouteOnZoomProps {
+    routeControl: L.Routing.Control | null;
+    minZoom: number;
+}
+
+const HideRouteOnZoom: React.FC<HideRouteOnZoomProps> = ({ routeControl, minZoom }) => {
+    const map = useMap();
+
+    useEffect(() => {
+        const handleZoom = () => {
+            console.log('Current Zoom:', map.getZoom()); // Check zoom level in console
+            if (routeControl) {
+                const container = routeControl.getContainer();
+                if (container) {
+                    if (map.getZoom() > minZoom) {
+                        container.style.display = 'none';
+                    } else {
+                        container.style.display = 'block';
+                    }
+                }
+            }
+        };
+
+        map.on('zoomend', handleZoom);
+        handleZoom(); // Set initial visibility
+
+        return () => {
+            map.off('zoomend', handleZoom);
+        };
+    }, [map, routeControl, minZoom]);
 
     return null;
 };

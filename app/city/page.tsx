@@ -1,14 +1,20 @@
 "use client";
 
 // Import necessary libraries and components
-import { City } from '@prisma/client';
+import { City, Poi } from '@prisma/client';
 import { LoaderCircleIcon } from 'lucide-react';
 import Link from 'next/link'; // Import the Link component from Next.js for client-side navigation
 import React, { useEffect, useState } from 'react'; // Import React and useState, useEffect hooks
 
+interface CityWithPois {
+    id: string;
+    name: string
+    pois: Poi[]
+}
+
 // Define the CitiesPage component
 const CitiesPage = () => {
-    const [cities, setCities] = useState<City[]>([]); // State to store the list of cities
+    const [cities, setCities] = useState<CityWithPois[]>([]); // State to store the list of cities
     const [loading, setLoading] = useState(true); // State to manage loading state
     const [error, setError] = useState(null); // State to manage error state
 
@@ -42,7 +48,9 @@ const CitiesPage = () => {
                 // Each city is wrapped in a div with a unique key (city id)
                 <div key={city.id}>
                     {/* Link to the city page using the city id */}
-                    <Link href={`/city/${city.id}`}>{city.name}</Link>
+                    <>
+                        <span className='inline-block text-center text-white text-sm bg-[#F7775E] min-w-[40px] mr-3'>{city.pois.length}</span> <Link href={`/city/${city.id}`}>{city.name}</Link>
+                    </>
                 </div>
             ))}
         </div>

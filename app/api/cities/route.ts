@@ -10,7 +10,13 @@ export async function GET(
             orderBy: {
                 name: 'asc'
             },
+            include: {
+                pois: true
+            }
         });
+
+        cities.sort((a, b) => b.pois.length - a.pois.length);
+
         return NextResponse.json(cities);
 
     } catch (error) {

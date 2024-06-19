@@ -52,31 +52,47 @@ const PoiPage = ({ params }: { params: { poiId: string } }) => {
                 <>
                     {/* Images section */}
                     <div className='grid grid-cols-1 md:grid-cols-3 h-[200px] md:h-[300px]'>
-                        <div className='relative md:aspect-w-1 md:aspect-h-1'>
-                            <Image
-                                src='https://picfiles.alphacoders.com/293/thumb-1920-293301.jpg'
-                                alt='Strasbourg Photo 1'
-                                layout='fill'
-                                objectFit='cover'
-                                objectPosition='top'
-                            />
-                        </div>
-                        <div className='relative hidden md:block md:aspect-w-1 md:aspect-h-1'>
-                            <Image
-                                src='https://a.cdn-hotels.com/gdcs/production161/d1782/80519747-a26d-49fd-9218-019576d91376.jpg'
-                                alt='Strasbourg Photo 2'
-                                layout='fill'
-                                objectFit='cover'
-                            />
-                        </div>
-                        <div className='relative hidden md:block md:aspect-w-1 md:aspect-h-1'>
-                            <Image
-                                src='https://cdn.bonsplansvoyage.fr/wp-content/uploads/2021/08/que-faire-a-strasbourg-quand-il-pleut-3072x2048.jpg'
-                                alt='Strasbourg Photo 3'
-                                layout='fill'
-                                objectFit='cover'
-                            />
-                        </div>
+                        {poi.pictures && poi.pictures.length > 0 ? (
+                            poi.pictures.map((picture: string, index: number) => (
+                                <div key={index} className='relative md:aspect-w-1 md:aspect-h-1'>
+                                    <Image
+                                        src={picture}
+                                        alt={`Photo ${index + 1}`}
+                                        layout='fill'
+                                        objectFit='cover'
+                                        objectPosition='top'
+                                    />
+                                </div>
+                            ))
+                        ) : (
+                            <>
+                                <div className='relative md:aspect-w-1 md:block md:aspect-h-1'>
+                                    <Image
+                                        src='https://miro.medium.com/v2/resize:fit:1400/1*KuGlXZjyTw7q38uzY_aZRA.png'
+                                        alt='Photo 1'
+                                        layout='fill'
+                                        objectFit='cover'
+                                        objectPosition='top'
+                                    />
+                                </div>
+                                <div className='relative hidden md:block md:aspect-w-1 md:aspect-h-1'>
+                                    <Image
+                                        src='https://miro.medium.com/v2/resize:fit:1400/1*KuGlXZjyTw7q38uzY_aZRA.png'
+                                        alt='Photo 2'
+                                        layout='fill'
+                                        objectFit='cover'
+                                    />
+                                </div>
+                                <div className='relative hidden md:block md:aspect-w-1 md:aspect-h-1'>
+                                    <Image
+                                        src='https://miro.medium.com/v2/resize:fit:1400/1*KuGlXZjyTw7q38uzY_aZRA.png'
+                                        alt='Photo 3'
+                                        layout='fill'
+                                        objectFit='cover'
+                                    />
+                                </div>
+                            </>
+                        )}
                     </div>
 
                     {/* POI details section */}

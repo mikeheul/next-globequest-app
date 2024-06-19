@@ -33,7 +33,9 @@ const CountriesPage = () => {
 
     // Render the component
     return (
-        // Container div with padding
+        <>
+        <h1 className='text-4xl font-semibold mt-10 ml-10'>Countries</h1>
+        {/* Container div with padding */}
         <div className='p-10'>
             {loading && <LoaderCircleIcon className='animate-spin' />} {/* Display loading state */}
             {error && <p>Error: {error}</p>} {/* Display error state */}
@@ -46,6 +48,7 @@ const CountriesPage = () => {
                 </div>
             ))}
         </div>
+        </>
     );
 };
 

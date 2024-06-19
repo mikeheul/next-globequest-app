@@ -19,6 +19,8 @@ model Country {
 model City {
     id String @id @default(auto()) @map("_id") @db.ObjectId
     name String
+    description String
+    pictures Json?
 
     countryId String @db.ObjectId
     country Country @relation(fields: [countryId], references: [id])
@@ -52,6 +54,8 @@ model Poi {
     opening_hours Json
     website String
     imageUrl String?
+
+    pictures Json?
 
     categoryId String @db.ObjectId
     category Category @relation(fields: [categoryId], references: [id])

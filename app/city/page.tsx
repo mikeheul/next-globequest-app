@@ -2,7 +2,7 @@
 
 import MapCities from '@/components/MapCities';
 // Import necessary libraries and components
-import { City, Poi } from '@prisma/client';
+import { Poi } from '@prisma/client';
 import { LoaderCircleIcon } from 'lucide-react';
 import Link from 'next/link'; // Import the Link component from Next.js for client-side navigation
 import React, { useEffect, useState } from 'react'; // Import React and useState, useEffect hooks
@@ -75,6 +75,7 @@ const CitiesPage = () => {
                     ))}
             </div>
 
+            {/* Pagination */}
             <ReactPaginate
                 previousLabel={'Previous'}
                 nextLabel={'Next'}

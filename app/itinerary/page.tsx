@@ -6,7 +6,7 @@ import { ArrowRightIcon, HeartIcon, HeartPulseIcon, LoaderCircleIcon } from 'luc
 import Image from 'next/image';
 import Link from 'next/link'; // Import the Link component from Next.js for client-side navigation
 import React, { useEffect, useState } from 'react'; // Import React and useState, useEffect hooks
-import travel from '@/public/travel.jpg';
+import travel from '@/public/travel_3.svg';
 
 interface ItineraryWithPois {
     id: string;
@@ -60,17 +60,17 @@ const ItinerariesPage = () => {
                             <div>
                                 <p className='text-2xl font-bold'>{itinerary.name}</p>
                                 <p className='text-sm'>User : {itinerary.userId}</p>
-                                <p className='text-sm text-slate-400'>{new Date(itinerary.createdAt).toLocaleString('en-US')}</p>
+                                <p className='text-sm text-slate-500'>{new Date(itinerary.createdAt).toLocaleString('en-US')}</p>
                                 <div className='inline-flex mt-5 items-center justify-center text-white text-sm right-0 top-0  h-[25px] bg-[#F7775E] rounded-tr-md rounded-bl-md px-3 group-hover:scale-125 origin-left duration-500'>{itinerary.itineraryPois.length} POIs</div>
                             </div>
                             <div className='mt-5 translate-y-[100%] opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition duration-1000 text-[0.8rem] text-slate-500'>
-                                <p className='line-clamp-6'>{itinerary.description}</p>
+                                <p className='line-clamp-4'>{itinerary.description}</p>
                                 <a className='font-bold inline-flex items-center gap-2' href={`/itinerary/${itinerary.id}`}>Read more <ArrowRightIcon className='' /></a>
                             </div>
                             <div className='absolute top-7 right-7 translate-x-[100%] opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition duration-500'>
                                 <a href=""><HeartIcon className='text-slate-500 hover:text-red-500 transition duration-500' /></a>
                             </div>
-                            <Image alt='img' src={travel} className='w-full h-full absolute top-0 left-0 object-cover opacity-30 -z-[10]' />
+                            <Image alt='img' src={travel} className='rotate-180 grayscale w-full h-full absolute top-0 left-0 object-cover opacity-10 -z-[10]' />
                         </div>
                     </div>
                 </Link>

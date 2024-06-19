@@ -3,8 +3,10 @@
 import { Poi } from '@prisma/client';
 // Import necessary libraries and components
 import { ArrowRightIcon, HeartIcon, HeartPulseIcon, LoaderCircleIcon } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link'; // Import the Link component from Next.js for client-side navigation
 import React, { useEffect, useState } from 'react'; // Import React and useState, useEffect hooks
+import travel from '@/public/travel.jpg';
 
 interface ItineraryWithPois {
     id: string;
@@ -68,6 +70,7 @@ const ItinerariesPage = () => {
                             <div className='absolute top-7 right-7 translate-x-[100%] opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition duration-500'>
                                 <a href=""><HeartIcon className='text-slate-500 hover:text-red-500 transition duration-500' /></a>
                             </div>
+                            <Image alt='img' src={travel} className='w-full h-full absolute top-0 left-0 object-cover opacity-30 -z-[10]' />
                         </div>
                     </div>
                 </Link>

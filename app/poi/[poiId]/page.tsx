@@ -89,6 +89,7 @@ const PoiPage = ({ params }: { params: { poiId: string } }) => {
                                     {poi.name}
                                 </h1>
                                 <h2 className='text-2xl'>{poi.category.name}</h2>
+                                <h3>{poi.city.country.name}</h3>
                                 <p className='text-slate-500 text-sm mb-3'>{poi.address}</p>
                                 <p className='font-light'>{poi.description}</p>
 

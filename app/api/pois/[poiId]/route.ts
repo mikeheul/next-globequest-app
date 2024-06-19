@@ -15,7 +15,11 @@ export async function GET(req: NextRequest, { params }: { params: { poiId: strin
                         tag: true
                     }
                 },
-                city: true,
+                city: {
+                    include: {
+                        country: true
+                    }
+                },
                 reviews: true
             }
         });

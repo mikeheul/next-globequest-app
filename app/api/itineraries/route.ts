@@ -10,6 +10,9 @@ export async function GET(
             orderBy: {
                 createdAt: 'desc'
             },
+            include: {
+                itineraryPois: true,
+            }
         });
         return NextResponse.json(itineraries);
 

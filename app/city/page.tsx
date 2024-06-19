@@ -20,7 +20,8 @@ const CitiesPage = () => {
     const [loading, setLoading] = useState(true); // State to manage loading state
     const [error, setError] = useState(null); // State to manage error state
     const [currentPage, setCurrentPage] = useState(0);
-    const citiesPerPage = 3;
+    const [fadeIn, setFadeIn] = useState(false);
+    const citiesPerPage = 6;
 
     // Fetch the list of cities from the API when the component mounts
     useEffect(() => {
@@ -48,7 +49,11 @@ const CitiesPage = () => {
 
     // Handle page change
     const handlePageClick = (data: { selected: number }) => {
-        setCurrentPage(data.selected);
+        setFadeIn(false); // Trigger the fade-out effect
+        setTimeout(() => {
+            setCurrentPage(data.selected);
+            setFadeIn(true); // Trigger the fade-in effect after changing the page
+        }, 300); // Duration of the fade-out effect
     };
 
     const citiesMap = cities.map((city: any) => ({
@@ -66,9 +71,13 @@ const CitiesPage = () => {
             {loading && <LoaderCircleIcon className='animate-spin' />} {/* Display loading state */}
             {error && <p>Error: {error}</p>} {/* Display error state */}
             {/* Check if cities are fetched and map over the cities array to display each city */}
-            <div className='grid grid-cols-3 gap-4 px-28'>
-            {currentCities.map((city) => (
-                        <div key={city.id} className='flex flex-col items-center justify-center h-[200px] rounded-md border border-slate-200'>
+            <div className={`grid grid-cols-3 gap-4 px-28 ${fadeIn ? 'fade-in' : ''}`}>
+            {currentCities.map((city, index) => (
+                        <div 
+                            key={city.id} 
+                            className='flex flex-col items-center justify-center h-[200px] rounded-md border border-slate-200 fade-in-card'
+                            style={{ animationDelay: `${index * 0.2}s` }}
+                        >
                             <h2 className='text-xl font-bold uppercase'>{city.name}</h2>
                             <Link href={`/city/${city.id}`} className='uppercase bg-slate-300 text-white text-sm px-3 py-1'>Explore</Link>
                         </div>

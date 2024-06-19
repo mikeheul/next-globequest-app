@@ -103,12 +103,12 @@ const MapRoute = ({ pois = [], zoom = defaults.zoom, routeColor = defaults.route
                     <option value="car">Car</option>
                 </select>
                 {totalDistance !== null && (
-                    <div className="mt-2">
+                    <div className="mt-2 text-sm">
                         Total Distance: {totalDistance.toFixed(2)} km
                     </div>
                 )}
                 {totalTime !== null && (
-                    <div>
+                    <div className="text-sm">
                         Estimated Time: {Math.floor(totalTime / 60)} h {Math.floor(totalTime % 60)} m
                     </div>
                 )}

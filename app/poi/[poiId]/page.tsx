@@ -80,7 +80,7 @@ const PoiPage = ({ params }: { params: { poiId: string } }) => {
                     </div>
 
                     {/* POI details section */}
-                    <div className='px-8 md:px-16 xl:px-40 py-16'>
+                    <div className='px-8 md:px-16 xl:px-36 py-16'>
                         <div className='flex flex-col md:flex-row gap-10'>
                             {/* POI information */}
                             <div className='w-full md:w-[50%]'>
@@ -122,10 +122,10 @@ const PoiPage = ({ params }: { params: { poiId: string } }) => {
                         </h2>
                         <OpeningHours opening_hours={poi.opening_hours} />
 
-                        <h2 className='flex gap-2 text-md font-semibold uppercase mt-10 mb-5'>
+                        <h2 className='flex gap-2 text-md font-semibold uppercase mt-10 mb-3'>
                             <MessageSquareMoreIcon /> Reviews
                         </h2>
-                        {poi.reviews && (
+                        {poi.reviews && poi.reviews.length > 0 ? (
                             <>
                             {poi.reviews.map((review: any) => (
                                 <div>
@@ -133,6 +133,8 @@ const PoiPage = ({ params }: { params: { poiId: string } }) => {
                                 </div>
                             ))}
                             </>
+                        ): (
+                            <p className='italic text-slate-500'>No reviews</p>
                         )}
                     </div>
                 </>

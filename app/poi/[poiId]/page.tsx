@@ -66,7 +66,7 @@ const PoiPage = ({ params }: { params: { poiId: string } }) => {
                             ))
                         ) : (
                             <>
-                                <div className='relative md:aspect-w-1 md:block md:aspect-h-1'>
+                                <div className='relative md:aspect-w-1 md:block md:aspect-h-1 opacity-40'>
                                     <Image
                                         src='https://miro.medium.com/v2/resize:fit:1400/1*KuGlXZjyTw7q38uzY_aZRA.png'
                                         alt='Photo 1'
@@ -75,7 +75,7 @@ const PoiPage = ({ params }: { params: { poiId: string } }) => {
                                         objectPosition='top'
                                     />
                                 </div>
-                                <div className='relative hidden md:block md:aspect-w-1 md:aspect-h-1'>
+                                <div className='relative hidden md:block md:aspect-w-1 md:aspect-h-1 opacity-40'>
                                     <Image
                                         src='https://miro.medium.com/v2/resize:fit:1400/1*KuGlXZjyTw7q38uzY_aZRA.png'
                                         alt='Photo 2'
@@ -83,7 +83,7 @@ const PoiPage = ({ params }: { params: { poiId: string } }) => {
                                         objectFit='cover'
                                     />
                                 </div>
-                                <div className='relative hidden md:block md:aspect-w-1 md:aspect-h-1'>
+                                <div className='relative hidden md:block md:aspect-w-1 md:aspect-h-1 opacity-40'>
                                     <Image
                                         src='https://miro.medium.com/v2/resize:fit:1400/1*KuGlXZjyTw7q38uzY_aZRA.png'
                                         alt='Photo 3'

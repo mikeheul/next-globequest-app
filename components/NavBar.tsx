@@ -30,7 +30,7 @@ const Navbar = () => {
                     <div className="flex">
                         {/* Brand/logo link */}
                         <div className="flex justify-center items-center">
-                            <a href="/home" className="text-sm md:text-xl font-bold font-permanent text-gray-800">GLOBE QUEST</a>
+                            <a href="/home" className="text-sm md:text-xl font-bold font-permanent text-gray-700">GLOBE QUEST</a>
                         </div>
                         {/* Desktop navigation links */}
                         <div className="hidden sm:ml-6 sm:flex sm:space-x-8">

@@ -80,7 +80,7 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "scale": "spin 1s linear infinite",
+        scale: "scale 1s linear infinite",
       },
     },
   },

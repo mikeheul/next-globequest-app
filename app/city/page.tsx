@@ -68,18 +68,18 @@ const CitiesPage = () => {
         <>
         <MapCities cities={citiesMap} />
         {/* Container div with padding */}
-        <h1 className='text-xl font-semibold text-center mt-10 ml-10'><span className='text-[#F7775E] font-permanent text-2xl'>EXPLORE</span> our Cities</h1>
+        <h1 className='flex justify-center gap-2 text-xl font-semibold text-center mt-10 ml-10'><span className='text-[#F7775E] font-permanent text-2xl'>EXPLORE</span> <span className='font-normal'>our Cities</span></h1>
         <div className='p-8'>
             {loading && <LoaderCircleIcon className='animate-spin' />} {/* Display loading state */}
             {error && <p>Error: {error}</p>} {/* Display error state */}
             {/* Check if cities are fetched and map over the cities array to display each city */}
-            <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:px-28 ${fadeIn ? 'fade-in' : ''}`}>
+            <div className={`grid grid-cols-1 sm:grid-cols-2 px-0 lg:grid-cols-3 gap-4 xl:px-28 ${fadeIn ? 'fade-in' : ''}`}>
             {currentCities.map((city, index) => {
             
                 const cityImage = city.pictures && city.pictures.length > 0 ? city.pictures[0] : 'https://img.lovepik.com/photo/40011/2105.jpg_wh860.jpg';
 
                 return (
-                    <Link href={`/city/${city.id}`}>
+                    <Link href={`/city/${city.id}`} key={index}>
                     <div 
                         key={city.id} 
                         className='group relative overflow-hidden flex w-full flex-col items-center justify-center h-[300px] rounded-md border border-slate-200 bg-slate-100 fade-in-card'
@@ -94,7 +94,7 @@ const CitiesPage = () => {
                         />
                         <div className='absolute bg-gradient-to-t from-slate-700 to-transparent w-full h-full opacity-100 bottom-0 left-0 z-1 group-hover:opacity-0 transition duration-1000'></div>
                         <h2 className='text-xl text-white font-bold uppercase z-[1000]'>{city.name}</h2>
-                        <Link href={`/city/${city.id}`} className='uppercase bg-slate-100 rounded-md text-slate-600 text-sm px-3 py-1 mt-1 z-[1000]'>Explore</Link>
+                        {/* <Link href={`/city/${city.id}`} className='uppercase bg-slate-100 rounded-md text-slate-600 text-sm px-3 py-1 mt-1 z-[1000]'>Explore</Link> */}
                     </div>
                     </Link>
                 );
@@ -113,11 +113,11 @@ const CitiesPage = () => {
                 onPageChange={handlePageClick}
                 containerClassName={'pagination flex justify-center items-center mt-8 space-x-2'}
                 pageClassName={'page-item'}
-                pageLinkClassName={'page-link py-2 px-3 rounded-full border border-gray-300 hover:bg-gray-200'}
+                pageLinkClassName={'page-link px-4 py-2 w-[20px] h-[20px] rounded-full border border-gray-300 hover:bg-gray-200'}
                 previousClassName={'page-item'}
-                previousLinkClassName={'page-link py-2 px-3 rounded'}
+                previousLinkClassName={'page-link py-2 px-3'}
                 nextClassName={'page-item'}
-                nextLinkClassName={'page-link py-2 px-3 rounded'}
+                nextLinkClassName={'page-link py-2 px-3'}
                 activeClassName={'active'}
                 activeLinkClassName={'bg-[#F7775E] text-white'}
             />

@@ -18,6 +18,11 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        inter: ["var(--font-inter)"],
+        permanent: ["var(--font-permanent)"],
+        luckiest: ["var(--font-luckiest)"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -67,7 +72,7 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        sczle: {
+        scale: {
           '0%': { transform: 'scale(0)' },
           '100%': { transform: 'scale(1.1)' },
         },

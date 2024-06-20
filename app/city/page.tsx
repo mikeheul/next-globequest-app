@@ -68,7 +68,7 @@ const CitiesPage = () => {
         <>
         <MapCities cities={citiesMap} />
         {/* Container div with padding */}
-        <h1 className='text-xl font-semibold text-center mt-10 ml-10'><span className='text-[#F7775E]'>EXPLORE</span> our Cities</h1>
+        <h1 className='text-xl font-semibold text-center mt-10 ml-10'><span className='text-[#F7775E] font-permanent text-2xl'>EXPLORE</span> our Cities</h1>
         <div className='p-8'>
             {loading && <LoaderCircleIcon className='animate-spin' />} {/* Display loading state */}
             {error && <p>Error: {error}</p>} {/* Display error state */}

@@ -35,7 +35,7 @@ const CityPage = async ({ params }: { params: { cityId: string }}) => {
             {/* Check if city data is fetched and display city details */}
             { city && (
                 <>
-                    <h1 className='text-4xl uppercase font-bold text-[#F7775E]'>{ city.name }</h1>
+                    <h1 className='text-4xl uppercase font-bold text-[#F7775E] font-permanent'>{ city.name }</h1>
                     <h2 className='text-md font-semibold uppercase'>What can I expect from { city.name } ?</h2>
                     <p className='my-9'>
                         {city.description}

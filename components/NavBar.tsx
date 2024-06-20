@@ -30,12 +30,12 @@ const Navbar = () => {
                     <div className="flex">
                         {/* Brand/logo link */}
                         <div className="flex justify-center items-center">
-                            <a href="/home" className="text-sm md:text-xl font-bold text-gray-800">GLOBE QUEST</a>
+                            <a href="/home" className="text-sm md:text-xl font-bold font-permanent text-gray-800">GLOBE QUEST</a>
                         </div>
                         {/* Desktop navigation links */}
                         <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                             {links.map((link) => (
-                                <Link key={link.href} href={link.href} className='text-gray-500 px-3 py-2 rounded-md text-sm font-medium'>
+                                <Link key={link.href} href={link.href} className='text-gray-500 px-3 py-2 rounded-md text-sm'>
                                     {link.label}
                                 </Link>
                             ))}

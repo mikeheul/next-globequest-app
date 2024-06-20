@@ -101,7 +101,7 @@ const PoiPage = ({ params }: { params: { poiId: string } }) => {
                             {/* POI information */}
                             <div className='w-full md:w-[50%]'>
                                 <h1 className='uppercase text-3xl sm:text-4xl font-medium'>
-                                    <span className='text-[#F7775E] font-extrabold'>{poi.city.name} | </span>
+                                    <span className='text-[#F7775E] font-extrabold font-permanent'>{poi.city.name}</span> |&nbsp;
                                     {poi.name}
                                 </h1>
                                 <h2 className='text-2xl'>{poi.category.name}</h2>

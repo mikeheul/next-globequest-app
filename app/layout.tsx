@@ -1,10 +1,28 @@
 import type { Metadata } from "next";
-import { Inter, Sarina } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import { Permanent_Marker, Luckiest_Guy } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: '--font-inter'
+});
+
+const permanent = Permanent_Marker({ 
+  subsets: ["latin"], 
+  weight: "400", 
+  style: "normal",
+  variable: '--font-permanent',
+});
+
+const luckiest = Luckiest_Guy({ 
+  subsets: ["latin"], 
+  weight: "400", 
+  style: "normal",
+  variable: '--font-luckiest',
+});
 
 export const metadata: Metadata = {
   title: "Globe Quest App",
@@ -18,7 +36,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.variable} ${permanent.variable} ${luckiest.variable} font-normal`}>
+      {/* <body className={inter.variable}> */}
         <div className='flex flex-col h-screen'>
           <Navbar />
           <main className='pt-16 flex-grow'>

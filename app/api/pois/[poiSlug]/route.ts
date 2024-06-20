@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db'; // Import the database connection
+import { redirect } from 'next/navigation';
 
 export async function GET(req: NextRequest, { params }: { params: { poiSlug: string } }) {
     const { poiSlug } = params; // Get the POI ID from the params
@@ -23,6 +24,10 @@ export async function GET(req: NextRequest, { params }: { params: { poiSlug: str
                 reviews: true
             }
         });
+
+        if(!poi) {
+            redirect('/home')
+        }
 
         if (poi) {
             // Return the POI data as a JSON response

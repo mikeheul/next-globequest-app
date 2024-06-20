@@ -6,15 +6,16 @@ import { MinusIcon } from 'lucide-react'; // Adjust import according to your set
 interface POICardProps {
     id: string;
     imageUrl: string;
+    slug: string;
     category: {
         name: string;
     };
     name: string;
 }
 
-const POICard: React.FC<POICardProps> = ({ id, imageUrl, category, name }) => {
+const POICard: React.FC<POICardProps> = ({ id, imageUrl, category, name, slug }) => {
     return (
-        <Link href={`/poi/${id}`}>
+        <Link href={`/poi/${slug}`}>
         <div className='rounded-md group cursor-pointer relative flex flex-col justify-center items-center h-[250px] w-full'>
             {/* Image for the POI */}
             <Image 

@@ -69,7 +69,8 @@ const CityPage = async ({ params }: { params: { citySlug: string }}) => {
                     city.pois.map((poi: any) => (
                         <POICard 
                             key={poi.id} 
-                            id={poi.id} 
+                            id={poi.id}
+                            slug={poi.slug}
                             imageUrl={poi.imageUrl} 
                             category={poi.category} 
                             name={poi.name} 

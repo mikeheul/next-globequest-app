@@ -6,6 +6,7 @@ import WebsiteLink from '@/components/WebsiteLink';
 import { Clock10Icon, MessageSquareMoreIcon } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import { redirect, useRouter } from 'next/navigation';
 import React, { useEffect, useMemo, useState } from 'react';
 
 // Define the PoiPage component
@@ -14,6 +15,8 @@ const PoiPage = ({ params }: { params: { poiSlug: string } }) => {
     const [loading, setLoading] = useState(true); // State to manage loading state
     const [error, setError] = useState<string | null>(null); // State to manage error state
 
+    const router = useRouter()
+    
     // Dynamically import the Map component with a loading fallback
     const Map = useMemo(
         () =>
@@ -29,8 +32,11 @@ const PoiPage = ({ params }: { params: { poiSlug: string } }) => {
         const fetchPoi = async () => {
             try {
                 const response = await fetch(`/api/pois/${params.poiSlug}`); // Make a GET request to the API route
+                
                 if (!response.ok) {
-                    throw new Error('Failed to fetch POI'); // Handle non-200 responses
+                    //throw new Error('Failed to fetch POI'); // Handle non-200 responses
+                    router.push("/home")
+                    return;
                 }
                 const data = await response.json(); // Parse the JSON response
                 setPoi(data); // Update the POI state

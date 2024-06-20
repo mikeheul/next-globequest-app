@@ -90,7 +90,7 @@ const CitiesPage = () => {
                             width={100} 
                             height={100} 
                             src={cityImage} 
-                            className='absolute bg-gradient-to-t from-black to-transparent w-full h-full opacity-100 bottom-0 left-0 z-1 overflow-hidden group-hover:scale-105 transition duration-1000' 
+                            className='absolute bg-gradient-to-t from-black to-transparent w-full h-full opacity-100 bottom-0 left-0 z-1 overflow-hidden group-hover:scale-105 group-hover:grayscale-0 transition duration-1000' 
                         />
                         <div className='absolute bg-gradient-to-t from-slate-700 to-transparent w-full h-full opacity-100 bottom-0 left-0 z-1 group-hover:opacity-0 transition duration-1000'></div>
                         <h2 className='text-xl text-white font-bold uppercase z-[1000]'>{city.name}</h2>

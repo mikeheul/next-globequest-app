@@ -64,7 +64,7 @@ const MapCities = ({ cities = [], zoom = defaults.zoom }: MapProps) => {
             style={{ height: "400px", width: "100%" }} // Set map container size
             touchZoom={false} // Allow touch zooming
             tap={false} // Disable tap interaction
-            dragging={false}
+            dragging={true}
         >
             <TileLayer
                 attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

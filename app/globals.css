@@ -79,6 +79,10 @@
     margin: 0 !important;
   }
 
+  .leaflet-routing-alt {
+    display: none;
+  }
+
   .fade-in-card {
     opacity: 0;
     animation: fadeIn 0.5s ease-in-out forwards;

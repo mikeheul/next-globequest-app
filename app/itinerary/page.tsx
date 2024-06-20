@@ -56,7 +56,7 @@ const ItinerariesPage = () => {
                 <Link 
                     href={`/itinerary/${itinerary.id}`}
                 >
-                    <div className='group overflow-hidden relative border border-slate-300 p-7 rounded-md' key={itinerary.id}>
+                    <div className='group overflow-hidden relative border border-slate-300 p-7 rounded-md h-full' key={itinerary.id}>
                         {/* Link to the itinerary page using the itinerary id */}
                         <div className='h-full flex flex-col justify-between'>
                             <div>

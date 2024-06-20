@@ -52,7 +52,7 @@ const PoiPage = ({ params }: { params: { poiId: string } }) => {
                 <>
                     {/* Images section */}
                     <div className='grid grid-cols-1 md:grid-cols-3 h-[200px] md:h-[300px]'>
-                        {poi.pictures && poi.pictures.length > 0 ? (
+                        {poi.pictures && poi.pictures.length == 3 ? (
                             poi.pictures.map((picture: string, index: number) => (
                                 <div key={index} className='relative md:aspect-w-1 md:aspect-h-1'>
                                     <Image

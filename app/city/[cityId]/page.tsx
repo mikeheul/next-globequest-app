@@ -3,6 +3,7 @@ import POICard from '@/components/POICard';
 import { db } from '@/lib/db'; // Import the database connection
 import { LandmarkIcon, MinusIcon } from 'lucide-react'; // Import icons from lucide-react
 import Link from 'next/link'; // Import the Link component from Next.js for client-side navigation
+import { redirect } from 'next/navigation';
 import React from 'react'; // Import React
 
 // Define the CityPage component as an async function
@@ -21,6 +22,12 @@ const CityPage = async ({ params }: { params: { cityId: string }}) => {
             }
         }
     });
+
+    if(!city) {
+        redirect('/home')
+    }
+
+    // if(!city) return redirect("/home")
 
     return (
         // Container div with padding and margin for the page

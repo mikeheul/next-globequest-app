@@ -2,6 +2,7 @@ import MapMulti from '@/components/MapMulti';
 import MapRoute from '@/components/MapRoute';
 import { db } from '@/lib/db'
 import { RouteIcon } from 'lucide-react';
+import { redirect } from 'next/navigation';
 import React from 'react'
 
 const ItineraryPage = async ({ params }: { params: { itineraryId: string }}) => {
@@ -25,6 +26,10 @@ const ItineraryPage = async ({ params }: { params: { itineraryId: string }}) => 
         },
         
     });
+
+    if(!itinerary) {
+        redirect('/home')
+    }
 
     const pois = itinerary?.itineraryPois.map((itineraryPoi: any) => ({
         posix: [itineraryPoi.poi.latitude, itineraryPoi.poi.longitude] as [number, number],

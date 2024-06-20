@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db'; // Import the database connection
 
-export async function GET(req: NextRequest, { params }: { params: { poiId: string } }) {
-    const { poiId } = params; // Get the POI ID from the params
+export async function GET(req: NextRequest, { params }: { params: { poiSlug: string } }) {
+    const { poiSlug } = params; // Get the POI ID from the params
 
     try {
         // Fetch the POI data from the database
         const poi = await db.poi.findUnique({
-            where: { id: poiId },
+            where: { slug: poiSlug },
             include: {
                 category: true,
                 tags: {

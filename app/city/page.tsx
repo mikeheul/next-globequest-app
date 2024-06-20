@@ -12,6 +12,7 @@ import ReactPaginate from 'react-paginate';
 interface CityWithPois {
     id: string;
     name: string;
+    slug: string;    
     pictures: Array<string>;
     pois: Poi[];
 }
@@ -79,7 +80,7 @@ const CitiesPage = () => {
                 const cityImage = city.pictures && city.pictures.length > 0 ? city.pictures[0] : 'https://img.lovepik.com/photo/40011/2105.jpg_wh860.jpg';
 
                 return (
-                    <Link href={`/city/${city.id}`} key={index}>
+                    <Link href={`/city/${city.slug}`} key={city.slug}>
                     <div 
                         key={city.id} 
                         className='group relative overflow-hidden flex w-full flex-col items-center justify-center h-[300px] rounded-md border border-slate-200 bg-slate-100 fade-in-card'

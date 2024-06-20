@@ -24,6 +24,8 @@ model City {
     latitude Float?
     longitude Float?
 
+    slug String @unique
+
     countryId String @db.ObjectId
     country Country @relation(fields: [countryId], references: [id])
 
@@ -56,6 +58,8 @@ model Poi {
     opening_hours Json
     website String
     imageUrl String?
+
+    slug String @unique
 
     pictures Json?
 

@@ -9,7 +9,7 @@ import Image from 'next/image';
 import React, { useEffect, useMemo, useState } from 'react';
 
 // Define the PoiPage component
-const PoiPage = ({ params }: { params: { poiId: string } }) => {
+const PoiPage = ({ params }: { params: { poiSlug: string } }) => {
     const [poi, setPoi] = useState<any>(null); // State to store the POI data
     const [loading, setLoading] = useState(true); // State to manage loading state
     const [error, setError] = useState<string | null>(null); // State to manage error state
@@ -28,7 +28,7 @@ const PoiPage = ({ params }: { params: { poiId: string } }) => {
     useEffect(() => {
         const fetchPoi = async () => {
             try {
-                const response = await fetch(`/api/pois/${params.poiId}`); // Make a GET request to the API route
+                const response = await fetch(`/api/pois/${params.poiSlug}`); // Make a GET request to the API route
                 if (!response.ok) {
                     throw new Error('Failed to fetch POI'); // Handle non-200 responses
                 }
@@ -41,7 +41,7 @@ const PoiPage = ({ params }: { params: { poiId: string } }) => {
             }
         };
         fetchPoi();
-    }, [params.poiId]); // Dependency array to run the effect when params.poiId changes
+    }, [params.poiSlug]); // Dependency array to run the effect when params.poiId changes
 
     // Render the component
     return (

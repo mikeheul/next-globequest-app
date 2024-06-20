@@ -1,18 +1,18 @@
 // Import necessary libraries and components
 import POICard from '@/components/POICard';
 import { db } from '@/lib/db'; // Import the database connection
-import { LandmarkIcon, MinusIcon } from 'lucide-react'; // Import icons from lucide-react
+import { LandmarkIcon } from 'lucide-react'; // Import icons from lucide-react
 import Link from 'next/link'; // Import the Link component from Next.js for client-side navigation
 import { redirect } from 'next/navigation';
 import React from 'react'; // Import React
 
 // Define the CityPage component as an async function
-const CityPage = async ({ params }: { params: { cityId: string }}) => {
+const CityPage = async ({ params }: { params: { citySlug: string }}) => {
 
     // Fetch the city data from the database including its POIs (Points of Interest) and their categories
     const city = await db.city.findUnique({
         where: {
-            id: params.cityId,
+            slug: params.citySlug as string,
         },
         include: {
             pois: {
@@ -52,7 +52,7 @@ const CityPage = async ({ params }: { params: { cityId: string }}) => {
                     city.pois.map((poi: any) => (
                         <div key={poi.id} className='flex gap-2'>
                             <LandmarkIcon className='text-[#F7775E]' /> 
-                            <Link href={`/poi/${poi.id}`}>{poi.name}</Link>
+                            <Link href={`/poi/${poi.slug}`}>{poi.name}</Link>
                         </div>
                     ))
                 ) : (

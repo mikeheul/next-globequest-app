@@ -2,7 +2,6 @@
 import POICard from '@/components/POICard';
 import { db } from '@/lib/db'; // Import the database connection
 import { LandmarkIcon, MinusIcon } from 'lucide-react'; // Import icons from lucide-react
-import Image from 'next/image'; // Import the Image component from Next.js
 import Link from 'next/link'; // Import the Link component from Next.js for client-side navigation
 import React from 'react'; // Import React
 

@@ -50,11 +50,6 @@ const Map = (Map: MapProps) => {
             attributionControl={false}
             style={{ height: "100%", width: "100%" }}
         >
-            {/* <TileLayer
-                attribution='&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
-                url="https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png"
-            /> */}
-
             <TileLayer
                 attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
@@ -64,14 +59,6 @@ const Map = (Map: MapProps) => {
                 <Marker 
                     position={posix} 
                     draggable={false}
-                    // icon={divIcon({
-                    //     iconSize: [30, 30],
-                    //     iconAnchor: [30, 39],
-                    //     popupAnchor: [-5, -30],
-                    //     className: "text-4xl",
-                    //     // html: "💀",
-                    //     // html: "<p class='w-[200px] text-center text-sm text-white bg-red-500 border-slate-200 px-2 py-1'>Kevin was here</p>",
-                    // })}
                     icon={customIcon}
                     ref={markerRef}
                 >

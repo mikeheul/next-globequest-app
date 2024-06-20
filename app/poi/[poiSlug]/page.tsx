@@ -6,7 +6,7 @@ import WebsiteLink from '@/components/WebsiteLink';
 import { Clock10Icon, MessageSquareMoreIcon } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useMemo, useState } from 'react';
 
 // Define the PoiPage component
@@ -16,7 +16,7 @@ const PoiPage = ({ params }: { params: { poiSlug: string } }) => {
     const [error, setError] = useState<string | null>(null); // State to manage error state
 
     const router = useRouter()
-    
+
     // Dynamically import the Map component with a loading fallback
     const Map = useMemo(
         () =>

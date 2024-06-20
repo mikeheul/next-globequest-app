@@ -79,6 +79,7 @@ const CitiesPage = () => {
                 const cityImage = city.pictures && city.pictures.length > 0 ? city.pictures[0] : 'https://img.lovepik.com/photo/40011/2105.jpg_wh860.jpg';
 
                 return (
+                    <Link href={`/city/${city.id}`}>
                     <div 
                         key={city.id} 
                         className='group relative overflow-hidden flex w-full flex-col items-center justify-center h-[300px] rounded-md border border-slate-200 bg-slate-100 fade-in-card'
@@ -95,6 +96,7 @@ const CitiesPage = () => {
                         <h2 className='text-xl text-white font-bold uppercase z-[1000]'>{city.name}</h2>
                         <Link href={`/city/${city.id}`} className='uppercase bg-slate-100 rounded-md text-slate-600 text-sm px-3 py-1 mt-1 z-[1000]'>Explore</Link>
                     </div>
+                    </Link>
                 );
             })}
             </div>

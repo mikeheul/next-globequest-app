@@ -33,22 +33,22 @@ const CountriesPage = () => {
 
     // Render the component
     return (
-        <>
-        <h1 className='text-4xl font-semibold mt-10 ml-10'>Countries</h1>
-        {/* Container div with padding */}
-        <div className='p-10'>
-            {loading && <LoaderCircleIcon className='animate-spin' />} {/* Display loading state */}
-            {error && <p>Error: {error}</p>} {/* Display error state */}
-            {/* Check if countries are fetched and map over the countries array to display each city */}
-            {countries && countries.map((country) => (
-                // Each country is wrapped in a div with a unique key (country id)
-                <div key={country.id}>
-                    {/* Link to the country page using the country id */}
-                    <Link href={`/country/${country.id}`}>{country.name}</Link>
-                </div>
-            ))}
+        <div className='px-8 md:px-16 xl:px-40 py-10'>
+            <h1 className='text-4xl font-semibold my-10'>Countries</h1>
+            {/* Container div with padding */}
+            <div className=''>
+                {loading && <LoaderCircleIcon className='animate-spin' />} {/* Display loading state */}
+                {error && <p>Error: {error}</p>} {/* Display error state */}
+                {/* Check if countries are fetched and map over the countries array to display each city */}
+                {countries && countries.map((country) => (
+                    // Each country is wrapped in a div with a unique key (country id)
+                    <div key={country.id}>
+                        {/* Link to the country page using the country id */}
+                        <Link href={`/country/${country.id}`}>{country.name}</Link>
+                    </div>
+                ))}
+            </div>
         </div>
-        </>
     );
 };
 

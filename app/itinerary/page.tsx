@@ -44,10 +44,10 @@ const ItinerariesPage = () => {
 
     // Render the component
     return (
-        <>
-        <h1 className='text-4xl font-semibold mt-10 ml-10'>Itineraries</h1>
+        <div className='px-8 md:px-16 xl:px-40 py-10'>
+        <h1 className='text-4xl font-semibold mt-10'>Itineraries</h1>
         {/* Container div with padding */}
-        <div className='p-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3'>
+        <div className='mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3'>
             {loading && <LoaderCircleIcon className='animate-spin' />} {/* Display loading state */}
             {error && <p>Error: {error}</p>} {/* Display error state */}
             {/* Check if itineraries are fetched and map over the itineraries array to display each itinerary */}
@@ -78,7 +78,7 @@ const ItinerariesPage = () => {
                 </Link>
             ))}
         </div>
-        </>
+        </div>
     );
 };
 

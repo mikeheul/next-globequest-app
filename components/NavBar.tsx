@@ -3,12 +3,14 @@
 // Import necessary libraries and components
 import { MenuIcon, XIcon } from 'lucide-react'; // Import icons from lucide-react
 import Link from 'next/link'; // Import the Link component from Next.js for client-side navigation
-import React from 'react'; // Import React
+import React, { useState, useEffect } from 'react'; // Import React
 
 // Define the Navbar component
 const Navbar = () => {
     // Define state to manage the menu's open/close status
     const [isOpen, setIsOpen] = React.useState(false);
+    const [activePath, setActivePath] = useState('');
+    const [previousPath, setPreviousPath] = useState('');
 
     // Define an array of link objects to manage navigation links
     const links = [
@@ -19,9 +21,19 @@ const Navbar = () => {
         { href: '/contact', label: 'Contact' },
     ];
 
+    useEffect(() => {
+        setActivePath(window.location.pathname);
+    }, []);
+
+    const handleLinkClick = (href: string) => {
+        setPreviousPath(activePath); // Set the previous active path
+        setActivePath(href); // Set the new active path
+        setIsOpen(false); // Close the menu on mobile
+    };
+
     return (
         // Navigation bar container with fixed positioning, background color, and shadow
-        <nav className="bg-white shadow-lg fixed w-full z-[2000]">
+        <nav className="bg-white shadow-lg fixed w-full z-[2000] py-2">
             {/* Container for the navigation content with maximum width and padding */}
             <div className="px-8 md:px-16 xl:px-40">
                 {/* Flex container to align and distribute navigation items */}
@@ -35,7 +47,12 @@ const Navbar = () => {
                         {/* Desktop navigation links */}
                         <div className="hidden sm:ml-6 sm:flex sm:items-center sm:space-x-8">
                             {links.map((link) => (
-                                <Link key={link.href} href={link.href} className='text-gray-500 px-3 py-2 rounded-md text-sm'>
+                                <Link 
+                                    key={link.href} 
+                                    href={link.href} 
+                                    className={`text-gray-500 px-3 py-2 rounded-md text-sm ${activePath === link.href ? 'text-white font-bold bg-slate-600 px-3' : ''}`}
+                                    onClick={() => handleLinkClick(link.href)}
+                                >
                                     {link.label}
                                 </Link>
                             ))}

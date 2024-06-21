@@ -60,7 +60,7 @@ const ItinerariesPage = () => {
                         {/* Link to the itinerary page using the itinerary id */}
                         <div className='h-full flex flex-col justify-between'>
                             <div>
-                                <p className='text-2xl font-bold'>{itinerary.name}</p>
+                                <p className='text-3xl font-semibold'>{itinerary.name}</p>
                                 <p className='text-sm'>User : {itinerary.userId}</p>
                                 <p className='text-sm text-slate-500'>{new Date(itinerary.createdAt).toLocaleString('en-US')}</p>
                                 <div className='inline-flex mt-5 items-center justify-center text-white text-sm right-0 top-0  h-[25px] bg-[#F7775E] rounded-tr-md rounded-bl-md px-3 group-hover:scale-125 origin-left duration-500'>{itinerary.itineraryPois.length} POIs</div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { LatLngBounds, LatLngExpression, LatLngTuple, Marker as LeafletMarker } from 'leaflet';
 import { MarkerMuster } from "react-leaflet-muster";
 import { divIcon } from 'leaflet';
@@ -21,25 +21,14 @@ interface MapProps {
 
 // Default values for zoom level and polyline color
 const defaults = {
-    zoom: 15,
+    zoomWithoutPOIs: 5,
+    zoomWithPOIs: 15,
 }
 
 // Helper function to calculate bounds with padding
 const getBoundsWithPadding = (points: { posix: LatLngExpression }[]): LatLngBounds => {
     return new LatLngBounds(points.map(point => point.posix as LatLngTuple));
 };
-
-// Component to fit map bounds with padding
-// const FitBounds = ({ points }: { points: { posix: LatLngExpression }[] }) => {
-//     const map = useMap();
-//     useEffect(() => {
-//         if (points.length > 0) {
-//             const bounds = getBoundsWithPadding(points, 0.1); // 10% padding
-//             map.fitBounds(bounds);
-//         }
-//     }, [map, points]);
-//     return null;
-// };
 
 const FitBounds = ({ points }: { points: { posix: LatLngExpression }[] }) => {
     const map = useMap();
@@ -56,7 +45,7 @@ const FitBounds = ({ points }: { points: { posix: LatLngExpression }[] }) => {
 };
 
 // Main MapMulti component
-const MapPoints = ({ points = [], zoom = defaults.zoom }: MapProps) => {
+const MapPoints = ({ points = [], zoom }: MapProps) => {
     const markerRefs = useRef<LeafletMarker[]>([]);
 
     useEffect(() => {
@@ -66,12 +55,12 @@ const MapPoints = ({ points = [], zoom = defaults.zoom }: MapProps) => {
         }
     }, []);
 
-    // const memoizedCities = useMemo(() => cities, [cities]);
+    const initialZoom = zoom || (points.length > 0 ? defaults.zoomWithPOIs : defaults.zoomWithoutPOIs);
 
     return (
         <MapContainer
-            center={points.length > 0 ? points[0].posix : [0, 0]} // Set initial center position
-            zoom={zoom} // Set initial zoom level
+            center={points.length > 0 ? points[0].posix : [0,0]} // Set initial center position
+            zoom={initialZoom} // Set initial zoom level
             scrollWheelZoom={false} // Disable scroll wheel zoom
             attributionControl={false} // Disable attribution control
             style={{ height: "400px", width: "100%" }} // Set map container size
@@ -102,14 +91,15 @@ const MapPoints = ({ points = [], zoom = defaults.zoom }: MapProps) => {
                         }}
                     >
                         <Popup>
-                            {/* Display city name */}
+                            {/* Display point name */}
                             <p className='text-md mb-0 important font-light'>{point.pointName}</p>
                         </Popup>
                     </Marker>
                 ))}
             </MarkerMuster>
 
-            <FitBounds points={points} /> {/* Fit bounds to markers with padding */}
+            {/* Fit bounds to markers with padding */}
+            {points.length > 1 && <FitBounds points={points} />} 
 
         </MapContainer>
     )

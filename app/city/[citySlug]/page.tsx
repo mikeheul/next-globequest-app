@@ -2,6 +2,7 @@
 import MapPoints from '@/components/MapPoints';
 import POICard from '@/components/POICard';
 import { db } from '@/lib/db'; // Import the database connection
+import { City } from '@prisma/client';
 import { LandmarkIcon } from 'lucide-react'; // Import icons from lucide-react
 import Link from 'next/link'; // Import the Link component from Next.js for client-side navigation
 import { redirect } from 'next/navigation';
@@ -18,7 +19,7 @@ const CityPage = async ({ params }: { params: { citySlug: string }}) => {
         include: {
             pois: {
                 include: {
-                    category: true
+                    category: true,
                 }
             }
         }
@@ -28,10 +29,22 @@ const CityPage = async ({ params }: { params: { citySlug: string }}) => {
         redirect('/home')
     }
 
-    const poisMap = city.pois.map((poi: any) => ({
+    const points = city?.pois.length
+    ? city.pois.map((poi) => ({
         posix: [poi.latitude, poi.longitude] as [number, number],
         pointName: poi.name,
-    })) || [];
+    }))
+    : [
+        {
+            posix: [city?.latitude, city?.longitude] as [number, number],
+            pointName: city?.name,
+        }
+    ];
+
+    const defaults = {
+        zoomWithoutPOIs: 5,
+        zoomWithPOIs: 15,
+    }
 
     return (
         // Container div with padding and margin for the page
@@ -68,7 +81,7 @@ const CityPage = async ({ params }: { params: { citySlug: string }}) => {
                     </div>
                 </div>
                 <div className='w-full lg:w-[50%]'>
-                    <MapPoints points={poisMap} />
+                    <MapPoints points={points} zoom={points.length > 1 ? defaults.zoomWithPOIs : defaults.zoomWithoutPOIs} />
                 </div>
             </div>
 

@@ -94,9 +94,9 @@ const CitiesPage = () => {
     return (
         <>
         <MapPoints points={citiesMap} />
-        <h1 className='flex flex-wrap justify-center gap-2 text-xl font-semibold text-center mt-10'>
-            <span className='text-[#F7775E] font-permanent text-2xl'>EXPLORE</span>
-            <span className='font-normal'>our Cities</span>
+        <h1 className='flex flex-wrap justify-center gap-3 text-xl font-semibold text-center mt-10'>
+            <span className='text-[#F7775E] font-permanent text-3xl'>EXPLORE</span>
+            <span className='font-normal text-3xl'>our Cities</span>
         </h1>
         <div className='p-8'>
             {loading && <LoaderCircleIcon className='animate-spin' />}

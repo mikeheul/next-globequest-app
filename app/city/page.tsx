@@ -94,7 +94,7 @@ const CitiesPage = () => {
     return (
         <>
         <MapCities cities={citiesMap} />
-        <h1 className='flex justify-center gap-2 text-xl font-semibold text-center mt-10 ml-10'>
+        <h1 className='flex flex-wrap justify-center gap-2 text-xl font-semibold text-center mt-10'>
             <span className='text-[#F7775E] font-permanent text-2xl'>EXPLORE</span>
             <span className='font-normal'>our Cities</span>
         </h1>

@@ -54,7 +54,7 @@ const CitiesPage = () => {
     const [error, setError] = useState(null);
     const [currentPage, setCurrentPage] = useState(0);
     const [fadeIn, setFadeIn] = useState(false);
-    const citiesPerPage = 9;
+    const citiesPerPage = 6;
 
     useEffect(() => {
         const fetchCities = async () => {
@@ -101,12 +101,12 @@ const CitiesPage = () => {
         <div className='p-8'>
             {loading && <LoaderCircleIcon className='animate-spin' />}
             {error && <p>Error: {error}</p>}
+            
             <div className={`grid grid-cols-1 sm:grid-cols-2 px-0 lg:grid-cols-3 gap-4 xl:px-28 ${fadeIn ? 'fade-in' : ''}`}>
             {currentCities.map((city, index) => {
                 const cityImage = city.pictures && city.pictures.length > 0 ? city.pictures[0] : 'https://img.lovepik.com/photo/40011/2105.jpg_wh860.jpg';
                 const placeholderImage = 'https://img.lovepik.com/photo/40011/2105.jpg_wh860.jpg'; // Placeholder image
 
-                console.log(cityImage);
                 return (
                     <Link href={`/city/${city.slug}`} key={city.slug}>
                     <div 
@@ -126,6 +126,7 @@ const CitiesPage = () => {
                 );
             })}
             </div>
+
             <ReactPaginate
                 previousLabel={<ChevronLeft size={16} />}
                 nextLabel={<ChevronRight size={16} />}

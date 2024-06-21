@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from "react-leaflet";
 import { LatLngBounds, LatLngExpression, LatLngTuple, Marker as LeafletMarker } from 'leaflet';
 import { MarkerMuster } from "react-leaflet-muster";
@@ -9,13 +9,12 @@ import { divIcon } from 'leaflet';
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
-import { Poi } from "@prisma/client";
 
 // Define the interface for map properties
 interface MapProps {
-    cities: {
+    points: {
         posix: LatLngExpression,
-        cityName: string,
+        pointName: string,
     }[],
     zoom?: number,
 }
@@ -26,26 +25,38 @@ const defaults = {
 }
 
 // Helper function to calculate bounds with padding
-const getBoundsWithPadding = (cities: { posix: LatLngExpression }[], padding: number): LatLngBounds => {
-    const bounds = new LatLngBounds(cities.map(city => city.posix as LatLngTuple));
-    bounds.pad(padding); 
-    return bounds;
-}
+const getBoundsWithPadding = (points: { posix: LatLngExpression }[]): LatLngBounds => {
+    return new LatLngBounds(points.map(point => point.posix as LatLngTuple));
+};
 
 // Component to fit map bounds with padding
-const FitBounds = ({ cities }: { cities: { posix: LatLngExpression }[] }) => {
+// const FitBounds = ({ points }: { points: { posix: LatLngExpression }[] }) => {
+//     const map = useMap();
+//     useEffect(() => {
+//         if (points.length > 0) {
+//             const bounds = getBoundsWithPadding(points, 0.1); // 10% padding
+//             map.fitBounds(bounds);
+//         }
+//     }, [map, points]);
+//     return null;
+// };
+
+const FitBounds = ({ points }: { points: { posix: LatLngExpression }[] }) => {
     const map = useMap();
     useEffect(() => {
-        if (cities.length > 0) {
-            const bounds = getBoundsWithPadding(cities, 0.1); // 10% padding
-            map.fitBounds(bounds);
+        if (points.length > 0) {
+            const bounds = getBoundsWithPadding(points);
+            map.fitBounds(bounds, {
+                paddingTopLeft: [100, 100],   // 100 pixels padding on the top-left
+                paddingBottomRight: [100, 100] // 100 pixels padding on the bottom-right
+            });
         }
-    }, [map, cities]);
+    }, [map, points]);
     return null;
 };
 
 // Main MapMulti component
-const MapCities = ({ cities = [], zoom = defaults.zoom }: MapProps) => {
+const MapPoints = ({ points = [], zoom = defaults.zoom }: MapProps) => {
     const markerRefs = useRef<LeafletMarker[]>([]);
 
     useEffect(() => {
@@ -59,7 +70,7 @@ const MapCities = ({ cities = [], zoom = defaults.zoom }: MapProps) => {
 
     return (
         <MapContainer
-            center={cities.length > 0 ? cities[0].posix : [0, 0]} // Set initial center position
+            center={points.length > 0 ? points[0].posix : [0, 0]} // Set initial center position
             zoom={zoom} // Set initial zoom level
             scrollWheelZoom={false} // Disable scroll wheel zoom
             attributionControl={false} // Disable attribution control
@@ -74,10 +85,10 @@ const MapCities = ({ cities = [], zoom = defaults.zoom }: MapProps) => {
             />
 
             <MarkerMuster>
-                {cities.map((city, index) => (
+                {points.map((point, index) => (
                     <Marker
                         key={index}
-                        position={city.posix}
+                        position={point.posix}
                         draggable={false} // Markers are not draggable
                         icon={divIcon({
                             iconSize: [15, 15], // Size of the custom icon
@@ -92,16 +103,16 @@ const MapCities = ({ cities = [], zoom = defaults.zoom }: MapProps) => {
                     >
                         <Popup>
                             {/* Display city name */}
-                            <p className='text-md mb-0 important font-light'>{city.cityName}</p>
+                            <p className='text-md mb-0 important font-light'>{point.pointName}</p>
                         </Popup>
                     </Marker>
                 ))}
             </MarkerMuster>
 
-            <FitBounds cities={cities} /> {/* Fit bounds to markers with padding */}
+            <FitBounds points={points} /> {/* Fit bounds to markers with padding */}
 
         </MapContainer>
     )
 }
 
-export default MapCities;
+export default MapPoints;

@@ -1,5 +1,5 @@
 // Import necessary libraries and components
-import MapCities from '@/components/MapCities';
+import MapPoints from '@/components/MapPoints';
 import POICard from '@/components/POICard';
 import { db } from '@/lib/db'; // Import the database connection
 import { LandmarkIcon } from 'lucide-react'; // Import icons from lucide-react
@@ -30,7 +30,7 @@ const CityPage = async ({ params }: { params: { citySlug: string }}) => {
 
     const poisMap = city.pois.map((poi: any) => ({
         posix: [poi.latitude, poi.longitude] as [number, number],
-        cityName: poi.name,
+        pointName: poi.name,
     })) || [];
 
     return (
@@ -68,7 +68,7 @@ const CityPage = async ({ params }: { params: { citySlug: string }}) => {
                     </div>
                 </div>
                 <div className='w-full lg:w-[50%]'>
-                    <MapCities cities={poisMap} />
+                    <MapPoints points={poisMap} />
                 </div>
             </div>
 

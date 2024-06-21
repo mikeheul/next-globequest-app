@@ -1,6 +1,6 @@
 "use client";
 
-import MapCities from '@/components/MapCities';
+import MapPoints from '@/components/MapPoints';
 import { Poi } from '@prisma/client';
 import { ChevronLeft, ChevronRight, LoaderCircleIcon } from 'lucide-react';
 import Image from 'next/image';
@@ -88,12 +88,12 @@ const CitiesPage = () => {
 
     const citiesMap = cities.map((city: any) => ({
         posix: [city.latitude, city.longitude] as [number, number],
-        cityName: city.name,
+        pointName: city.name,
     })) || [];
 
     return (
         <>
-        <MapCities cities={citiesMap} />
+        <MapPoints points={citiesMap} />
         <h1 className='flex flex-wrap justify-center gap-2 text-xl font-semibold text-center mt-10'>
             <span className='text-[#F7775E] font-permanent text-2xl'>EXPLORE</span>
             <span className='font-normal'>our Cities</span>

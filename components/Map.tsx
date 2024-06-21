@@ -18,7 +18,7 @@ interface MapProps {
 }
 
 const defaults = {
-    zoom: 17,
+    zoom: 15,
 }
 
 const customIcon = divIcon({

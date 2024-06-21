@@ -3,7 +3,7 @@ import MapPoints from '@/components/MapPoints';
 import POICard from '@/components/POICard';
 import { db } from '@/lib/db'; // Import the database connection
 import { City } from '@prisma/client';
-import { LandmarkIcon } from 'lucide-react'; // Import icons from lucide-react
+import { LandmarkIcon, MessageCircleHeartIcon } from 'lucide-react'; // Import icons from lucide-react
 import Link from 'next/link'; // Import the Link component from Next.js for client-side navigation
 import { redirect } from 'next/navigation';
 import React from 'react'; // Import React
@@ -69,10 +69,12 @@ const CityPage = async ({ params }: { params: { citySlug: string }}) => {
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
                         { city && city.pois.length > 0 ? (
                             city.pois.map((poi: any) => (
-                                <div key={poi.id} className='flex text-sm gap-2'>
-                                    <LandmarkIcon className='text-[#F7775E] flex-shrink-0 w-[30px] h-[30px]' /> 
-                                    <Link href={`/poi/${poi.slug}`}>{poi.name}</Link>
+                                <Link href={`/poi/${poi.slug}`} className='p-2 hover:bg-gray-100 rounded-lg'>
+                                <div key={poi.id} className='group flex items-center text-sm gap-2'>
+                                    <MessageCircleHeartIcon className='text-[#F7775E] group-hover:text-[#cc634e] flex-shrink-0 w-[30px] h-[30px]' /> 
+                                    {poi.name}
                                 </div>
+                                </Link>
                             ))
                         ) : (
                             <div className='italic text-slate-500'>No POIs available</div>

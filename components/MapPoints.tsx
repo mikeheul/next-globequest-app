@@ -55,7 +55,7 @@ const MapPoints = ({ points = [], zoom }: MapProps) => {
         }
     }, []);
 
-    const initialZoom = zoom || (points.length > 0 ? defaults.zoomWithPOIs : defaults.zoomWithoutPOIs);
+    const initialZoom = zoom || (points.length > 1 ? defaults.zoomWithPOIs : defaults.zoomWithoutPOIs);
 
     return (
         <MapContainer

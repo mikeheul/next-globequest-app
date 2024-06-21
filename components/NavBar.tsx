@@ -23,17 +23,17 @@ const Navbar = () => {
         // Navigation bar container with fixed positioning, background color, and shadow
         <nav className="bg-white shadow-lg fixed w-full z-[2000]">
             {/* Container for the navigation content with maximum width and padding */}
-            <div className="max-w-7xl mx-auto px-10">
+            <div className="px-8 md:px-16 xl:px-40">
                 {/* Flex container to align and distribute navigation items */}
                 <div className="flex justify-between items-center h-16">
                     {/* Left side of the navigation bar */}
                     <div className="flex">
                         {/* Brand/logo link */}
                         <div className="flex justify-center items-center">
-                            <a href="/home" className="text-xl md:text-2xl font-bold font-permanent text-gray-700">GLOBE QUEST</a>
+                            <a href="/home" className="text-sm sm:text-xl md:text-2xl font-bold font-permanent text-gray-700">GLOBE QUEST</a>
                         </div>
                         {/* Desktop navigation links */}
-                        <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <div className="hidden sm:ml-6 sm:flex sm:items-center sm:space-x-8">
                             {links.map((link) => (
                                 <Link key={link.href} href={link.href} className='text-gray-500 px-3 py-2 rounded-md text-sm'>
                                     {link.label}

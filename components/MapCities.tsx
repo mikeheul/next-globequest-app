@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from "react-leaflet";
 import { LatLngBounds, LatLngExpression, LatLngTuple, Marker as LeafletMarker } from 'leaflet';
 import { MarkerMuster } from "react-leaflet-muster";
@@ -54,6 +54,8 @@ const MapCities = ({ cities = [], zoom = defaults.zoom }: MapProps) => {
             markerRefs.current[0]?.openPopup();
         }
     }, []);
+
+    // const memoizedCities = useMemo(() => cities, [cities]);
 
     return (
         <MapContainer

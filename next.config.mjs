@@ -3,7 +3,8 @@ const nextConfig = {
     images: {
         domains: [
             "res.cloudinary.com",
-            "img.lovepik.com"
+            "img.lovepik.com",
+            "miro.medium.com"
         ]
         //unoptimized: true,
     }

@@ -40,7 +40,7 @@ export default function RootLayout({
       {/* <body className={inter.variable}> */}
         <div className='flex flex-col h-screen'>
           <Navbar />
-          <main className='pt-16 flex-grow'>
+          <main className='pt-20 flex-grow'>
             {children}
           </main>
           <Footer />

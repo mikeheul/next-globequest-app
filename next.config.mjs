@@ -1,12 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        // domains: [
-        //     "picfiles.alphacoders.com",
-        //     "a.cdn-hotels.com",
-        //     "cdn.bonsplansvoyage.fr"
-        // ]
-        unoptimized: true,
+        domains: [
+            "res.cloudinary.com",
+            "img.lovepik.com"
+        ]
+        //unoptimized: true,
     }
 };
 

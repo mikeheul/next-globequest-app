@@ -50,7 +50,7 @@ const Navbar = () => {
                                 <Link 
                                     key={link.href} 
                                     href={link.href} 
-                                    className={`text-gray-500 px-3 py-2 rounded-md text-sm ${activePath === link.href ? 'text-white font-bold bg-slate-600 px-3' : ''}`}
+                                    className={`text-gray-500 px-3 py-2 text-sm ${activePath === link.href ? 'border-b-2 border-slate-600 text-slate-600 font-bold' : ''}`}
                                     onClick={() => handleLinkClick(link.href)}
                                 >
                                     {link.label}

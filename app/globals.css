@@ -105,7 +105,7 @@
     border-radius: 50%;
   }
 
-  .pulse {
+  .marker-icon:hover {
     animation: pulse 1.5s infinite;
   }
 

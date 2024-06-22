@@ -83,7 +83,7 @@ const MapPoints = ({ points = [], zoom }: MapProps) => {
                             iconSize: [15, 15], // Size of the custom icon
                             iconAnchor: [15, 30], // Anchor point of the icon
                             popupAnchor: [-7.5, -30], // Popup anchor point
-                            html: `<div class='marker-icon pulse'></div>`, // Custom icon HTML
+                            html: `<div class='w-15px h-15px bg-marker rounded-full pulse'></div>`, // Custom icon HTML
                             className: '' // Custom icon CSS class
                         })}
                         ref={(marker) => {

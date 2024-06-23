@@ -1,5 +1,6 @@
 "use client";
 
+import MapCountry from '@/components/MapCountry';
 // Import necessary libraries and components
 import { Country } from '@prisma/client';
 import { LoaderCircleIcon } from 'lucide-react';
@@ -31,10 +32,19 @@ const CountriesPage = () => {
         fetchCountries();
     }, []); // Empty dependency array to run the effect only once on mount
 
+    const countriesMap = [
+        { name: 'France', geojsonPath: 'https://res.cloudinary.com/dr3qz5dk3/raw/upload/v1719179109/france_lgmuyb.geojson', color: '#b92c2c' },
+        { name: 'Italy', geojsonPath: 'https://res.cloudinary.com/dr3qz5dk3/raw/upload/v1719179734/italy_cw0fku.geojson', color: '#51a451' },
+        { name: 'Brazil', geojsonPath: 'https://res.cloudinary.com/dr3qz5dk3/raw/upload/v1719179825/brazil_wib6al.geojson', color: '#2e2e8f' },
+    ];
+
     // Render the component
     return (
+        <>
+        <MapCountry countries={countriesMap} />
         <div className='px-8 md:px-16 xl:px-40 py-10'>
-            <h1 className='text-4xl font-semibold my-10'>Countries</h1>
+            <h1 className='text-4xl font-semibold mb-10'>Countries</h1>
+
             {/* Container div with padding */}
             <div className=''>
                 {loading && <LoaderCircleIcon className='animate-spin' />} {/* Display loading state */}
@@ -49,6 +59,7 @@ const CountriesPage = () => {
                 ))}
             </div>
         </div>
+        </>
     );
 };
 

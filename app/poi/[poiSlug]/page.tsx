@@ -108,12 +108,12 @@ const PoiPage = ({ params }: { params: { poiSlug: string } }) => {
                             <div className='w-full md:w-[50%]'>
                                 {/* Breadcrumb */}
                                 <div className='flex gap-2 items-center mb-4'>
-                                    <a className='inline-block text-slate-400' href={`/home`}><HomeIcon width={18} /></a>
-                                    <ChevronRightIcon className='text-slate-400' width={12} />
+                                    <a className='inline-block text-slate-400' href={`/home`}><HomeIcon className='flex-shrink-0' width={18} /></a>
+                                    <ChevronRightIcon className='text-slate-400 flex-shrink-0' width={12} />
                                     <a className='inline-block text-slate-400' href={`/city`}>Cities</a>
-                                    <ChevronRightIcon className='text-slate-400' width={12} />
+                                    <ChevronRightIcon className='text-slate-400 flex-shrink-0' width={12} />
                                     <a className='inline-block text-slate-400' href={`/city/${poi.city.slug}`}>{poi.city.name}</a>
-                                    <ChevronRightIcon className='text-slate-400' width={12} />
+                                    <ChevronRightIcon className='text-slate-400 flex-shrink-0' width={12} />
                                     <span className='font-semibold'>{poi.name}</span>
                                 </div>
                                 <h1 className='uppercase text-3xl sm:text-4xl font-medium'>

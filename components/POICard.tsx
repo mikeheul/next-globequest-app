@@ -22,7 +22,7 @@ const POICard: React.FC<POICardProps> = ({ id, imageUrl, category, name, slug })
                 layout='fill' 
                 objectFit='cover' 
                 objectPosition='bottom' 
-                className='rounded-md group-hover:scale-105 transition-transform duration-500 ease-in-out' 
+                className='rounded-md group-hover:scale-105 group-hover:grayscale transition-transform duration-1000 ease-in-out' 
                 src={imageUrl} 
                 alt={name} 
             />

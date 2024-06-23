@@ -3,7 +3,7 @@
 // Import necessary components and libraries
 import OpeningHours from '@/components/OpeningHours';
 import WebsiteLink from '@/components/WebsiteLink';
-import { Clock10Icon, MessageSquareMoreIcon } from 'lucide-react';
+import { Clock10Icon, MessageSquareMoreIcon, ChevronRightIcon } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -106,6 +106,14 @@ const PoiPage = ({ params }: { params: { poiSlug: string } }) => {
                         <div className='flex flex-col md:flex-row gap-10'>
                             {/* POI information */}
                             <div className='w-full md:w-[50%]'>
+                                {/* Breadcrumb */}
+                                <div className='flex gap-2 items-center mb-4 text-slate-600'>
+                                    <a className='inline-block' href={`/city`}>Cities</a>
+                                    <ChevronRightIcon width={12} />
+                                    <a className='inline-block' href={`/city/${poi.city.slug}`}>{poi.city.name}</a>
+                                    <ChevronRightIcon width={12} />
+                                    <span>{poi.name}</span>
+                                </div>
                                 <h1 className='uppercase text-3xl sm:text-4xl font-medium'>
                                     <span className='text-[#F7775E] font-extrabold font-permanent'>{poi.city.name}</span> |&nbsp;
                                     {poi.name}

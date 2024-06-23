@@ -2,7 +2,7 @@
 import MapPoints from '@/components/MapPoints';
 import POICard from '@/components/POICard';
 import { db } from '@/lib/db'; // Import the database connection
-import { MessageCircleHeartIcon } from 'lucide-react'; // Import icons from lucide-react
+import { ChevronRightIcon, MessageCircleHeartIcon } from 'lucide-react'; // Import icons from lucide-react
 import Link from 'next/link'; // Import the Link component from Next.js for client-side navigation
 import { redirect } from 'next/navigation';
 import React from 'react'; // Import React
@@ -53,6 +53,12 @@ const CityPage = async ({ params }: { params: { citySlug: string }}) => {
                     {/* Check if city data is fetched and display city details */}
                     { city && (
                         <>
+                            {/* Breadcrumb */}
+                            <div className='flex gap-2 items-center mb-4 text-slate-600'>
+                                <a className='inline-block' href={`/city`}>Cities</a>
+                                <ChevronRightIcon width={12} />
+                                <span>{city.name}</span>
+                            </div>
                             <h1 className='text-4xl uppercase font-bold text-[#F7775E] font-permanent'>{ city.name }</h1>
                             <h2 className='text-lg font-normal uppercase mt-2'>What can I expect from { city.name } ?</h2>
                             <p className='my-9'>

@@ -69,7 +69,7 @@ const ItinerariesPage = () => {
                                 <p className='line-clamp-4'>{itinerary.description}</p>
                                 <a className='font-bold inline-flex items-center gap-2' href={`/itinerary/${itinerary.id}`}>Read more <ArrowRightIcon className='' /></a>
                             </div>
-                            <div className='absolute top-7 right-7 translate-x-[100%] opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition duration-500'>
+                            <div className='absolute bottom-4 right-4 translate-x-[100%] opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition duration-500'>
                                 <a href=""><HeartIcon className='text-slate-500 hover:text-red-500 transition duration-500' /></a>
                             </div>
                             <Image alt='img' src={travel} className='rotate-180 grayscale w-full h-full absolute top-0 left-0 object-cover opacity-10 -z-[10]' />

@@ -54,11 +54,11 @@ const CityPage = async ({ params }: { params: { citySlug: string }}) => {
                     { city && (
                         <>
                             {/* Breadcrumb */}
-                            <div className='flex gap-2 items-center mb-4'>
+                            <div className='flex flex-col sm:flex-row gap-2 mb-6'>
                                 <a className='inline-block text-slate-400' href={`/home`}><HomeIcon className='flex-shrink-0' width={18} /></a>
-                                <ChevronRightIcon className='text-slate-400 flex-shrink-0' width={12} />
+                                <ChevronRightIcon className='hidden sm:block text-slate-400 flex-shrink-0' width={12} />
                                 <a className='inline-block text-slate-400' href={`/city`}>Cities</a>
-                                <ChevronRightIcon className='text-slate-400 flex-shrink-0' width={12} />
+                                <ChevronRightIcon className='hidden sm:block text-slate-400 flex-shrink-0' width={12} />
                                 <span className='font-semibold'>{city.name}</span>
                             </div>
                             <h1 className='text-4xl uppercase font-bold text-[#F7775E] font-permanent'>{ city.name }</h1>

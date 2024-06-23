@@ -14,7 +14,7 @@ interface Country {
 
 // Props interface for MapCountry component
 interface MapCountryProps {
-    countries: Country[];
+    countries: any[];
 }
 
 // Functional component for rendering the map with GeoJSON data

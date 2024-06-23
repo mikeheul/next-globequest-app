@@ -12,6 +12,7 @@ generator client {
 model Country {
     id String @id @default(auto()) @map("_id") @db.ObjectId
     name String
+    geoJson String?
 
     cities City[]
 }

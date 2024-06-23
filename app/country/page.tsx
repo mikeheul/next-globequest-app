@@ -32,26 +32,30 @@ const CountriesPage = () => {
         fetchCountries();
     }, []); // Empty dependency array to run the effect only once on mount
 
-    // Define a function to generate random hex colors within blue or orange hues
     const getRandomColor = () => {
-        // Define color ranges for blue and orange
-        const blueRange = ['#0D6EFD', '#0A4FFC', '#0740FA', '#042AF9', '#011CF8']; // Shades of blue
-        const orangeRange = ['#FFA94D', '#FF963B', '#FF7C27', '#FF6313', '#FF4C00']; // Shades of orange
+        // Define color range for shades of orange
+        const orangeRange = [
+            '#FFA94D', '#FF963B', '#FF7C27', '#FF6313', '#FF4C00',
+            '#FFB366', '#FFAB59', '#FFA24D', '#FF9959', '#FF8C42',
+            '#FF8F4C', '#FF8533', '#FF7F50', '#FF7526', '#FF6B1C'
+        ];
         
-        // Randomly select between blue and orange hues (50% chance for each)
-        const useBlue = Math.random() < 0.5;
-
-        // Select a random color from the chosen range
-        const selectedRange = useBlue ? blueRange : orangeRange;
-        const randomIndex = Math.floor(Math.random() * selectedRange.length);
-        return selectedRange[randomIndex];
+        // Select a random color from the orange range
+        const randomIndex = Math.floor(Math.random() * orangeRange.length);
+        return orangeRange[randomIndex];
     };
 
-    const countriesMap = [
-        { name: 'France', geojsonPath: 'https://res.cloudinary.com/dr3qz5dk3/raw/upload/v1719179109/france_lgmuyb.geojson', color: getRandomColor() },
-        { name: 'Italy', geojsonPath: 'https://res.cloudinary.com/dr3qz5dk3/raw/upload/v1719179734/italy_cw0fku.geojson', color: getRandomColor() },
-        // { name: 'Brazil', geojsonPath: 'https://res.cloudinary.com/dr3qz5dk3/raw/upload/v1719179825/brazil_wib6al.geojson', color: getRandomColor() },
-    ];
+    // const countriesMap = [
+    //     { name: 'France', geojsonPath: 'https://res.cloudinary.com/dr3qz5dk3/raw/upload/v1719179109/france_lgmuyb.geojson', color: getRandomColor() },
+    //     { name: 'Italy', geojsonPath: 'https://res.cloudinary.com/dr3qz5dk3/raw/upload/v1719179734/italy_cw0fku.geojson', color: getRandomColor() },
+    //     { name: 'Brazil', geojsonPath: 'https://res.cloudinary.com/dr3qz5dk3/raw/upload/v1719179825/brazil_wib6al.geojson', color: getRandomColor() },
+    // ];
+
+    const countriesMap = countries.map((country) => ({
+        name: country.name,
+        geojsonPath: country.geoJson,
+        color: getRandomColor(), // Generate a random color within blue or orange hues
+    }));
 
     // Render the component
     return (

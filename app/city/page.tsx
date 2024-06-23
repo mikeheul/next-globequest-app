@@ -33,7 +33,7 @@ const LazyImage = ({ src, alt, placeholder }:any) => {
                     blurDataURL={placeholder}
                     layout="fill"
                     objectFit="cover"
-                    className='transition duration-1000'
+                    className='transition-transform duration-500 ease-in-out group-hover:scale-105'
                 />
             ) : (
                 <Image

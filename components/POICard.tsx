@@ -16,13 +16,13 @@ interface POICardProps {
 const POICard: React.FC<POICardProps> = ({ id, imageUrl, category, name, slug }) => {
     return (
         <Link href={`/poi/${slug}`}>
-        <div className='rounded-md group cursor-pointer relative flex flex-col justify-center items-center h-[250px] w-full'>
+        <div className='rounded-md overflow-hidden group cursor-pointer relative flex flex-col justify-center items-center h-[250px] w-full'>
             {/* Image for the POI */}
             <Image 
                 layout='fill' 
                 objectFit='cover' 
                 objectPosition='bottom' 
-                className='rounded-md' 
+                className='rounded-md group-hover:scale-105 transition-transform duration-500 ease-in-out' 
                 src={imageUrl} 
                 alt={name} 
             />

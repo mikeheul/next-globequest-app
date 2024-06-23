@@ -3,7 +3,7 @@
 // Import necessary components and libraries
 import OpeningHours from '@/components/OpeningHours';
 import WebsiteLink from '@/components/WebsiteLink';
-import { Clock10Icon, MessageSquareMoreIcon, ChevronRightIcon } from 'lucide-react';
+import { Clock10Icon, MessageSquareMoreIcon, ChevronRightIcon, HomeIcon } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -108,6 +108,8 @@ const PoiPage = ({ params }: { params: { poiSlug: string } }) => {
                             <div className='w-full md:w-[50%]'>
                                 {/* Breadcrumb */}
                                 <div className='flex gap-2 items-center mb-4'>
+                                    <a className='inline-block text-slate-400' href={`/home`}><HomeIcon width={12} /></a>
+                                    <ChevronRightIcon className='text-slate-400' width={12} />
                                     <a className='inline-block text-slate-400' href={`/city`}>Cities</a>
                                     <ChevronRightIcon className='text-slate-400' width={12} />
                                     <a className='inline-block text-slate-400' href={`/city/${poi.city.slug}`}>{poi.city.name}</a>

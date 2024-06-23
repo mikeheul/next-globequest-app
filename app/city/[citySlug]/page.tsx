@@ -2,7 +2,7 @@
 import MapPoints from '@/components/MapPoints';
 import POICard from '@/components/POICard';
 import { db } from '@/lib/db'; // Import the database connection
-import { ChevronRightIcon, MessageCircleHeartIcon } from 'lucide-react'; // Import icons from lucide-react
+import { ChevronRightIcon, MessageCircleHeartIcon, HomeIcon } from 'lucide-react'; // Import icons from lucide-react
 import Link from 'next/link'; // Import the Link component from Next.js for client-side navigation
 import { redirect } from 'next/navigation';
 import React from 'react'; // Import React
@@ -55,6 +55,8 @@ const CityPage = async ({ params }: { params: { citySlug: string }}) => {
                         <>
                             {/* Breadcrumb */}
                             <div className='flex gap-2 items-center mb-4'>
+                                <a className='inline-block text-slate-400' href={`/home`}><HomeIcon width={12} /></a>
+                                <ChevronRightIcon className='text-slate-400' width={12} />
                                 <a className='inline-block text-slate-400' href={`/city`}>Cities</a>
                                 <ChevronRightIcon className='text-slate-400' width={12} />
                                 <span>{city.name}</span>

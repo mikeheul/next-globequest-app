@@ -76,6 +76,7 @@ const MapCountry = ({ countries }: MapCountryProps) => {
         <MapContainer
             center={[40, 10]} // Default center position
             zoom={3} // Initial zoom level
+            attributionControl={false} // Disable attribution control
             style={{ height: "600px", width: "100%" }} // Inline style for map container
             ref={setMap} // Reference to set map instance
         >

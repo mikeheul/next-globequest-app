@@ -50,7 +50,7 @@ const CountriesPage = () => {
     const countriesMap = [
         { name: 'France', geojsonPath: 'https://res.cloudinary.com/dr3qz5dk3/raw/upload/v1719179109/france_lgmuyb.geojson', color: getRandomColor() },
         { name: 'Italy', geojsonPath: 'https://res.cloudinary.com/dr3qz5dk3/raw/upload/v1719179734/italy_cw0fku.geojson', color: getRandomColor() },
-        { name: 'Brazil', geojsonPath: 'https://res.cloudinary.com/dr3qz5dk3/raw/upload/v1719179825/brazil_wib6al.geojson', color: getRandomColor() },
+        // { name: 'Brazil', geojsonPath: 'https://res.cloudinary.com/dr3qz5dk3/raw/upload/v1719179825/brazil_wib6al.geojson', color: getRandomColor() },
     ];
 
     // Render the component

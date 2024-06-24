@@ -69,7 +69,10 @@ const CountriesPage = () => {
                     // Each country is wrapped in a div with a unique key (country id)
                     <div key={country.id}>
                         {/* Link to the country page using the country id */}
-                        <Link href={`/country/${country.id}`}>{country.name}</Link>
+                        <div className='flex items-center gap-4'>
+                            <img src={`/api/flags?countryName=${encodeURIComponent(country.name)}`} alt={`${country.name} flag`} className="inline-block ml-2 w-6 h-4" />                    
+                            <Link href={`/country/${country.id}`}> {country.name}</Link>
+                        </div>
                     </div>
                 ))}
             </div>

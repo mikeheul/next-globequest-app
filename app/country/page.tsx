@@ -45,11 +45,13 @@ const CountriesPage = () => {
         return orangeRange[randomIndex];
     };
 
-    const countriesMap = countries.map((country) => ({
-        name: country.name,
-        geojsonPath: country.geoJson,
-        color: getRandomColor(), // Generate a random color within blue or orange hues
-    }));
+    const countriesMap = countries
+        .filter(country => country.geoJson) // Filter countries that have geoJson data
+        .map((country) => ({
+            name: country.name,
+            geojsonPath: country.geoJson,
+            color: getRandomColor(), // Generate a random color within blue or orange hues
+        }));
 
     // Render the component
     return (

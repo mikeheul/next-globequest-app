@@ -71,7 +71,7 @@ const CountriesPage = () => {
                     <div key={country.id}>
                         {/* Link to the country page using the country id */}
                         <div className='flex items-center gap-4'>
-                            <img src={`/api/flags?countryName=${encodeURIComponent(country.name)}`} alt={`${country.name} flag`} className="inline-block rounded-full ml-2 w-8 h-8 object-cover" />                    
+                            <img src={`/api/flags?countryName=${encodeURIComponent(country.name)}`} alt={`${country.name} flag`} className="inline-block rounded-full w-8 h-8 object-cover" />                    
                             <Link href={`/country/${country.id}`}> {country.name}</Link>
                         </div>
                     </div>

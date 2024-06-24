@@ -1,7 +1,7 @@
 // Import necessary modules and components
 "use client";
 import MapPoints from '@/components/MapPoints'; // Importing MapPoints component from '@/components/MapPoints'
-import { Poi } from '@prisma/client'; // Importing Poi type from Prisma client
+import { Country, Poi } from '@prisma/client'; // Importing Poi type from Prisma client
 import { ChevronLeft, ChevronRight, LoaderCircleIcon } from 'lucide-react'; // Importing icons from lucide-react
 import Image from 'next/image'; // Importing Image component from next/image
 import Link from 'next/link'; // Importing Link component from next/link
@@ -16,6 +16,7 @@ interface CityWithPois {
     slug: string;
     pictures: Array<string>;
     pois: Poi[];
+    country: Country;
 }
 
 // Lazy loaded image component that uses IntersectionObserver
@@ -143,6 +144,7 @@ const CitiesPage = () => {
                                     <div className='absolute bg-gradient-to-t from-slate-700 to-transparent w-full h-full opacity-100 bottom-0 left-0 z-10 group-hover:opacity-0 transition duration-1000'></div>
                                     {/* City name */}
                                     <h2 className='text-xl absolute text-white font-bold uppercase z-20'>{city.name}</h2>
+                                    <img src={`/api/flags?countryName=${encodeURIComponent(city.country.name)}`} alt={`${city.country.name} flag`} className="absolute top-4 left-4 inline-block rounded-full border-[3px] border-white ml-2 w-8 h-8 object-cover" />
                                 </div>
                             </Link>
                         );

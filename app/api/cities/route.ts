@@ -13,7 +13,8 @@ export async function GET(
                 name: 'asc' // Order cities by name in ascending order
             },
             include: {
-                pois: true // Include points of interest (pois) associated with each city
+                pois: true, // Include points of interest (pois) associated with each city
+                country: true,
             }
         });
 

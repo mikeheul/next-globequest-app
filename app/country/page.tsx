@@ -65,16 +65,18 @@ const CountriesPage = () => {
                 {loading && <LoaderCircleIcon className='animate-spin' />} {/* Display loading state */}
                 {error && <p>Error: {error}</p>} {/* Display error state */}
                 {/* Check if countries are fetched and map over the countries array to display each city */}
+                <div className='flex flex-col gap-2 mb-10'>
                 {countries && countries.map((country) => (
                     // Each country is wrapped in a div with a unique key (country id)
                     <div key={country.id}>
                         {/* Link to the country page using the country id */}
                         <div className='flex items-center gap-4'>
-                            <img src={`/api/flags?countryName=${encodeURIComponent(country.name)}`} alt={`${country.name} flag`} className="inline-block ml-2 w-6 h-4" />                    
+                            <img src={`/api/flags?countryName=${encodeURIComponent(country.name)}`} alt={`${country.name} flag`} className="inline-block ml-2 w-9" />                    
                             <Link href={`/country/${country.id}`}> {country.name}</Link>
                         </div>
                     </div>
                 ))}
+                </div>
             </div>
         </div>
         </>

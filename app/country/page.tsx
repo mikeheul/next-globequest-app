@@ -67,7 +67,7 @@ const CountriesPage = () => {
                 {loading && <LoaderCircleIcon className='animate-spin' />} {/* Display loading state */}
                 {error && <p>Error: {error}</p>} {/* Display error state */}
                 {/* Check if countries are fetched and map over the countries array to display each city */}
-                <div className='grid grid-cols-3 gap-3 mb-10'>
+                <div className='grid grid-cols-1 md:grid-cols-3 gap-3 mb-10'>
                 {countries && countries.map((country, index) => {
 
                     // const col = Math.floor(index / columns) + 1;

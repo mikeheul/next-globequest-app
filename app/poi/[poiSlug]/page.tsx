@@ -132,7 +132,7 @@ const PoiPage = ({ params }: { params: { poiSlug: string } }) => {
                                 <div className='flex flex-col sm:flex-row flex-wrap gap-2 my-8'>
                                     {poi.tags.map((tag: any) => (
                                         <span
-                                            className='inline-block text-xs uppercase text-white border bg-[#61BEC4] rounded-sm px-3 py-1'
+                                            className='inline-block text-xs uppercase text-white border bg-[#4c9fa5] dark:bg-[#2a6468] rounded-sm px-3 py-1'
                                             key={tag.id}
                                         >
                                             {tag.tag.name}

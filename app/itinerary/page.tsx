@@ -56,23 +56,23 @@ const ItinerariesPage = () => {
                 <Link 
                     href={`/itinerary/${itinerary.id}`}
                 >
-                    <div className='group overflow-hidden relative border border-slate-300 p-7 rounded-md h-full' key={itinerary.id}>
+                    <div className='group overflow-hidden relative border border-slate-700 p-7 rounded-md h-full dark:hover:bg-slate-900/80' key={itinerary.id}>
                         {/* Link to the itinerary page using the itinerary id */}
                         <div className='h-full flex flex-col justify-between'>
                             <div>
                                 <p className='text-3xl font-semibold'>{itinerary.name}</p>
                                 <p className='text-sm'>User : {itinerary.userId}</p>
-                                <p className='text-sm text-slate-500'>{new Date(itinerary.createdAt).toLocaleString('en-US')}</p>
+                                <p className='text-sm text-slate-500 dark:text-white'>{new Date(itinerary.createdAt).toLocaleString('en-US')}</p>
                                 <div className='inline-flex mt-5 items-center justify-center text-white text-sm right-0 top-0  h-[25px] bg-[#F7775E] rounded-tr-md rounded-bl-md px-3 group-hover:scale-125 origin-left duration-500'>{itinerary.itineraryPois.length} POIs</div>
                             </div>
-                            <div className='mt-5 translate-y-[100%] opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition duration-1000 text-[0.8rem] text-slate-500'>
+                            <div className='mt-5 translate-y-[100%] opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition duration-1000 text-[0.8rem] text-slate-500 dark:text-white'>
                                 <p className='line-clamp-4'>{itinerary.description}</p>
                                 <a className='font-bold inline-flex items-center gap-2' href={`/itinerary/${itinerary.id}`}>Read more <ArrowRightIcon className='' /></a>
                             </div>
                             <div className='absolute bottom-4 right-4 translate-x-[100%] opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition duration-500'>
                                 <a href=""><HeartIcon className='text-slate-500 hover:text-red-500 transition duration-500' /></a>
                             </div>
-                            <Image alt='img' src={travel} className='rotate-180 grayscale w-full h-full absolute top-0 left-0 object-cover opacity-10 -z-[10]' />
+                            <Image alt='img' src={travel} className='rotate-180 grayscale w-full h-full absolute top-0 left-0 object-cover opacity-10 -z-[10] dark:invert dark:opacity-20' />
                         </div>
                     </div>
                 </Link>

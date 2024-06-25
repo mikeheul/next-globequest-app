@@ -65,7 +65,7 @@ const CityPage = async ({ params }: { params: { citySlug: string }}) => {
                             <h1 className='text-4xl uppercase font-bold text-[#F7775E] font-permanent'>{ city.name }</h1>
                             <p><img src={`/api/flags?countryName=${encodeURIComponent(city.country.name)}`} alt={`${city.country.name} flag`} className="inline-block rounded-full w-6 h-6 object-cover my-2 mr-2" /> {city.country.name}</p>
                             <h2 className='text-lg font-normal uppercase mt-2'>What can I expect from { city.name } ?</h2>
-                            <p className='my-9'>
+                            <p className='my-9 text-slate-400'>
                                 {city.description}
                             </p>
                         </>

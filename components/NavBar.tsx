@@ -1,9 +1,10 @@
 "use client"; // Indicate that this component should be rendered on the client side
 
 // Import necessary libraries and components
-import { MenuIcon, XIcon } from 'lucide-react'; // Import icons from lucide-react
+import { MenuIcon, Router, XIcon } from 'lucide-react'; // Import icons from lucide-react
 import Link from 'next/link'; // Import the Link component from Next.js for client-side navigation
 import React, { useState, useEffect } from 'react'; // Import React
+import { useRouter, usePathname } from 'next/navigation'
 
 // Define the Navbar component
 const Navbar = () => {
@@ -35,12 +36,18 @@ const Navbar = () => {
         setIsOpen(false); // Close the menu on mobile
     };
 
+    const pathname = usePathname()
+
     const toggleTheme = () => {
         const newTheme = theme === 'light' ? 'dark' : 'light';
         setTheme(newTheme);
         localStorage.setItem('theme', newTheme);
         document.documentElement.classList.remove(theme);
         document.documentElement.classList.add(newTheme);
+        
+        if (pathname === '/country') {
+            location.reload();
+        }
     };
 
     return (

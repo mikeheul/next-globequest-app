@@ -28,6 +28,8 @@ const MapCountry = ({ countries }: MapCountryProps) => {
     // State hooks for managing GeoJSON data and map instance
     const [geojsonData, setGeojsonData] = useState<{ [key: string]: any }>({});
     const [map, setMap] = useState<L.Map | null>(null);
+    const [isDarkMode, setIsDarkMode] = useState(false);
+    const [tileLayerUrl, setTileLayerUrl] = useState("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png");
 
     // Effect hook to fetch GeoJSON data for each country
     const fetchData = useMemo(() => async () => {
@@ -68,6 +70,34 @@ const MapCountry = ({ countries }: MapCountryProps) => {
         }
     }, [map, geojsonData]); // Dependency array with map and geojsonData, triggers effect on change
 
+    useEffect(() => {
+        // Function to check if dark mode is enabled
+        const checkDarkMode = () => {
+            return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        };
+
+        const updateTileLayer = () => {
+            const darkMode = checkDarkMode();
+            setIsDarkMode(darkMode);
+            setTileLayerUrl(darkMode
+                ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+                : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+            );
+        };
+
+        // Add listener for changes to the dark mode preference
+        const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        darkModeMediaQuery.addEventListener('change', updateTileLayer);
+
+        // Initial check
+        updateTileLayer();
+
+        // Cleanup listener on unmount
+        return () => {
+            darkModeMediaQuery.removeEventListener('change', updateTileLayer);
+        };
+    }, []);
+
     // Function to define style for GeoJSON features
     const style = (color: string) => {
         return {
@@ -90,7 +120,8 @@ const MapCountry = ({ countries }: MapCountryProps) => {
             <Suspense fallback={<div>Loading map...</div>}>
                 <LazyLoadedTileLayer
                     attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.webp"
+                    //url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.webp"
+                    url={tileLayerUrl}
                 />
             </Suspense>
 

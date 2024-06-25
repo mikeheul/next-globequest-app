@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { LatLngBounds, LatLngExpression, LatLngTuple, Marker as LeafletMarker } from 'leaflet';
 import { MarkerMuster } from "react-leaflet-muster";
@@ -47,12 +47,43 @@ const FitBounds = ({ points }: { points: { posix: LatLngExpression }[] }) => {
 // Main MapMulti component
 const MapPoints = ({ points = [], zoom }: MapProps) => {
     const markerRefs = useRef<LeafletMarker[]>([]);
+    const [isDarkMode, setIsDarkMode] = useState(false);
+    const [tileLayerUrl, setTileLayerUrl] = useState("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png");
 
     useEffect(() => {
         // Open the popup of the first marker when component mounts
         if (markerRefs.current.length > 0) {
             markerRefs.current[0]?.openPopup();
         }
+    }, []);
+
+    useEffect(() => {
+        // Function to check if dark mode is enabled
+        const checkDarkMode = () => {
+            return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        };
+
+        const updateTileLayer = () => {
+            const darkMode = checkDarkMode();
+            setIsDarkMode(darkMode);
+            // ? "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+            setTileLayerUrl(darkMode
+                ? "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+                : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+            );
+        };
+
+        // Add listener for changes to the dark mode preference
+        const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        darkModeMediaQuery.addEventListener('change', updateTileLayer);
+
+        // Initial check
+        updateTileLayer();
+
+        // Cleanup listener on unmount
+        return () => {
+            darkModeMediaQuery.removeEventListener('change', updateTileLayer);
+        };
     }, []);
 
     const initialZoom = zoom || (points.length > 1 ? defaults.zoomWithPOIs : defaults.zoomWithoutPOIs);
@@ -70,7 +101,8 @@ const MapPoints = ({ points = [], zoom }: MapProps) => {
         >
             <TileLayer
                 attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+                // url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+                url={tileLayerUrl}
             />
 
             <MarkerMuster>

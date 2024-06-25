@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link'; // Import the Link component from Next.js for client-side navigation
 import React, { useEffect, useState } from 'react'; // Import React and useState, useEffect hooks
 import travel from '@/public/travel_3.svg';
+import { useRouter } from 'next/navigation';
 
 interface ItineraryWithPois {
     id: string;
@@ -42,6 +43,17 @@ const ItinerariesPage = () => {
         fetchItineraries();
     }, []); // Empty dependency array to run the effect only once on mount
 
+    const router = useRouter();
+
+    const handleReadMoreClick = (id: string) => {
+        router.push(`/itinerary/${id}`);
+    };
+
+    const handleHeartClick = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+        e.stopPropagation();
+        // Handle heart icon click logic here
+    };
+
     // Render the component
     return (
         <div className='px-8 md:px-16 xl:px-40 py-10'>
@@ -55,6 +67,7 @@ const ItinerariesPage = () => {
                 // Each itinerary is wrapped in a div with a unique key (itinerary id)
                 <Link 
                     href={`/itinerary/${itinerary.id}`}
+                    key={itinerary.id}
                 >
                     <div className='group overflow-hidden relative border border-slate-700 p-7 rounded-md h-full dark:hover:bg-slate-900/80' key={itinerary.id}>
                         {/* Link to the itinerary page using the itinerary id */}
@@ -67,10 +80,10 @@ const ItinerariesPage = () => {
                             </div>
                             <div className='mt-5 translate-y-[100%] opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition duration-1000 text-[0.8rem] text-slate-500 dark:text-white'>
                                 <p className='line-clamp-4'>{itinerary.description}</p>
-                                <a className='font-bold inline-flex items-center gap-2' href={`/itinerary/${itinerary.id}`}>Read more <ArrowRightIcon className='' /></a>
+                                <span className='font-bold inline-flex items-center gap-2 cursor-pointer' onClick={() => handleReadMoreClick(itinerary.id)}>Read more <ArrowRightIcon className='' /></span>
                             </div>
                             <div className='absolute bottom-4 right-4 translate-x-[100%] opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition duration-500'>
-                                <a href=""><HeartIcon className='text-slate-500 hover:text-red-500 transition duration-500' /></a>
+                                <span className='cursor-pointer' onClick={handleHeartClick}><HeartIcon className='text-slate-500 hover:text-red-500 transition duration-500' /></span>
                             </div>
                             <Image alt='img' src={travel} className='rotate-180 grayscale w-full h-full absolute top-0 left-0 object-cover opacity-10 -z-[10] dark:invert dark:opacity-20' />
                         </div>

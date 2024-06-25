@@ -28,8 +28,10 @@ const MapCountry = ({ countries }: MapCountryProps) => {
     // State hooks for managing GeoJSON data and map instance
     const [geojsonData, setGeojsonData] = useState<{ [key: string]: any }>({});
     const [map, setMap] = useState<L.Map | null>(null);
-    const [isDarkMode, setIsDarkMode] = useState(false);
-    const [tileLayerUrl, setTileLayerUrl] = useState("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png");
+    const [isDarkMode, setIsDarkMode] = useState(() => localStorage.getItem('theme') === 'dark');    const [tileLayerUrl, setTileLayerUrl] = useState(isDarkMode
+        ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+        : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+    );
 
     // Effect hook to fetch GeoJSON data for each country
     const fetchData = useMemo(() => async () => {
@@ -72,10 +74,13 @@ const MapCountry = ({ countries }: MapCountryProps) => {
 
     useEffect(() => {
         // Function to check if dark mode is enabled
+        // const checkDarkMode = () => {
+        //     return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        // };
         const checkDarkMode = () => {
-            return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            return localStorage.getItem('theme') === 'dark' ? true : false
         };
-
+        
         const updateTileLayer = () => {
             const darkMode = checkDarkMode();
             setIsDarkMode(darkMode);
@@ -111,6 +116,7 @@ const MapCountry = ({ countries }: MapCountryProps) => {
     // JSX structure for rendering MapContainer and its child components
     return (
         <MapContainer
+            key={tileLayerUrl}
             center={[40, 10]} // Default center position
             //zoom={3} // Initial zoom level
             attributionControl={false} // Disable attribution control

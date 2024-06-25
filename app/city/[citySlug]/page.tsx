@@ -78,7 +78,7 @@ const CityPage = async ({ params }: { params: { citySlug: string }}) => {
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
                         { city && city.pois.length > 0 ? (
                             city.pois.map((poi: any) => (
-                                <Link href={`/poi/${poi.slug}`} className='p-2 flex hover:bg-gray-100 rounded-lg'>
+                                <Link href={`/poi/${poi.slug}`} className='p-2 flex hover:bg-gray-100 dark:hover:bg-transparent dark:hover:border dark:hover:bg-slate-800 rounded-lg'>
                                 <div key={poi.id} className='group flex items-center text-sm gap-2'>
                                     <MessageCircleHeartIcon className='text-[#F7775E] group-hover:text-[#cc634e] flex-shrink-0 w-[30px] h-[30px]' /> 
                                     {poi.name}

@@ -39,7 +39,7 @@ const ItineraryPage = async ({ params }: { params: { itineraryId: string }}) => 
         <>
             <div className='p-10'>
                 <h1 className='text-3xl font-bold mb-5'>{itinerary?.name}</h1>
-                <p className='italic text-slate-700'>{itinerary?.description}</p>
+                <p className='italic text-slate-700 dark:text-white'>{itinerary?.description}</p>
 
                 <h2 className='flex flex-row items-center text-2xl my-5 font-medium'><RouteIcon className='mr-4' /> Itinerary details</h2>
                 <div className='flex flex-col gap-2 my-10'>

@@ -17,7 +17,7 @@ const Navbar = () => {
         { href: '/home', label: 'Home' },
         { href: '/country', label: 'Countries' },
         { href: '/city', label: 'Cities' },
-        { href: '/itinerary', label: 'Itinerary' },
+        { href: '/itinerary', label: 'Itineraries' },
         { href: '/contact', label: 'Contact' },
     ];
 
@@ -33,7 +33,7 @@ const Navbar = () => {
 
     return (
         // Navigation bar container with fixed positioning, background color, and shadow
-        <nav className="bg-white shadow-lg fixed w-full z-[2000] py-2">
+        <nav className="bg-white shadow-lg fixed w-full z-[2000] py-2 dark:bg-slate-900">
             {/* Container for the navigation content with maximum width and padding */}
             <div className="px-8 md:px-16 xl:px-40">
                 {/* Flex container to align and distribute navigation items */}
@@ -42,7 +42,7 @@ const Navbar = () => {
                     <div className="flex">
                         {/* Brand/logo link */}
                         <div className="flex justify-center items-center">
-                            <a href="/home" className="text-sm sm:text-xl md:text-2xl font-bold font-permanent text-gray-700">GLOBE QUEST</a>
+                            <a href="/home" className="text-sm sm:text-xl md:text-2xl font-bold font-permanent text-gray-700 dark:text-white">GLOBE QUEST</a>
                         </div>
                         {/* Desktop navigation links */}
                         <div className="hidden sm:ml-6 sm:flex sm:items-center sm:space-x-8">
@@ -50,7 +50,7 @@ const Navbar = () => {
                                 <Link 
                                     key={link.href} 
                                     href={link.href} 
-                                    className={`text-gray-500 px-3 py-2 text-sm ${activePath === link.href ? 'border-b-2 border-marker text-marker font-semibold' : ''}`}
+                                    className={`text-gray-500 px-3 py-2 text-sm ${activePath === link.href ? 'border-b-2 border-marker text-marker dark:text-marker font-semibold' : ''} dark:text-white`}
                                     onClick={() => handleLinkClick(link.href)}
                                 >
                                     {link.label}

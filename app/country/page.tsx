@@ -11,7 +11,7 @@ import React, { useEffect, useState } from 'react'; // Import React and useState
 const CountriesPage = () => {
     const [countries, setCountries] = useState<Country[]>([]); // State to store the list of countries
     const [loading, setLoading] = useState(true); // State to manage loading state
-    const [error, setError] = useState(null); // State to manage error state
+    const [error, setError] = useState<string | null>(null); // State to manage error state
 
     // Fetch the list of countries from the API when the component mounts
     useEffect(() => {
@@ -41,8 +41,7 @@ const CountriesPage = () => {
         ];
         
         // Select a random color from the orange range
-        const randomIndex = Math.floor(Math.random() * orangeRange.length);
-        return orangeRange[randomIndex];
+        return orangeRange[Math.floor(Math.random() * orangeRange.length)];
     };
 
     const countriesMap = countries

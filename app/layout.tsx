@@ -35,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="">
       <body className={`${inter.variable} ${permanent.variable} ${luckiest.variable} font-normal`}>
       {/* <body className={inter.variable}> */}
         <div className='flex flex-col h-screen'>

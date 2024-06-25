@@ -163,7 +163,7 @@ const CitiesPage = () => {
                     onPageChange={handlePageClick} // Callback function for page change
                     containerClassName={'pagination flex justify-center items-center mt-8 space-x-2'} // CSS class for pagination container
                     pageClassName={'page-item'} // CSS class for each page item
-                    pageLinkClassName={'page-link px-4 py-2 w-[20px] h-[20px] rounded-full border border-gray-300 hover:bg-gray-700 hover:text-white'} // CSS class for page link
+                    pageLinkClassName={'page-link flex items-center justify-center text-center w-[35px] h-[35px] rounded-full border border-gray-300 hover:bg-gray-700 hover:text-white'} // CSS class for page link
                     previousClassName={'page-item'} // CSS class for previous button
                     previousLinkClassName={'page-link py-2 px-3'} // CSS class for previous button link
                     nextClassName={'page-item'} // CSS class for next button

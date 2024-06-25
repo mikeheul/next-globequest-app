@@ -1,6 +1,6 @@
 // Import necessary modules and components
 "use client";
-import { useEffect, useState } from 'react'; // Importing React hooks
+import React, { useEffect, useState, Suspense } from 'react'; // Importing React hooks
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet'; // Importing MapContainer, TileLayer, and GeoJSON components from react-leaflet
 import L from 'leaflet'; // Importing leaflet library
 import "leaflet/dist/leaflet.css"; // Importing leaflet CSS
@@ -16,6 +16,12 @@ interface Country {
 interface MapCountryProps {
     countries: any[];
 }
+
+const LazyLoadedTileLayer = React.lazy(() =>
+    import('react-leaflet').then(({ TileLayer }) => ({
+        default: TileLayer,
+    }))
+);
 
 // Functional component for rendering the map with GeoJSON data
 const MapCountry = ({ countries }: MapCountryProps) => {
@@ -80,10 +86,12 @@ const MapCountry = ({ countries }: MapCountryProps) => {
             style={{ height: "600px", width: "100%" }} // Inline style for map container
             ref={setMap} // Reference to set map instance
         >
-            <TileLayer
-                attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" // Tile layer URL template
-            />
+            <Suspense fallback={<div>Loading map...</div>}>
+                <LazyLoadedTileLayer
+                    attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" // Tile layer URL template
+                />
+            </Suspense>
             {/* Render GeoJSON layers for each country */}
             {countries.map((country: any) => (
                 geojsonData[country.name] && (

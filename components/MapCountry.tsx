@@ -92,6 +92,7 @@ const MapCountry = ({ countries }: MapCountryProps) => {
                     url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" // Tile layer URL template
                 />
             </Suspense>
+            
             {/* Render GeoJSON layers for each country */}
             {countries.map((country: any) => (
                 geojsonData[country.name] && (

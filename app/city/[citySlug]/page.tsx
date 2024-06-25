@@ -20,7 +20,8 @@ const CityPage = async ({ params }: { params: { citySlug: string }}) => {
                 include: {
                     category: true,
                 }
-            }
+            },
+            country: true,
         }
     });
 
@@ -62,6 +63,7 @@ const CityPage = async ({ params }: { params: { citySlug: string }}) => {
                                 <span className='font-semibold'>{city.name}</span>
                             </div>
                             <h1 className='text-4xl uppercase font-bold text-[#F7775E] font-permanent'>{ city.name }</h1>
+                            <p><img src={`/api/flags?countryName=${encodeURIComponent(city.country.name)}`} alt={`${city.country.name} flag`} className="inline-block rounded-full w-8 h-8 object-cover my-3 mr-2" /> {city.country.name}</p>
                             <h2 className='text-lg font-normal uppercase mt-2'>What can I expect from { city.name } ?</h2>
                             <p className='my-9'>
                                 {city.description}

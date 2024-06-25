@@ -65,16 +65,16 @@ const CountriesPage = () => {
                 {loading && <LoaderCircleIcon className='animate-spin' />} {/* Display loading state */}
                 {error && <p>Error: {error}</p>} {/* Display error state */}
                 {/* Check if countries are fetched and map over the countries array to display each city */}
-                <div className='flex flex-col gap-2 mb-10'>
-                {countries && countries.map((country) => (
+                <div className='grid grid-cols-3 gap-2 mb-10'>
+                {countries && countries.map((country, index) => (
                     // Each country is wrapped in a div with a unique key (country id)
-                    <div key={country.id}>
-                        {/* Link to the country page using the country id */}
-                        <div className='flex items-center gap-4'>
-                            <img src={`/api/flags?countryName=${encodeURIComponent(country.name)}`} alt={`${country.name} flag`} className="inline-block rounded-full w-8 h-8 object-cover" />                    
-                            <Link href={`/country/${country.id}`}> {country.name}</Link>
-                        </div>
+                    <div key={country.id} className={`col-start-${index % 3 + 1} row-start-${Math.floor(index / 3) + 1}`}>
+                    {/* Link to the country page using the country id */}
+                    <div className='flex items-center gap-4'>
+                        <img src={`/api/flags?countryName=${encodeURIComponent(country.name)}`} alt={`${country.name} flag`} className="inline-block rounded-full w-8 h-8 object-cover" />                    
+                        <Link href={`/country/${country.id}`}>{country.name}</Link>
                     </div>
+                </div>
                 ))}
                 </div>
             </div>

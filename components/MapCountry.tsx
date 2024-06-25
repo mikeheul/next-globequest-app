@@ -1,6 +1,6 @@
 // Import necessary modules and components
 "use client";
-import React, { useEffect, useState, Suspense } from 'react'; // Importing React hooks
+import React, { useEffect, useState, Suspense, useMemo } from 'react'; // Importing React hooks
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet'; // Importing MapContainer, TileLayer, and GeoJSON components from react-leaflet
 import L from 'leaflet'; // Importing leaflet library
 import "leaflet/dist/leaflet.css"; // Importing leaflet CSS
@@ -30,30 +30,31 @@ const MapCountry = ({ countries }: MapCountryProps) => {
     const [map, setMap] = useState<L.Map | null>(null);
 
     // Effect hook to fetch GeoJSON data for each country
-    useEffect(() => {
-        const fetchData = async () => {
-            const promises = countries.map(async (country) => {
-                const response = await fetch(country.geojsonPath); // Fetch GeoJSON data from provided URL
-                return {
-                    name: country.name,
-                    data: await response.json(), // Parse response JSON data
-                    color: country.color,
-                };
-            });
+    const fetchData = useMemo(() => async () => {
+        const promises = countries.map(async (country) => {
+            const response = await fetch(country.geojsonPath); // Fetch GeoJSON data from provided URL
+            return {
+                name: country.name,
+                data: await response.json(), // Parse response JSON data
+                color: country.color,
+            };
+        });
 
-            const results = await Promise.all(promises); // Wait for all promises to resolve
+        const results = await Promise.all(promises); // Wait for all promises to resolve
 
-            // Construct object with GeoJSON data keyed by country name
-            const geoJsonDataObject: { [key: string]: any } = {};
-            results.forEach((result) => {
-                geoJsonDataObject[result.name] = result.data;
-            });
+        // Construct object with GeoJSON data keyed by country name
+        const geoJsonDataObject: { [key: string]: any } = {};
+        results.forEach((result) => {
+            geoJsonDataObject[result.name] = result.data;
+        });
 
-            setGeojsonData(geoJsonDataObject); // Update state with fetched GeoJSON data
-        };
+        setGeojsonData(geoJsonDataObject); // Update state with fetched GeoJSON data
 
-        fetchData(); // Invoke fetchData function on component mount or when countries array changes
     }, [countries]); // Dependency array with countries, triggers effect on change
+
+    useEffect(() => {
+        fetchData();
+    }, [fetchData]);
 
     // Effect hook to fit map bounds once GeoJSON data and map instance are available
     useEffect(() => {
@@ -89,10 +90,10 @@ const MapCountry = ({ countries }: MapCountryProps) => {
             <Suspense fallback={<div>Loading map...</div>}>
                 <LazyLoadedTileLayer
                     attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" // Tile layer URL template
+                    url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.webp"
                 />
             </Suspense>
-            
+
             {/* Render GeoJSON layers for each country */}
             {countries.map((country: any) => (
                 geojsonData[country.name] && (

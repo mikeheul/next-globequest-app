@@ -29,7 +29,7 @@ const MapCountry = ({ countries }: MapCountryProps) => {
     const [geojsonData, setGeojsonData] = useState<{ [key: string]: any }>({});
     const [map, setMap] = useState<L.Map | null>(null);
     const [isDarkMode, setIsDarkMode] = useState(() => localStorage.getItem('theme') === 'dark');    const [tileLayerUrl, setTileLayerUrl] = useState(isDarkMode
-        ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+        ? "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
         : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
     );
 
@@ -77,30 +77,30 @@ const MapCountry = ({ countries }: MapCountryProps) => {
         // const checkDarkMode = () => {
         //     return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         // };
-        const checkDarkMode = () => {
-            return localStorage.getItem('theme') === 'dark' ? true : false
-        };
+        // const checkDarkMode = () => {
+        //     return localStorage.getItem('theme') === 'dark' ? true : false
+        // };
         
-        const updateTileLayer = () => {
-            const darkMode = checkDarkMode();
-            setIsDarkMode(darkMode);
-            setTileLayerUrl(darkMode
-                ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-                : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-            );
-        };
+        // const updateTileLayer = () => {
+        //     const darkMode = checkDarkMode();
+        //     setIsDarkMode(darkMode);
+        //     setTileLayerUrl(darkMode
+        //         ? "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+        //         : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+        //     );
+        // };
 
-        // Add listener for changes to the dark mode preference
-        const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        darkModeMediaQuery.addEventListener('change', updateTileLayer);
+        // // Add listener for changes to the dark mode preference
+        // const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        // darkModeMediaQuery.addEventListener('change', updateTileLayer);
 
-        // Initial check
-        updateTileLayer();
+        // // Initial check
+        // updateTileLayer();
 
-        // Cleanup listener on unmount
-        return () => {
-            darkModeMediaQuery.removeEventListener('change', updateTileLayer);
-        };
+        // // Cleanup listener on unmount
+        // return () => {
+        //     darkModeMediaQuery.removeEventListener('change', updateTileLayer);
+        // };
     }, []);
 
     // Function to define style for GeoJSON features

@@ -36,7 +36,7 @@ const Navbar = () => {
         setIsOpen(false); // Close the menu on mobile
     };
 
-    const pathname = usePathname()
+    // const pathname = usePathname()
 
     const toggleTheme = () => {
         const newTheme = theme === 'light' ? 'dark' : 'light';
@@ -45,9 +45,9 @@ const Navbar = () => {
         document.documentElement.classList.remove(theme);
         document.documentElement.classList.add(newTheme);
         
-        if (pathname === '/country') {
-            location.reload();
-        }
+        // if (pathname === '/country') {
+        //     location.reload();
+        // }
     };
 
     return (

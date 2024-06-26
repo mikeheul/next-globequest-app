@@ -34,7 +34,8 @@ const UploadPage: NextPage = () => {
                 options={
                     {
                         "clientAllowedFormats": ['jpg', 'png', 'webp', 'geojson'],
-                        "maxFileSize": 500000 // 500ko
+                        "maxFileSize": 500000, // 500ko
+                        "showCompletedButton": true,
                     }
                 }
             >

@@ -13,7 +13,7 @@ interface Props {
 const WebsiteLink: React.FC<Props> = ({ poi }) => {
     return (
         // Container for the website link with styling
-        <div className='inline-flex gap-2 px-3 py-2 my-3 text-white rounded-sm bg-[#F7775E] hover:bg-[#ec6b54]'>
+        <div className='inline-flex gap-2 px-3 py-2 mb-3 mt-8 text-white rounded-sm bg-[#F7775E] hover:bg-[#ec6b54]'>
             {/* Icon to be displayed next to the link */}
             <Globe2Icon className='h-5 w-5' />
             {/* Anchor tag for the POI's website */}

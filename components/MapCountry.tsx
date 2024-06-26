@@ -117,6 +117,7 @@ const MapCountry = ({ countries }: MapCountryProps) => {
     return (
         <MapContainer
             key={tileLayerUrl}
+            scrollWheelZoom={false}
             center={[40, 10]} // Default center position
             //zoom={3} // Initial zoom level
             attributionControl={false} // Disable attribution control

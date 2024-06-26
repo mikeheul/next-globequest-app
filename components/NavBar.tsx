@@ -65,7 +65,7 @@ const Navbar = () => {
                         </div>
                         {/* Desktop navigation links */}
                         <div className="hidden sm:ml-6 sm:flex sm:justify-between sm:items-center sm:space-x-8">
-                            <>
+                            <div>
                             {links.map((link) => (
                                 <Link 
                                     key={link.href} 
@@ -76,14 +76,16 @@ const Navbar = () => {
                                     {link.label}
                                 </Link>
                             ))}
-                            </>
-                            <button
-                                onClick={toggleTheme}
-                                className="hidden text-2xl absolute lg:block right-10 top-6 cursor-pointer text-gray-500 dark:text-white mr-4"
-                            >
-                                {theme === 'light' ? '🌙' : '☀️'}
-                            </button>
+                            </div>
                         </div>
+                    </div>
+                    <div>
+                        <button
+                            onClick={toggleTheme}
+                            className="hidden text-2xl md:block cursor-pointer text-gray-500 dark:text-white"
+                        >
+                            {theme === 'light' ? '🌙' : '☀️'}
+                        </button>
                     </div>
                     {/* Mobile menu button */}
                     <div className="-mr-2 flex items-center sm:hidden">

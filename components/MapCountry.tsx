@@ -1,6 +1,6 @@
 // Import necessary modules and components
 "use client";
-import React, { useEffect, useState, Suspense, useMemo } from 'react'; // Importing React hooks
+import React, { useEffect, useState, Suspense, useMemo, useLayoutEffect } from 'react'; // Importing React hooks
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet'; // Importing MapContainer, TileLayer, and GeoJSON components from react-leaflet
 import L from 'leaflet'; // Importing leaflet library
 import "leaflet/dist/leaflet.css"; // Importing leaflet CSS
@@ -120,7 +120,8 @@ const MapCountry = ({ countries }: MapCountryProps) => {
             center={[40, 10]} // Default center position
             //zoom={3} // Initial zoom level
             attributionControl={false} // Disable attribution control
-            style={{ height: "600px", width: "100%" }} // Inline style for map container
+            // style={{ height: "600px", width: "100%" }} // Inline style for map container
+            className="h-96 sm:h-80 md:h-96 lg:h-[600px] w-full" 
             ref={setMap} // Reference to set map instance
         >
             <Suspense fallback={<div>Loading map...</div>}>

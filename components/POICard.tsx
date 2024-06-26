@@ -14,6 +14,7 @@ interface POICardProps {
 }
 
 const POICard: React.FC<POICardProps> = ({ id, imageUrl, category, name, slug }) => {
+    
     return (
         <Link href={`/poi/${slug}`}>
         <div className='rounded-md overflow-hidden group cursor-pointer relative flex flex-col justify-center items-center h-[250px] w-full'>

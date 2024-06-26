@@ -7,7 +7,7 @@ const nextConfig = {
             "miro.medium.com"
         ]
         //unoptimized: true,
-    }
+    },
 };
 
 export default nextConfig;

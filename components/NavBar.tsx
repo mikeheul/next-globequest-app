@@ -12,7 +12,7 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = React.useState(false);
     const [activePath, setActivePath] = useState('');
     const [previousPath, setPreviousPath] = useState('');
-    const [theme, setTheme] = useState('light');
+    const [theme, setTheme] = useState('dark');
 
     // Define an array of link objects to manage navigation links
     const links = [
@@ -25,7 +25,7 @@ const Navbar = () => {
 
     useEffect(() => {
         setActivePath(window.location.pathname);
-        const savedTheme = localStorage.getItem('theme') || 'light';
+        const savedTheme = localStorage.getItem('theme') || 'dark';
         setTheme(savedTheme);
         document.documentElement.classList.add(savedTheme);
     }, []);

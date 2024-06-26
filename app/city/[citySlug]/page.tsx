@@ -101,19 +101,22 @@ const CityPage = async ({ params }: { params: { citySlug: string }}) => {
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
                 {/* Check if city has POIs and map over them to display each POI with an image */}
                 { city && city.pois.length > 0 ? (
-                    city.pois.map((poi: any) => (
+                <>  
+                    { /* Mapping over city.pois to render POICard components */ }
+                    { city.pois.map((poi: any) => (
                         <POICard 
                             key={poi.id} 
                             id={poi.id}
                             slug={poi.slug}
-                            imageUrl={poi.imageUrl} 
+                            imageUrl={poi.imageUrl || 'https://img.lovepik.com/photo/40011/2105.jpg_wh860.jpg'}  // Use a placeholder image path if imageUrl is falsy
                             category={poi.category} 
                             name={poi.name} 
                         />
-                    ))
-                ) : (
-                    <div className='italic text-slate-500'>No POIs available</div>
-                )}
+                    ))}
+                </>
+            ) : (
+                <div className='italic text-slate-500'>No POIs available</div>
+            )}
             </div>
         </div>
     );

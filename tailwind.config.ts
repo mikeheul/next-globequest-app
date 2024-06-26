@@ -24,6 +24,7 @@ const config = {
         luckiest: ["var(--font-luckiest)"],
       },
       colors: {
+        'customBackground': 'hsl(222.2, 84%, 4.9%)',
         'marker': '#F7775E',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

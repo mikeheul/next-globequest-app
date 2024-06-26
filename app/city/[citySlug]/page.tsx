@@ -64,21 +64,21 @@ const CityPage = async ({ params }: { params: { citySlug: string }}) => {
                             </div>
                             <h1 className='text-4xl uppercase font-bold text-[#F7775E] font-permanent'>{ city.name }</h1>
                             <p><img src={`/api/flags?countryName=${encodeURIComponent(city.country.name)}`} alt={`${city.country.name} flag`} className="inline-block rounded-full w-6 h-6 object-cover my-2 mr-2" /> {city.country.name}</p>
-                            <h2 className='text-lg font-normal uppercase mt-2'>What can I expect from { city.name } ?</h2>
-                            <p className='my-9 text-slate-400'>
+                            <h2 className='text-lg font-bold uppercase mt-10 mb-5'>What can I expect from { city.name } ?</h2>
+                            <p className=' text-slate-400'>
                                 {city.description}
                             </p>
                         </>
                     )}
 
                     {/* Section for things to see and do in the city */}
-                    <h2 className='text-lg font-normal uppercase'>Things to see and do in { city!.name } ?</h2>
+                    <h2 className='text-lg font-bold uppercase mt-10 mb-5'>Things to see and do in { city!.name } ?</h2>
                     <div className='my-5'>
                         {/* Check if city has POIs and map over them to display each POI */}
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
                         { city && city.pois.length > 0 ? (
                             city.pois.map((poi: any) => (
-                                <Link href={`/poi/${poi.slug}`} className='p-2 flex hover:bg-gray-100 dark:hover:bg-slate-800 rounded-lg'>
+                                <Link href={`/poi/${poi.slug}`} className='p-2 flex hover:bg-gray-200/80 dark:hover:bg-slate-800 rounded-lg'>
                                 <div key={poi.id} className='group flex items-center text-sm gap-2'>
                                     <MessageCircleHeartIcon className='text-[#F7775E] group-hover:text-[#cc634e] flex-shrink-0 w-[30px] h-[30px]' /> 
                                     {poi.name}
@@ -97,7 +97,7 @@ const CityPage = async ({ params }: { params: { citySlug: string }}) => {
             </div>
 
             {/* Section for the most popular places */}
-            <h2 className='text-lg font-normal uppercase mt-10 mb-5'>Most Popular Places</h2>
+            <h2 className='text-lg font-bold uppercase mt-10 mb-5'>Most Popular Places</h2>
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
                 {/* Check if city has POIs and map over them to display each POI with an image */}
                 { city && city.pois.length > 0 ? (

@@ -69,7 +69,7 @@ const ItinerariesPage = () => {
                     href={`/itinerary/${itinerary.id}`}
                     key={itinerary.id}
                 >
-                    <div className='group overflow-hidden relative border border-slate-700 p-7 rounded-md h-full dark:hover:bg-slate-900/80' key={itinerary.id}>
+                    <div className='group bg-white/50 dark:bg-slate-900/50 overflow-hidden relative border border-slate-700 p-7 rounded-md h-full dark:hover:bg-slate-900/80' key={itinerary.id}>
                         {/* Link to the itinerary page using the itinerary id */}
                         <div className='h-full flex flex-col justify-between'>
                             <div>

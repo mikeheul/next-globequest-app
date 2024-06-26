@@ -76,6 +76,7 @@ const PoiPage = ({ params }: { params: { poiSlug: string } }) => {
                                     <Image
                                         src='https://miro.medium.com/v2/resize:fit:1400/1*KuGlXZjyTw7q38uzY_aZRA.png'
                                         alt='Photo 1'
+                                        priority
                                         fill
                                         sizes='100%'
                                         style={{objectFit: "cover", objectPosition: "top"}}
@@ -85,6 +86,7 @@ const PoiPage = ({ params }: { params: { poiSlug: string } }) => {
                                     <Image
                                         src='https://miro.medium.com/v2/resize:fit:1400/1*KuGlXZjyTw7q38uzY_aZRA.png'
                                         alt='Photo 2'
+                                        priority
                                         fill
                                         sizes='100%'
                                         style={{objectFit: "cover", objectPosition: "top"}}
@@ -94,6 +96,7 @@ const PoiPage = ({ params }: { params: { poiSlug: string } }) => {
                                     <Image
                                         src='https://miro.medium.com/v2/resize:fit:1400/1*KuGlXZjyTw7q38uzY_aZRA.png'
                                         alt='Photo 3'
+                                        priority
                                         fill
                                         sizes='100%'
                                         style={{objectFit: "cover", objectPosition: "top"}}

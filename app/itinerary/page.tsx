@@ -85,7 +85,15 @@ const ItinerariesPage = () => {
                             <div className='absolute bottom-4 right-4 translate-x-[100%] opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition duration-500'>
                                 <span className='cursor-pointer' onClick={handleHeartClick}><HeartIcon className='text-slate-500 hover:text-red-500 transition duration-500' /></span>
                             </div>
-                            <Image alt='img' src={travel} className='rotate-180 grayscale w-full h-full absolute top-0 left-0 object-cover opacity-10 -z-[10] dark:invert dark:opacity-20' />
+                            <Image 
+                                alt='img' 
+                                src={travel}
+                                priority
+                                fill
+                                sizes='100%'
+                                style={{objectFit: "cover", objectPosition: "bottom"}} 
+                                className='rotate-180 grayscale absolute opacity-10 -z-[10] dark:invert dark:opacity-20' 
+                            />
                         </div>
                     </div>
                 </Link>

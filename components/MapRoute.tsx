@@ -96,19 +96,19 @@ const MapRoute = ({ pois = [], zoom = defaults.zoom, routeColor = defaults.route
                 <select
                     value={profile}
                     onChange={(e) => setProfile(e.target.value)}
-                    className="border border-gray-300 rounded-md shadow-sm focus:outline-none p-4"
+                    className="border border-gray-300 rounded-md shadow-sm focus:outline-none p-4 dark:text-black"
                 >
                     <option value="foot">Foot</option>
                     <option value="bike">Bike</option>
                     <option value="car">Car</option>
                 </select>
                 {totalDistance !== null && (
-                    <div className="mt-2 text-sm">
+                    <div className="mt-2 text-sm dark:text-black">
                         Total Distance: {totalDistance.toFixed(2)} km
                     </div>
                 )}
                 {totalTime !== null && (
-                    <div className="text-sm">
+                    <div className="text-sm dark:text-black">
                         Estimated Time: {Math.floor(totalTime / 60)} h {Math.floor(totalTime % 60)} m
                     </div>
                 )}

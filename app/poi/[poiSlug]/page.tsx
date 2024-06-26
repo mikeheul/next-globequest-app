@@ -162,7 +162,7 @@ const PoiPage = ({ params }: { params: { poiSlug: string } }) => {
                         {poi.reviews && poi.reviews.length > 0 ? (
                             <>
                             {poi.reviews.map((review: any) => (
-                                <div>
+                                <div key={review.id}>
                                 { review.comment } { new Date(review.createdAt).toLocaleString('en-US') }
                                 </div>
                             ))}

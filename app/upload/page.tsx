@@ -33,7 +33,8 @@ const UploadPage: NextPage = () => {
                 onSuccess={handleSuccess}
                 options={
                     {
-                        "clientAllowedFormats": ['jpg', 'png', 'webp', 'geojson']
+                        "clientAllowedFormats": ['jpg', 'png', 'webp', 'geojson'],
+                        "maxFileSize": 500000 // 500ko
                     }
                 }
             >

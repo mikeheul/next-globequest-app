@@ -1,30 +1,17 @@
-// Import necessary modules and components
 "use client";
-import MapPoints from '@/components/MapPoints'; // Importing MapPoints component from '@/components/MapPoints'
-import { Country, Poi } from '@prisma/client'; // Importing Poi type from Prisma client
-import { ChevronLeft, ChevronRight, LoaderCircleIcon } from 'lucide-react'; // Importing icons from lucide-react
-import Image from 'next/image'; // Importing Image component from next/image
-import Link from 'next/link'; // Importing Link component from next/link
-import React, { useEffect, useState } from 'react'; // Importing React hooks and components
-import ReactPaginate from 'react-paginate'; // Importing ReactPaginate component
-import { useInView } from 'react-intersection-observer'; // Importing useInView hook
 
-// Interface defining the structure of a city with points of interest (pois)
-interface CityWithPois {
-    id: string;
-    name: string;
-    slug: string;
-    pictures: Array<string>;
-    pois: Poi[];
-    country: Country;
-}
+import MapPoints from '@/components/MapPoints'; // Importing MapPoints component from '@/components/MapPoints'
+import { ChevronLeft, ChevronRight, LoaderCircleIcon } from 'lucide-react'; // Importing icons from lucide-react
+import Link from 'next/link'; // Importing Link component from next/link
+import React, { useState } from 'react'; // Importing React hooks and components
+import ReactPaginate from 'react-paginate'; // Importing ReactPaginate component
+import Image from 'next/image'; // Importing Image component from next/image
+import { useFetchCities } from '../hooks/useFetchCities';
+import { useLazyImage } from '../hooks/useLazyImage';
 
 // Lazy loaded image component that uses IntersectionObserver
 const LazyImage = ({ src, alt, placeholder }: any) => {
-    const { ref, inView } = useInView({
-        triggerOnce: true,
-        rootMargin: '100px',
-    });
+    const { ref, inView } = useLazyImage({ src, alt, placeholder });
 
     return (
         <div ref={ref} style={{ position: 'relative', width: '100%', height: '100%' }}>
@@ -53,32 +40,10 @@ const LazyImage = ({ src, alt, placeholder }: any) => {
 
 // Functional component for rendering the Cities page
 const CitiesPage = () => {
-    // State hooks for managing cities data, loading state, error state, current page index, fadeIn animation state
-    const [cities, setCities] = useState<CityWithPois[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<any>(null);
+    const { cities, loading, error } = useFetchCities(); // Use the custom hook to fetch cities
     const [currentPage, setCurrentPage] = useState(0);
     const [fadeIn, setFadeIn] = useState(false);
     const citiesPerPage = 6; // Number of cities per page
-
-    // Effect hook to fetch cities data from the server
-    useEffect(() => {
-        const fetchCities = async () => {
-            try {
-                const response = await fetch('/api/cities'); // Fetch data from API endpoint
-                if (!response.ok) {
-                    throw new Error('Failed to fetch cities');
-                }
-                const data = await response.json(); // Parse JSON response
-                setCities(data); // Update cities state with fetched data
-            } catch (error: any) {
-                setError(error.message); // Set error state if fetch fails
-            } finally {
-                setLoading(false); // Set loading state to false regardless of fetch outcome
-            }
-        };
-        fetchCities(); // Invoke fetchCities function on component mount
-    }, []); // Dependency array is empty, runs once on mount
 
     // Calculate indices for paginating cities array
     const indexOfLastCity = (currentPage + 1) * citiesPerPage;

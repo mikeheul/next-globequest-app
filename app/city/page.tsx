@@ -21,16 +21,18 @@ const LazyImage = ({ src, alt, placeholder }: any) => {
                     src={src}
                     placeholder="blur"
                     blurDataURL={placeholder}
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    sizes='100%'
+                    style={{objectFit: "cover"}}
                     className='transition-transform duration-500 ease-in-out group-hover:scale-105'
-                />
-            ) : (
+                    />
+                    ) : (
                 <Image
                     alt={alt}
                     src={placeholder}
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    sizes='100%'
+                    style={{objectFit: "cover"}}
                     className=''
                 />
             )}

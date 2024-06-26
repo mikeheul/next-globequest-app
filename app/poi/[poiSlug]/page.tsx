@@ -64,9 +64,9 @@ const PoiPage = ({ params }: { params: { poiSlug: string } }) => {
                                     <Image
                                         src={picture}
                                         alt={`Photo ${index + 1}`}
-                                        layout='fill'
-                                        objectFit='cover'
-                                        objectPosition='top'
+                                        fill
+                                        sizes='100%'
+                                        style={{objectFit: "cover", objectPosition: "top"}}
                                     />
                                 </div>
                             ))
@@ -76,25 +76,27 @@ const PoiPage = ({ params }: { params: { poiSlug: string } }) => {
                                     <Image
                                         src='https://miro.medium.com/v2/resize:fit:1400/1*KuGlXZjyTw7q38uzY_aZRA.png'
                                         alt='Photo 1'
-                                        layout='fill'
-                                        objectFit='cover'
-                                        objectPosition='top'
+                                        fill
+                                        sizes='100%'
+                                        style={{objectFit: "cover", objectPosition: "top"}}
                                     />
                                 </div>
                                 <div className='relative hidden md:block md:aspect-w-1 md:aspect-h-1 opacity-40'>
                                     <Image
                                         src='https://miro.medium.com/v2/resize:fit:1400/1*KuGlXZjyTw7q38uzY_aZRA.png'
                                         alt='Photo 2'
-                                        layout='fill'
-                                        objectFit='cover'
+                                        fill
+                                        sizes='100%'
+                                        style={{objectFit: "cover", objectPosition: "top"}}
                                     />
                                 </div>
                                 <div className='relative hidden md:block md:aspect-w-1 md:aspect-h-1 opacity-40'>
                                     <Image
                                         src='https://miro.medium.com/v2/resize:fit:1400/1*KuGlXZjyTw7q38uzY_aZRA.png'
                                         alt='Photo 3'
-                                        layout='fill'
-                                        objectFit='cover'
+                                        fill
+                                        sizes='100%'
+                                        style={{objectFit: "cover", objectPosition: "top"}}
                                     />
                                 </div>
                             </>

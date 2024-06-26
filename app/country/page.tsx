@@ -33,16 +33,16 @@ const CountriesPage = () => {
                     {loading && <LoaderCircleIcon className='animate-spin' />} {/* Display loading state */}
                     {error && <p>Error: {error}</p>} {/* Display error state */}
                     {/* Check if countries are fetched and map over the countries array to display each country */}
-                    <div className='grid grid-cols-1 md:grid-cols-3 gap-3 mb-10'>
+                    <div className='grid grid-cols-1 md:grid-cols-3 gap-y-1 gap-x-3 mb-10'>
                         {countries && countries.map((country) => (
                             // Each country is wrapped in a div with a unique key (country id)
-                            <div key={country.id}>
+                            <Link href={`/country/${country.id}`} key={country.id} className='hover:bg-slate-900 p-3 rounded-lg'>
                                 {/* Link to the country page using the country id */}
                                 <div className='flex items-center gap-4'>
                                     <img src={`/api/flags?countryName=${encodeURIComponent(country.name)}`} alt={`${country.name} flag`} className="inline-block rounded-full w-8 h-8 object-cover" />
-                                    <Link href={`/country/${country.id}`}>{country.name}</Link>
+                                    <p>{country.name}</p>
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 </div>

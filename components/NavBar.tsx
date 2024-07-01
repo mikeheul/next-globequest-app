@@ -64,7 +64,7 @@ const Navbar = () => {
                             <a href="/home" className="text-sm sm:text-xl md:text-2xl font-bold font-permanent text-gray-700 dark:text-white">GLOBE QUEST</a>
                         </div>
                         {/* Desktop navigation links */}
-                        <div className="hidden sm:ml-6 sm:flex sm:justify-between sm:items-center sm:space-x-12">
+                        <div className="uppercase hidden sm:ml-6 sm:flex sm:justify-between sm:items-center sm:space-x-12">
                             <>
                             {links.map((link) => (
                                 <Link 

@@ -74,9 +74,9 @@ const CitiesPage = () => {
             <MapPoints points={citiesMap} />
 
             {/* Page title */}
-            <h1 className='flex flex-wrap justify-center gap-3 text-xl font-semibold text-center mt-10'>
-                <span className='text-[#F7775E] font-permanent text-3xl'>EXPLORE</span>
-                <span className='font-normal text-3xl'>our Cities</span>
+            <h1 className='flex flex-wrap justify-center gap-3 font-semibold text-center mt-10'>
+                <span className='text-[#F7775E] font-permanent text-responsive'>EXPLORE</span>
+                <span className='font-normal text-responsive'>our Cities</span>
             </h1>
 
             {/* Main content section */}

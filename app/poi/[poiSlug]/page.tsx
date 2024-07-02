@@ -121,7 +121,7 @@ const PoiPage = ({ params }: { params: { poiSlug: string } }) => {
                                     <ChevronRightIcon className='hidden sm:block text-slate-400 flex-shrink-0' width={12} />
                                     <span className='font-semibold'>{poi.name}</span>
                                 </div>
-                                <h1 className='uppercase text-3xl sm:text-4xl font-medium'>
+                                <h1 className='uppercase text-responsive font-medium'>
                                     <span className='text-[#F7775E] font-extrabold font-permanent'>{poi.city.name}</span> |&nbsp;
                                     {poi.name}
                                 </h1>

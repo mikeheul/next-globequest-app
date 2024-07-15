@@ -111,7 +111,7 @@ const CitiesPage = () => {
                                     <div className='absolute bg-gradient-to-t from-slate-700 to-transparent w-full h-full opacity-100 bottom-0 left-0 z-10 group-hover:opacity-0 transition duration-1000'></div>
                                     {/* City name */}
                                     <h2 className='text-xl absolute text-white font-bold uppercase z-20'>{city.name}</h2>
-                                    <img src={`/api/flags?countryName=${encodeURIComponent(city.country.name)}`} alt={`${city.country.name} flag`} className="absolute top-4 left-4 inline-block rounded-full border-[3px] border-white ml-2 w-8 h-8 object-cover" />
+                                    <Image src={`/api/flags?countryName=${encodeURIComponent(city.country.name)}`} alt={`${city.country.name} flag`} className="absolute top-4 left-4 inline-block rounded-full border-[3px] border-white ml-2 w-8 h-8 object-cover" />
                                 </div>
                             </Link>
                         );

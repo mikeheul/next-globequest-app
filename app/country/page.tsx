@@ -40,7 +40,7 @@ const CountriesPage = () => {
                             <Link href={`/country/${country.id}`} key={country.id} className='hover:bg-slate-900 p-3 rounded-lg'>
                                 {/* Link to the country page using the country id */}
                                 <div className='flex items-center gap-4'>
-                                    <Image src={`/api/flags?countryName=${encodeURIComponent(country.name)}`} alt={`${country.name} flag`} className="inline-block rounded-full w-8 h-8 object-cover" />
+                                    <Image width={12} height={12} src={`/api/flags?countryName=${encodeURIComponent(country.name)}`} alt={`${country.name} flag`} className="inline-block rounded-full w-8 h-8 object-cover" />
                                     <p>{country.name}</p>
                                 </div>
                             </Link>

@@ -126,7 +126,7 @@ const PoiPage = ({ params }: { params: { poiSlug: string } }) => {
                                     {poi.name}
                                 </h1>
                                 <h2 className='text-2xl'>{poi.category.name}</h2>
-                                <h3 className='flex items-center gap-3'><Image src={`/api/flags?countryName=${encodeURIComponent(poi.city.country.name)}`} alt={`${poi.city.country.name} flag`} className="inline-block rounded-full w-6 h-6 my-2 object-cover" /> {poi.city.country.name}</h3>
+                                <h3 className='flex items-center gap-3'><img src={`/api/flags?countryName=${encodeURIComponent(poi.city.country.name)}`} alt={`${poi.city.country.name} flag`} className="inline-block rounded-full w-6 h-6 my-2 object-cover" /> {poi.city.country.name}</h3>
                                 <p className='text-slate-500 dark:text-slate-300 text-sm mb-3'>{poi.address}</p>
                                 <p className='font-light'>{poi.description}</p>
 

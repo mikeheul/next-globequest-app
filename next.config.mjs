@@ -4,7 +4,8 @@ const nextConfig = {
         domains: [
             "res.cloudinary.com",
             "img.lovepik.com",
-            "miro.medium.com"
+            "miro.medium.com",
+            "restcountries.com"
         ]
         //unoptimized: true,
     },

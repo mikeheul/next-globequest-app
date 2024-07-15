@@ -10,7 +10,7 @@ interface CityWithPois {
     country: Country;
 }
 
-export const getStaticProps = () => {
+export const useFetchCities = () => {
     const [cities, setCities] = useState<CityWithPois[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);

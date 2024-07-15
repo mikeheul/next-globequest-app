@@ -47,7 +47,7 @@ const PoiPage = ({ params }: { params: { poiSlug: string } }) => {
             }
         };
         fetchPoi();
-    }, [params.poiSlug]); // Dependency array to run the effect when params.poiId changes
+    }, [params.poiSlug, router]); // Dependency array to run the effect when params.poiId changes
 
     // Render the component
     return (

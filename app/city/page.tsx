@@ -6,7 +6,7 @@ import Link from 'next/link'; // Importing Link component from next/link
 import React, { useState } from 'react'; // Importing React hooks and components
 import ReactPaginate from 'react-paginate'; // Importing ReactPaginate component
 import Image from 'next/image'; // Importing Image component from next/image
-import { useFetchCities } from '../hooks/useFetchCities';
+import { getStaticProps } from '../hooks/useFetchCities';
 import { useLazyImage } from '../hooks/useLazyImage';
 
 // Lazy loaded image component that uses IntersectionObserver
@@ -42,7 +42,7 @@ const LazyImage = ({ src, alt, placeholder }: any) => {
 
 // Functional component for rendering the Cities page
 const CitiesPage = () => {
-    const { cities, loading, error } = useFetchCities(); // Use the custom hook to fetch cities
+    const { cities, loading, error } = getStaticProps(); // Use the custom hook to fetch cities
     const [currentPage, setCurrentPage] = useState(0);
     const [fadeIn, setFadeIn] = useState(false);
     const citiesPerPage = 6; // Number of cities per page

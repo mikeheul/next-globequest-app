@@ -5,6 +5,8 @@ import { MenuIcon, Router, XIcon } from 'lucide-react'; // Import icons from luc
 import Link from 'next/link'; // Import the Link component from Next.js for client-side navigation
 import React, { useState, useEffect } from 'react'; // Import React
 import { useRouter, usePathname } from 'next/navigation'
+import Image from 'next/image';
+import logo from '@/public/logo-orange.png';
 
 // Define the Navbar component
 const Navbar = () => {
@@ -61,7 +63,7 @@ const Navbar = () => {
                     <div className="flex">
                         {/* Brand/logo link */}
                         <div className="flex justify-center items-center mr-5">
-                            <a href="/home" className="text-sm sm:text-xl md:text-2xl font-bold font-permanent text-gray-700 dark:text-white">GLOBE QUEST</a>
+                            <a href="/home" className="flex items-center gap-2 text-sm sm:text-xl font-bold font-permanent text-gray-700 dark:text-white"><Image className='w-[50px]' src={logo} alt='logo' /> GLOBEQUEST</a>
                         </div>
                         {/* Desktop navigation links */}
                         <div className="uppercase hidden sm:ml-6 sm:flex sm:justify-between sm:items-center sm:space-x-12">
